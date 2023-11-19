@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link rel="stylesheet" href="{% static 'market/style.css' %}">
+</head>
+<body>
+<h1>Index page</h1>
+<h4>
+    {% for products in products %}
+<a href="{% url 'market:detail' products.id%}">
+   Id : {{products.id}} | Name : {{products.name}} | Price :{{ products.price }} | Description : {{ product.description }} <br/>
+</a>
+    {% endfor %}
+</h4>
+</body>
+</html>
