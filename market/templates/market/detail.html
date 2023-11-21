@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+{% extends "market/base.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ product.name }}</title>
 </head>
 <body>
+{% block content %}
 <h1>
     This is detail page for : {{ product.name }}
 </h1>
+{% endblock content %}
 </body>
 </html>

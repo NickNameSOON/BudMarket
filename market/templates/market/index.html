@@ -1,29 +1,8 @@
 <!DOCTYPE html>
 {% extends "market/base.html" %}
-{% load static %}
 <html lang="en">
 
 {% block content %}
-
-<nav class="bg-red-800 shadow-lg">
-    <div class="max-w-6xl max auto px-4">
-        <div class="flex justify-between">
-            <div class="flex space-x-7">
-                <div>
-                    <a href="#" class="flex items-center px-2 py-4">
-                    <img class="h-12 w-12" src="{% static 'market/src/Images/logo2.png' %}" alt="logo"/>
-                    <span class="text-white font-semibold text-x1" >Буд Маркет</span>
-                    <a/>
-                </div>
-                <div class="items-center flex space-x-1">
-                    <a href="#" class="py-4 px-2 text-white font-semibold border-b-4 border-gray-500">Home</a>
-                    <a href="#" class="py-4 px-2 text-white font-semibold">About</a>
-                    <a href="#" class="py-4 px-2 text-white font-semibold">Contacts</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
 
 <h4>
     {% for products in products %}
