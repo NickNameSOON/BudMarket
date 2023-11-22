@@ -8,6 +8,7 @@
     {% for products in products %}
 <a href="{% url 'market:detail' products.id%}">
    Id : {{products.id}} | Name : {{products.name}} | Price :{{ products.price }} | Description : {{ products.description }} <br/>
+<img src="{{ products.image.url }}" alt="">
 </a>
     {% endfor %}
 </h4>
