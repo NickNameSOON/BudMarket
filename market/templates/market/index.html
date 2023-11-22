@@ -1,18 +1,20 @@
-<!DOCTYPE html>
+
 {% extends "market/base.html" %}
-<html lang="en">
+
 
 {% block content %}
-
-<h4>
+    <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:gid-cols-3 lg:grid-cols-3">
     {% for products in products %}
 <a href="{% url 'market:detail' products.id%}">
-   Id : {{products.id}} | Name : {{products.name}} | Price :{{ products.price }} | Description : {{ products.description }} <br/>
-<img src="{{ products.image.url }}" alt="">
+<div class="rounded overflow-hidden shadow-lg">
+    <img class="w-full" src="{{ products.image.url }}" alt="">
+    <div class="px-2 py-4">
+        <p class="front-bold text-xl mb-2">{{ products.name }}</p>
+        <p class="front-bold text-xl text-green-500 mb-2">{{ products.price }} ₴</p>
+    </div>
+</div>
 </a>
     {% endfor %}
-</h4>
+</div>
 
 {% endblock content %}
-
-</html>
