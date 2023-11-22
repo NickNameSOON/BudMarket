@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 {% extends "market/base.html" %}
-<html lang="en">
+{% load humanize %}
+
 <head>
     <meta charset="UTF-8">
     <title>{{ product.name }}</title>
 </head>
 <body>
 {% block content %}
-<h1>
-    This is detail page for : {{ product.name }}
-</h1>
+   <div class="flex p-10 w-full h-200">
+   <img class="w-1/3" src="{{ product.image.url }}" alt="ProductPhoto">
+   <div class="w-2/3 text-xl ml-10 mt-5">
+       <p class="mt-5">{{ product.name }}</p>
+       <p class="mt-5 text-green-500">{{ product.price | intcomma }} грн.</p>
+       <p class="mt-5 text-gray-600">{{ product.description }}</p>
+   </div>
+   </div>
 {% endblock content %}
 </body>
-</html>
