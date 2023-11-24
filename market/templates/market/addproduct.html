@@ -1,8 +1,22 @@
-<form method="post" enctype="multipart/form-data">
+{% extends "market/base.html" %}
+
+{% block content %}
+
+<div class="ml-[200px]">
+<h1 class="text-2xl ml-10 front-bold text-green-600">Додати новий товар</h1>
+<form class="w-1/3 bg-white shadow-md m-10 px-8 py-8" method="post" enctype="multipart/form-data">
      {% csrf_token %}
-    <input type="text" placeholder="Name..." name="name" id="name">
-    <input type="text" placeholder="Price..." name="price" id="price">
-    <input type="text" placeholder="Description" name="description" id="description">
-    <input type="file" accept="image/*" name="upload" id="upload">
-    <button type="submit" name="Add Product">Add Product</button>
+    <div>
+        <label class="block text-gray-700 text-md font-bold mb-2" for="name">Product Name</label>
+      <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Name..." name="name" id="name">
+        <label class="block text-gray-700 text-md font-bold mb-2" for="name">Product Name</label>
+      <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Price..." name="price" id="price">
+        <label class="block text-gray-700 text-md font-bold mb-2" for="name">Product Name</label>
+      <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Description..." name="description" id="description">
+      <input class="block mt-4" type="file" accept="image/*" name="upload" id="upload">
+      <button class="block bg-green-600 text-white p-3 mt-4" type="submit" name="Add Product" value="Add Product">Add Product</button>
+    </div>
 </form>
+</div>
+
+{% endblock content %}
