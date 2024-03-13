@@ -1,0 +1,20 @@
+{% extends "market/base.html" %}
+
+{% block content %}
+
+ <div class="container py-5">
+     <h1 class="text 2xl m-10 font-bold">Авторизація</h1>
+     <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="POST">
+     {% csrf_token %}
+          <div class="mb-2">
+             <label class="block text-gray-700 text-sm font-bold mb-2">Електронна пошта</label>
+             <p class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 leading-tight">{{form.email}}</p>
+             <label class="block text-gray-700 text-sm font-bold mb-2">Пароль</label>
+             <p class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 leading-tight">{{form.password1}}</p>
+          </div>
+          <button class="bg-green-500 text-white px-5 py-2" type="submit">Авторизуватися</button> 
+     </form>
+          <a href="/users/register" class="py-4 px-2 text-gray-500 font-semibold">Якщо в вас немає акаунта зареєструйтеся !</a>
+</div>
+
+{% endblock content %}
