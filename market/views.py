@@ -4,7 +4,6 @@ from .models import Product
 
 
 
-
 def index(request):
     products = Product.objects.all()
     context = {
@@ -51,3 +50,7 @@ def delete_product(request, product_id):
         redirect("/market/")
     context = {'product': product}
     return render(request, "market/deleteproduct.html", context=context)
+
+
+def profile(request):
+    return render(request, 'users/profile.html')
