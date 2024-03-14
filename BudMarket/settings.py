@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'market.apps.MarketConfig',
     'django.contrib.humanize',
     "users",
+    "crispy_forms",  # new
+    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"

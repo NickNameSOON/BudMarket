@@ -1,10 +1,22 @@
 import type { Config } from 'tailwindcss'
 
+// @ts-ignore
 export default {
   content: ["./market/**/*.{html,js}", "./users/**/*.{html,js}"],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+
+      ],
 } satisfies Config
+
+module.exports = {
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    require('@tailwindcss/forms'),
+  ]
+}
+
 

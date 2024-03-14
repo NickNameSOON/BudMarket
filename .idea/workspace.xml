@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/django.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BudMarket.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BudMarket.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/register1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/register_done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BudMarket/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/static/market/src/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/market/static/market/src/tailwind.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/static/market/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/static/market/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/market/static/market/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/addproduct.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/addproduct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/368260036.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/752bf000-2e7b-4343-90c7-670614824cc2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/752bf000-2e7b-4343-90c7-670614824cc2_E7rHixX.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/752bf000-2e7b-4343-90c7-670614824cc2_gErIXW8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/images/kawmet_w17_decor_12_3_kw_eco_2_.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +27,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2dbyW3NQxqdLMpiyykhWSBjcKMJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -50,27 +42,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "App Engine server.Unnamed.executor": "Run",
     "Django Server.BudMarket.executor": "Run",
     "Django Server.Unnamed.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/nickn/OneDrive/Desktop/BudMarket",
+    "last_opened_file_path": "C:/Users/nickn/BudMarket",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\PyCharm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="CompoundRunConfigurationType">
-      <toRun name="BudMarket" type="Python.DjangoServer" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -87,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710291101003</updated>
       <workItem from="1710291102084" duration="383000" />
+      <workItem from="1710435624663" duration="2491000" />
     </task>
     <servers />
   </component>
