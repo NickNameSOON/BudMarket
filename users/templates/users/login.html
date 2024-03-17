@@ -6,10 +6,10 @@
      <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="POST">
      {% csrf_token %}
           <div class="mb-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Електронна пошта</label>
-             <p>{{ form.username }}</p>
+             <label class="block text-gray-700 text-sm font-bold mb-2">Логін</label>
+             <p class="">{{ form.username }}</p>
              <label class="block text-gray-700 text-sm font-bold mb-2">Пароль</label>
-             <p class="">{{form.password}}</p>
+             <p class="">{{ form.password }}</p>
           </div>
           <button class="bg-green-500 text-white px-5 py-2" type="submit">Авторизуватися</button> 
      </form>

@@ -1,56 +1,26 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.validators import ASCIIUsernameValidator
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from .models import User
 
-class UserRegistrationForm(forms.ModelForm):
-    username = forms.CharField(
-        required=True,
-        widget=forms.TextInput(attrs={
-            "class":"shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-            "placeholder": "Enter username..."}
-        ))
+User = get_user_model()
 
-    email = forms.EmailField(
-        required=True,
-        widget=forms.EmailInput(attrs={
-            "class":"shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-            "placeholder":"mail@mail.com"}
-        ))
+class RegistrationForm(forms.ModelForm):
+    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username','class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email' , 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    password = forms.CharField(required= True, widget=forms.PasswordInput(attrs={'placeholder': 'Password' , 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
 
-    password1 = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput(attrs={
-            "class":"shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-            "placeholder": "Enter password"}
-        ))
-    password2 = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput( attrs={
-            "class":"shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-            "placeholder": "Enter same password"}
-        ))
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {"password": {'write_only': True}}
 
-    def clean_password2(self):
-        cd = self.cleaned_data
-        if cd['password1'] != cd['password2']:
-            raise forms.ValidationError('Passwords don\'t match.')
-        return cd['password2']
+        def create(self, validated_data):
+            user = User.objects.create_user(validated_data['username'], None, validated_data['password'])
 
-
-class LoginForm(forms.Form):
-    username = forms.CharField(
-        required=True,
-        widget=forms.TextInput(attrs={
-            "class": "shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-            "placeholder": "Enter username..."}
-        ))
-
-    password = forms.CharField(
-            required=True,
-            widget=forms.PasswordInput(attrs={
-                "class": "shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none",
-                "placeholder": "Enter password"}
-            ))
+            return user

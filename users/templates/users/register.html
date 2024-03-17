@@ -1,23 +1,21 @@
 {% extends "market/base.html" %}
 
 {% block content %}
-
-<div class="container py-5">
-        <h1 class="text-2xl m-10 font-bold">Register User</h1>
-        <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="post">
-            {% csrf_token %}
-            <div class="mb-2">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                <p class="">{{ form.username }}</p>
-                <label class="block text-gray-700 text-sm font-bold mt-5 mb-2">Email</label>
-                <p class="">{{form.email}}</p>
-                <label class="block text-gray-700 text-sm font-bold mt-5 mb-2">Password</label>
-                <p class="">{{ form.password1 }}</p>
-                <label class="block text-gray-700 text-sm font-bold mt-5 mb-2">Confirm Password</label>
-                <p class="">{{form.password2}}</p>
-            </div>
-            <button class="bg-green-500 text-white px-5 py-2" type="submit">Register</button>
-        </form>
+<body class="bg-gray-100">
+    <div class="container mx-auto max-w-lg py-8">
+        <h2 class="text-2xl font-bold mb-4">Registration Form</h2>
+        <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="POST">
+     {% csrf_token %}
+          <div class="mb-2">
+             <label class="block text-gray-700 text-sm font-bold mb-2">Логін</label>
+             <p class="">{{ form.username }}</p>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Електронна пошта</label>
+             <p class="">{{ form.email }}</p>
+             <label class="block text-gray-700 text-sm font-bold mb-2">Пароль</label>
+             <p class="">{{form.password}}</p>
+          </div>
+          <button class="bg-green-500 text-white px-5 py-2" type="submit">Авторизуватися</button>
+     </form>
     </div>
-
+</body>
 {% endblock content %}
