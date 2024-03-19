@@ -4,6 +4,7 @@
     <data-source name="Django default" uuid="4d4750c3-d7ae-4d8d-a024-e81c944aec61">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
       <secret-storage>master_key</secret-storage>
+      <auth-provider>pgpass</auth-provider>
       <user-name>postgress</user-name>
       <schema-mapping />
     </data-source>

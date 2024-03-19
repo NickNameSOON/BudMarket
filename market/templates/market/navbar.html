@@ -11,10 +11,11 @@
                 </div>
                 <div class="items-center flex space-x-1">
                     <a href="/" class="py-4 px-2 text-white font-semibold border-b-4 border-red-950">Головна</a>
-                    <a href="" class="py-4 px-2 text-white font-semibold">Про нас</a>
-                    <a href="/market/addproduct" class="py-4 px-2 text-white font-semibold">Додати товар</a>
+                    <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:catalog' %}">Каталог</a>
+                    <a class="py-4 px-2 text-white font-semibold" href="">Про нас</a>
                     {% if user.is_authenticated %}
-                       <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:logout' %}">Logout</a>
+                        <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:add_product' %}" >Додати товар</a>
+                        <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:logout' %}">Logout</a>
                         <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:profile' %}">Профіль</a>
                       {% else %}
                        <a href="{% url 'users:login' %}" class="py-4 px-2 text-white font-semibold">Авторизуватися</a>

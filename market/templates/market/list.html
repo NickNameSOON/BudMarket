@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "market/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+    <div>
+    {% if categories %}
+  <h3>Категорії:</h3>
+  <ul>
+    {% for c in categories %}
+      <li>
+        <a>{{ c.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+    </div>
+        <div class="sm:text-center lg:text-left">
+            {% if category %}
+                <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">{{ category.name }}</h2>
+            {% else %}
+                <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">Всі товари</h2>
+            {% endif %}
+        </div>
+        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:gid-cols-3 lg:grid-cols-5">
+            {% for products in products %}
+                <a href="{% url 'market:detail' products.id %}">
+                    <div class="rounded overflow-hidden shadow-lg">
+                        <img class="w-600px h-800px" src="{{ products.image.url }}" alt="">
+                        <div class="px-6 py-4">
+                            <p class="front-bold text-xl mb-2">{{ products.name }}</p>
+                            <p class="front-bold text-xl text-indigo-500 mb-2"> by : {{ products.seller }}</p>
+                            <p class="front-bold text-xl text-green-500 mb-2">{{ products.price }} ₴</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <li class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">No products found</li>
+            {% endfor %}
+        </div>
+    
+</main>
+
+
+{% endblock content %}

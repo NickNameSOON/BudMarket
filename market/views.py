@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Product
 from django.contrib.auth.decorators import login_required
-
-
+from django.shortcuts import render, get_object_or_404
+from .models import Category, Product
 
 
 def index(request):
@@ -13,11 +11,6 @@ def index(request):
     }
     return render(request, "market/index.html", context)
 
-
-def IndexProduct(request, product_id):
-    product = Product.objects.get(id=product_id)
-    context = {'product': product}
-    return render(request, "market/detail.html", context=context)
 
 @login_required
 def add_product(request):
@@ -53,3 +46,22 @@ def delete_product(request, product_id):
         redirect("/market/")
     context = {'product': product}
     return render(request, "market/deleteproduct.html", context=context)
+
+
+def product_detail(request, product_id):
+    product = Product.objects.get(id=product_id)
+    return render(request,'market/detail.html', context={'product': product})
+
+
+def catalog(request, category_name=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
+
+    if category_name:
+        category = Category.objects.get(name=category_name)
+        products = products.filter(category=category)
+
+    return render(request, 'market/list.html', {'category': category,
+                                                      'categories': categories,
+                                                      'products': products})

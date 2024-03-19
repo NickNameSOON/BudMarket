@@ -5,30 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/market/migrations/0005_product_seller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0006_alter_product_seller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0007_alter_product_seller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0008_remove_product_seller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0009_product_seller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/images/profiles/photo_2024-02-16_01-47-20.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/images/profiles/photo_2024-02-16_01-47-20_EVsgnLe.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/images/profiles/pycharm64_uRwjteZaJa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/migrations/0003_rename_userprofile_userregister_profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/migrations/0004_rename_password1_userregister_password_and_more.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/migrations/0010_category_remove_product_seller_product_available_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/migrations/0011_alter_category_options_alter_product_options_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/templates/market/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/03/19/3_3_hp_finish_25kg-1000x1000.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +34,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -92,6 +81,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\market\templates\market" />
+    </key>
+  </component>
   <component name="RunManager" selected="Django Server.Unnamed">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BudMarket" />
@@ -174,6 +168,17 @@
       <list>
         <option value="$PROJECT_DIR$/tailwind.config.js" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
