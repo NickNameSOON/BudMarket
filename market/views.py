@@ -53,15 +53,26 @@ def product_detail(request, product_id):
     return render(request,'market/detail.html', context={'product': product})
 
 
-def catalog(request, category_name=None):
+def catalog(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+    selected_category_slug = request.GET.get('category')
 
-    if category_name:
-        category = Category.objects.get(name=category_name)
+    products = Product.objects.filter(available=True)
+    sort_param = request.GET.get('sort')
+
+    if selected_category_slug:
+        products = products.filter(category__slug=selected_category_slug)
+
+    if sort_param == 'min_price':
+        products = products.order_by('price')
+    elif sort_param == 'max_price':
+        products = products.order_by('-price')
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
 
     return render(request, 'market/list.html', {'category': category,
-                                                      'categories': categories,
-                                                      'products': products})
+                                                 'categories': categories,
+                                                 'products': products})

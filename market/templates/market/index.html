@@ -20,13 +20,14 @@
                     <div class="rounded overflow-hidden shadow-lg">
                         <img class="w-600px h-800px" src="{{ products.image.url }}" alt="">
                         <div class="px-6 py-4">
-                            <p class="front-bold text-xl mb-2">{{ products.name }}</p>
-                            <p class="front-bold text-xl text-indigo-500 mb-2"> by : {{ products.seller }}</p>
+                            <p class="front-bold text-xl mb-2">{{ products.title }}</p>
+                            <p class="font-bold text-lg text-indigo-500 mb-2">Виробник : {{ products.brand }}</p>
                             <p class="front-bold text-xl text-green-500 mb-2">{{ products.price }} ₴</p>
-                            <p class="text-gray-700 text-base">{{ products.description }}</p>
                         </div>
                     </div>
                 </a>
+            {% empty %}
+                <li class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">No products found</li>
             {% endfor %}
         </div>
 

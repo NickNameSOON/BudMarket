@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/market/migrations/0010_category_remove_product_seller_product_available_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0011_alter_category_options_alter_product_options_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/templates/market/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/products/2024/03/19/3_3_hp_finish_25kg-1000x1000.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/migrations/0012_productproxy_alter_category_options_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/migrations/0013_remove_product_created_at_remove_product_upload_at.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/migrations/0014_remove_product_upload_at_category_created_at.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/1_638215509490686670.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/3_3_hp_finish_25kg-1000x1000.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/завантаження_1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BudMarket.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BudMarket.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
     </list>
@@ -142,6 +147,8 @@
       <workItem from="1710470904685" duration="157000" />
       <workItem from="1710471072999" duration="5753000" />
       <workItem from="1710710968812" duration="7703000" />
+      <workItem from="1711826697500" duration="831000" />
+      <workItem from="1711827605645" duration="6654000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
