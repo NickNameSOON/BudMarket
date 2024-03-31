@@ -8,7 +8,17 @@
      {% csrf_token %}
           <div class="mb-4 ">
             <label class="block text-gray-700 text-md font-bold mb-2" for="name">Назва товару</label>
-            <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Name..." name="name" id="name">
+              <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Name..." name="title" id="title">
+            <label class="block text-gray-700 text-md font-bold mb-2" for="brand">Виробник</label>
+              <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Name..." name="brand" id="brand">
+              <label class="block text-gray-700 text-md font-bold mb-2" for="price">Категорія</label>
+              <div>
+              {% if categories %}
+              <select id="select">
+                  <option value="categories.slug">{{ categories.name }}</option>
+              </select>
+              {% endif %}
+          </div>
             <label class="block text-gray-700 text-md font-bold mb-2" for="price">Ціна</label>
             <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Price..." name="price" id="price">
             <label class="block text-gray-700 text-md font-bold mb-2" for="description">Опис</label>

@@ -5,22 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/market/migrations/0012_productproxy_alter_category_options_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0013_remove_product_created_at_remove_product_upload_at.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/migrations/0014_remove_product_upload_at_category_created_at.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/1_638215509490686670.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/3_3_hp_finish_25kg-1000x1000.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/products/2024/03/30/завантаження_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BudMarket.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BudMarket.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/cart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/templates/cart/cart-view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/03/31/images.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BudMarket/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/addproduct.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/addproduct.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +34,13 @@
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -75,7 +86,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nickn/BudMarket&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nickn/OneDrive/Desktop/BudMarket/cart&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -87,6 +98,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\cart" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\market\templates\market" />
     </key>
@@ -149,6 +163,8 @@
       <workItem from="1710710968812" duration="7703000" />
       <workItem from="1711826697500" duration="831000" />
       <workItem from="1711827605645" duration="6654000" />
+      <workItem from="1711836439457" duration="5963000" />
+      <workItem from="1711913794600" duration="2177000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />

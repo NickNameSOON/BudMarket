@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'market.apps.MarketConfig',
     'django.contrib.humanize',
-    "users",
+    "users.apps.UsersConfig",
+    'cart.apps.CartConfig',
     "crispy_forms",  # new
     "crispy_tailwind",
 ]
@@ -57,6 +58,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
+
             ],
         },
     },

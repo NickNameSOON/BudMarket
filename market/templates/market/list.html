@@ -3,22 +3,22 @@
 {% load static %}
 
 {% block content %}
-
-<main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-    <div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-10 sm:px-7 md:mt-12 lg:mt-16 lg:px-4 xl:mt-20">
+    
+<div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-10 sm:px-7 md:mt-12 lg:mt-16 lg:px-4 xl:mt-20 grid gap-4 grid-cols-2">
         {% if categories %}
             <form method="get" action="{% url 'market:catalog' %}">
-                <label>Оберіть категорію:</label><br>
+                <label class="text-2xl">Оберіть категорію:</label><br>
+                <div>
                 {% for c in categories %}
                     <input type="radio" id="{{ c.slug }}" name="category" value="{{ c.slug }}">
                     <label for="{{ c.slug }}">{{ c.name }}</label><br>
                 {% endfor %}
-                <button type="submit">Фільтрувати</button>
+                </div>
+                <button class="bg-green-500 text-white" type="submit">Фільтрувати</button>
             </form>
-
         {% endif %}
     </div>
-
+<main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
     <div class="sm:text-center lg:text-left">
         {% if category %}
             <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">{{ category.name }}</h2>

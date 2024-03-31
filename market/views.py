@@ -20,6 +20,7 @@ def add_product(request):
         seller = request.POST.get("seller")
         description = request.POST.get("description")
         image = request.FILES['upload']
+
         item = Product(name=name, price=price, description=description, image=image, seller=seller)
         item.save()
 
