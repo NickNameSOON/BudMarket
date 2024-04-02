@@ -58,6 +58,9 @@ class Product(models.Model):
     price = models.DecimalField('ціна', max_digits=10, decimal_places=2)
     available = models.BooleanField("Наявність", default=True)
 
+    def get_price(self):
+        return self.price
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товари'
