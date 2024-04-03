@@ -20,22 +20,19 @@ class RegistrationForm(UserCreationForm):
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
                                                                                  'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
 
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+    def clean_password1(self):
+        password1 = self.cleaned_data['password1']
+        if len(password1) < 8:
+            raise ValidationError("Password must be at least 8 characters long.")
+        return password1
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if User.objects.filter(email=email).exists():
-            raise ValidationError("This email is already in use.")
-        return email
-
-    def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+        if password1 != password2:
+            raise ValidationError("Passwords do not match.")
+        return cleaned_data
 
 
 class LoginForm(AuthenticationForm):

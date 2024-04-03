@@ -5,17 +5,27 @@
     <div class="container mx-auto max-w-lg py-8 place-content-center">
         <h2 class="text-2xl text-center font-bold mb-4">Registration Form</h2>
         <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4 space-y-4" method="POST">
-     {% csrf_token %}
-          <div class="mb-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Логін</label>
-             <p class="">{{ form.username }}</p>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Електронна пошта</label>
-             <p class="">{{ form.email }}</p>
-             <label class="block text-gray-700 text-sm font-bold mb-2">Пароль</label>
-             <p class="">{{form.password}}</p>
-          </div>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Авторизуватися</button>
-     </form>
+            {% csrf_token %}
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-2">
+                {{ form.password1.errors }}
+                <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                {{ form.password1 }}
+            </div>
+            <div class="mb-2">
+                {{ form.password2.errors }}
+                <label class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Register</button>
+        </form>
     </div>
 </body>
 {% endblock content %}

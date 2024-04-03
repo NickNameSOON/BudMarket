@@ -4,27 +4,38 @@
 
   <h1 class="text-center text-4xl">Your Cart</h1>
 {% for cart_item in cart_items %}
-    <div class="flex p-12 w-full h-400px">
-        <p class="text-2xl">{{ cart_item.product.title }}</p>
-        <div class="w-2/3 text-xl ml-5 mt-5 rounded overflow-hidden shadow-lg">
-        <img class="w-400px h-400px" src="{{ cart_item.product.image.url }}" alt="ProductPhoto">
-            <a class="absolute left-0 top-0 h-16 w-16" href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}">Remove</a>
+<div class="h-full w-4/5 p-12 ml-5 mt-5 overflow-hidden text-xl shadow-lg">
+      <div class="">
+        <img class="w-400px -400px" src="{{ cart_item.product.image.url }}" alt="ProductPhoto" />
+      </div>
+          <div>
+              <p class="text-2xl flex-container">{{ cart_item.product.title }}</p>
+          </div>
+
+                  <a class="object-right-top" href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}">Remove</a>
+
+    <div>
         <p>Price: {{ cart_item.product.price }}</p>
-        <!-- Display quantity of this product in the cart -->
-        <form action="{% url 'cart:update_cart' cart_item.id %}" method="post">
-            {% csrf_token %}
-            <p>Кількість :</p>
-            <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
-            <button type="submit">Update</button>
-        </form>
-        </div>
     </div>
+    <form action="{% url 'cart:update_cart' cart_item.id %}" method="post">
+        {% csrf_token %}
+        <p>Кількість :</p>
+        <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" />
+        <button class="text-sm" type="submit">Update</button>
+    </form>
+    <div class="w-[459.93px] h-[135px] absolute left-[323.46px] top-[244px] text-base text-left">
+        <p>{{ cart_item.product.description }}</p>
+    </div>
+    <div>
+
+    </div>
+</div>
+
 {% endfor %}
 <p>Total Price: {{ total_price }}</p>
 
-
    <!-- Include jQuery library -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
    <!-- JavaScript code for handling decrease quantity button click event -->
    <script>
@@ -56,6 +67,6 @@
 });
 
 
-       });
+       })
    </script>
 {% endblock content %}
