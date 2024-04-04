@@ -1,6 +1,6 @@
 {% extends "market/base.html" %}
 
-{% block title %}Welcome{% endblock %}
+{% block title %}Профіль користувача{% endblock %}
 
 {% block content %}
     {% if user.profile %}
@@ -15,7 +15,9 @@
             Профіль користувача :
         </div>
         <h1 class="font-bold text-xl m-2">{{ user.username }}</h1>
-        <h1>Номер телефону : {{ profile.contact }}</h1>
+        <h1>Номер телефону : {{ user.profile.contact }}</h1>
+            <h1>Імя : {{ user.profile.firstName }}</h1>
+            <h1>Прізвище : {{ user.profile.firstName }}</h1>
         </div>
     </div>
         {% else %}

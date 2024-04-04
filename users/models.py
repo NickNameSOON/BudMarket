@@ -8,17 +8,19 @@ class UserRegister(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=254, unique=True)
     password = models.CharField(max_length=44)
-
     email_verify = models.BooleanField(default=False)
+
     def __str__(self):
         return self.user.username
-
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, upload_to='images/profiles')
-    contact = models.CharField(max_length=15, default=0 ,blank=True)
+    contact = models.CharField(max_length=15, default=0, blank=True)
+    firstName = models.CharField(max_length=100, blank=True, null=True)
+    lastName = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.user.username

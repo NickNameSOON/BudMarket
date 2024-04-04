@@ -26,7 +26,7 @@ def delete_product(request, product_id):
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)
     form = CartAddProductForm()
-    return render(request,'market/detail.html', context={'product': product, 'form': form})
+    return render(request, 'market/detail.html', context={'product': product, 'form': form})
 
 
 def catalog(request, category_slug=None):
@@ -50,5 +50,23 @@ def catalog(request, category_slug=None):
         products = products.filter(category=category)
 
     return render(request, 'market/list.html', {'category': category,
-                                                 'categories': categories,
-                                                 'products': products})
+                                                'categories': categories,
+                                                'products': products})
+
+
+def catalog_search(request, category_id):
+    # Отримати об'єкт категорії
+    category = Category.objects.get(id=category_id)
+    # Отримати пошуковий запит з URL-адреси
+    query = request.GET.get('q')
+    # Виконати пошук товарів за назвою в межах обраної категорії
+    if query:
+        products = Product.objects.filter(category=category, name__icontains=query)
+    else:
+        products = Product.objects.filter(category=category)
+    return render(request, 'market/list.html', {'category': category, 'products': products})
+
+
+
+def aboutUs(request):
+    return render(request, 'market/about_us.html')

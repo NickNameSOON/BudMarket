@@ -5,21 +5,22 @@
             <div class="flex space-x-7">
                 <div>
                     <a href="/" class="flex items-center px-2 py-4">
-                    <img class="h-12 w-12" src="{% static 'market/src/Images/logo2.png' %}" alt="logo"/>
-                    <span class="text-xl text-white font-['Kelly Slab']">БудМаркет</span>
+                        <img class="h-12 w-12" src="{% static 'market/src/Images/logo2.png' %}" alt="logo"/>
+                        <span class="text-xl text-white font-['Kelly Slab']">БудМаркет</span>
                     </a>
                 </div>
                 <div class="items-center flex space-x-1">
                     <a href="/" class="py-4 px-2 text-white font-semibold border-b-4 border-red-950">Головна</a>
                     <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:catalog' %}">Каталог</a>
-                    <a class="py-4 px-2 text-white font-semibold" href="">Про нас</a>
                     <a class="py-4 px-2 text-white font-semibold" href="{% url 'cart:cart-view' %}">Кошик</a>
+                    <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:about_us' %}">Про нас</a>
                     {% if user.is_authenticated %}
                         <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:logout' %}">Logout</a>
                         <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:profile' %}">Профіль</a>
-                      {% else %}
-                       <a href="{% url 'users:login' %}" class="py-4 px-2 text-white font-semibold">Авторизуватися</a>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="py-4 px-2 text-white font-semibold">Авторизуватися</a>
                     {% endif %}
+                </div>
             </div>
         </div>
     </div>

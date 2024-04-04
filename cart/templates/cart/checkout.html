@@ -1,0 +1,13 @@
+{% extends "market/base.html" %}
+
+{% block content %}
+   <h2>Checkout</h2>
+   <!-- Форма для ввода данных пользователя та выбора способов доставки и оплаты -->
+   <form method="post" action="{% url 'confirm_order' %}">
+       {% csrf_token %}
+       <label for="first_name">First Name:</label>
+       <input type="text" id="first_name" name="first_name">
+       <!-- Додайте інші поля форми для введення прізвища, номера телефону, способів доставки і оплати -->
+       <button type="submit">Confirm Order</button>
+   </form>
+{% endblock %}

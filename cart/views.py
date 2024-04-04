@@ -78,3 +78,32 @@ def update_cart(request, cart_item_id):
                 # Якщо кількість введена неправильно, можна видалити товар з кошика
                 cart_item.delete()
     return redirect('cart:cart-view')
+
+
+def checkout(request):
+    # Перевірка, чи є товари в кошику перед переходом до оформлення замовлення
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    if not cart.cartitem_set.exists():
+        return redirect('cart')
+
+    # Відображення форми для вводу даних користувача
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            # Збереження даних користувача і переадресація на сторінку підтвердження покупки
+            form.save()
+            return redirect('order_confirmation')
+    else:
+        form = CheckoutForm()
+    return render(request, 'cart/checkout.html', {'form': form})
+
+
+def confirm_order(request):
+    # Логіка підтвердження замовлення
+    # Цей фрагмент коду залежить від вашої конкретної логіки оформлення замовлення
+    # Після успішного оформлення замовлення перенаправте користувача на сторінку підтвердження покупки
+    return redirect('order_confirmation')
+
+
+def order_confirmation(request):
+    return render(request, 'cart/order_confirmation.html')
