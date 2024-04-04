@@ -4,38 +4,29 @@
 
   <h1 class="text-center text-4xl">Your Cart</h1>
 {% for cart_item in cart_items %}
-<div class="h-full w-4/5 p-12 ml-5 mt-5 overflow-hidden text-xl shadow-lg">
-      <div class="">
-        <img class="w-400px -400px" src="{{ cart_item.product.image.url }}" alt="ProductPhoto" />
-      </div>
-          <div>
-              <p class="text-2xl flex-container">{{ cart_item.product.title }}</p>
+  <main class="container-center mx-auto mt-10 bg-gray-300 overflow-hidden text-xl shadow-lg">
+    <a class="object-right-top text-red-900" href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}">Remove</a>
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4">{{ cart_item.product.title }}</h2>
+
+      <div class="flex flex-col md:flex-row">
+        <img src="{{ cart_item.product.image.url }}" alt="" class="md:w-1/2">
+        <div class="md:w-1/2 ml-4">
+          <p class="text-lg mb-4">{{ cart_item.product.price }}</p>
+          <p>{{ cart_item.product.description }}</p>
+          <div class="mt-4">
+            <form action="{% url 'cart:update_cart' cart_item.id %}" method="post">
+                {% csrf_token %}
+                <p>Кількість :</p>
+                <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" />
+                <button class="text-sm bg-green-500 text-white" type="submit">Update</button>
+            </form>
           </div>
+        </div>
+      </div>
+    </section>
 
-                  <a class="object-right-top" href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}">Remove</a>
-
-    <div>
-        <p>Price: {{ cart_item.product.price }}</p>
-    </div>
-    <form action="{% url 'cart:update_cart' cart_item.id %}" method="post">
-        {% csrf_token %}
-        <p>Кількість :</p>
-        <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" />
-        <button class="text-sm" type="submit">Update</button>
-    </form>
-    <div class="w-[459.93px] h-[135px] absolute left-[323.46px] top-[244px] text-base text-left">
-        <p>{{ cart_item.product.description }}</p>
-    </div>
-    <div>
-
-    </div>
-</div>
-
-{% endfor %}
-<p>Total Price: {{ total_price }}</p>
-
-   <!-- Include jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
    <!-- JavaScript code for handling decrease quantity button click event -->
    <script>
@@ -65,8 +56,7 @@
         });
     });
 });
-
-
-       })
    </script>
+{% endfor %}
+</main>
 {% endblock content %}
