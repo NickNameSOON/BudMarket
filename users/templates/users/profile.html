@@ -4,25 +4,76 @@
 
 {% block content %}
     {% if user.profile %}
-    <div class="grid p-10 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1">
-        <div class="rounded shadow-lg">
-            <div>
-               {% if user.profile.image %}
-                    <img class="" src="{{ user.profile.image.url }}">
-               {% endif %}
+        <div class="grid p-10 grid-cols-2 lg:grid-cols-3 sm:grid-cols-1">
+            <div class="rounded shadow-lg">
+                <div>
+                    <h1 class="text-4xl">Профіль користувача :</h1>
+                    {% if user.profile.image %}
+                        <img class="" src="{{ user.profile.image.url }}">
+                    {% endif %}
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl m-2">{{ user.username }}</h1>
+                    <h1>Номер телефону : {{ user.profile.contact }}</h1>
+                    <h1>Імя : {{ user.profile.firstName }}</h1>
+                    <h1>Прізвище : {{ user.profile.lastName }}</h1>
+                    <h1>email: {{ user.profile.email }}</h1>
+                    <address>address : {{ user.profile.address }}</address>
+                    <a href="{% url 'users:update-profile' %}">Оновити дані профілю</a>
+                </div>
             </div>
-        <div class="text-4xl">
-            Профіль користувача :
+            <div class="rounded shadow-lg">
+                <h1 class="text-4xl">Активні замовлення :</h1>
+                {% if active_orders %}
+                    <ul>
+                        {% for order in active_orders %}
+                            <li>
+                                <strong>Замовлення №{{ order.id }}</strong><br>
+                                <ul>
+                                    {% for item in order.orderitem_set.all %}
+                                        <li>
+                                            <a href="{% url 'market:detail' item.product.id %}">{{ item.product.title }}</a> -
+                                            Ціна: {{ item.price }} грн. -
+                                            Кількість: {{ item.quantity }} -
+                                            Сума: {{ item.price|floatformat:"2" }} грн.
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Активних замовлень немає</p>
+                {% endif %}
+            </div>
+            <div class="rounded shadow-lg">
+                <h1 class="text-4xl">Історія замовлень :</h1>
+                {% if order_history %}
+                    <ul>
+                        {% for order in order_history %}
+                            <li>
+                                <strong>Замовлення №{{ order.id }}</strong><br>
+                                <ul>
+                                    {% for item in order.orderitem_set.all %}
+                                        <li>
+                                            <a href="{% url 'market:detail' item.product.id %}">{{ item.product.title }}</a> -
+                                            Ціна: {{ item.price }} грн. -
+                                            Кількість: {{ item.quantity }} -
+                                            Сума: {{ item.price|floatformat:"2" }} грн.
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Замовлень поки що не було</p>
+                {% endif %}
+            </div>
         </div>
-        <h1 class="font-bold text-xl m-2">{{ user.username }}</h1>
-        <h1>Номер телефону : {{ user.profile.contact }}</h1>
-            <h1>Імя : {{ user.profile.firstName }}</h1>
-            <h1>Прізвище : {{ user.profile.firstName }}</h1>
-        </div>
-    </div>
-        {% else %}
+    {% else %}
         <form action="" method="post">
-        <h1>Form Profile</h1>
+            <h1>Form Profile</h1>
         </form>
     {% endif %}
 {% endblock %}

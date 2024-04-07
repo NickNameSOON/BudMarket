@@ -1,4 +1,3 @@
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     "users.apps.UsersConfig",
     'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
     "crispy_forms",  # new
     "crispy_tailwind",
 ]
@@ -131,10 +131,10 @@ LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://e363-62-122-202-169.ngrok-free.app'
+    'https://dbe5-62-122-202-169.ngrok-free.app'
 ]
 
 
-CORS_ALLOWED_ORIGINS =['https://e363-62-122-202-169.ngrok-free.app']
+CORS_ALLOWED_ORIGINS =['https://dbe5-62-122-202-169.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://e363-62-122-202-169.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://dbe5-62-122-202-169.ngrok-free.app']

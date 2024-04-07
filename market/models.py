@@ -44,10 +44,6 @@ class Category(models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
-# def get_absolute_url(self):
-#     return reverse('market:category', args=[self.slug])
-
-
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, null=True)
     title = models.CharField("назва", max_length=200, db_index=True)
@@ -70,9 +66,6 @@ class Product(models.Model):
         Returns a string representation of the object.
         """
         return self.title
-
-    # def get_absolute_url(self):
-    # return reverse('market:product', args=[self.slug])
 
 
 class ProductManager(models.Manager):

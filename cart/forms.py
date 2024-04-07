@@ -7,3 +7,12 @@ class CartAddProductForm(forms.ModelForm):
     class Meta:
         model = CartItem
         fields = ['quantity']
+
+
+from django import forms
+from users.models import Profile
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image', 'contact', 'firstName', 'lastName', 'address']

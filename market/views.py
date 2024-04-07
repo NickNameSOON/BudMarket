@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+import json
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product
-from cart.models import Cart, CartItem
 from cart.forms import CartAddProductForm
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from users.models import Profile
+
 
 
 def index(request):
@@ -57,13 +59,18 @@ def catalog(request, category_slug=None):
 def catalog_search(request, category_id):
     # Отримати об'єкт категорії
     category = Category.objects.get(id=category_id)
-    # Отримати пошуковий запит з URL-адреси
+    # Отримати пошуковий запит та параметр сортування з URL-адреси
     query = request.GET.get('q')
+    sort_by = request.GET.get('sort_by')
     # Виконати пошук товарів за назвою в межах обраної категорії
+    products = Product.objects.filter(category=category)
     if query:
-        products = Product.objects.filter(category=category, name__icontains=query)
-    else:
-        products = Product.objects.filter(category=category)
+        products = products.filter(name__icontains=query)
+    # Виконати сортування за ціною, якщо вибраний відповідний параметр сортування
+    if sort_by == 'price_asc':
+        products = products.order_by('price')
+    elif sort_by == 'price_desc':
+        products = products.order_by('-price')
     return render(request, 'market/list.html', {'category': category, 'products': products})
 
 

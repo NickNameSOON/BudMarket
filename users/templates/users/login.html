@@ -1,19 +1,25 @@
 {% extends "market/base.html" %}
 
 {% block content %}
- <div class="container py-5">
-     <h1 class="text 2xl m-10 font-bold">Авторизація</h1>
-     <form class="w-2/5 bg-white-700 shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="POST">
-     {% csrf_token %}
-          <div class="mb-2">
-             <label class="block text-gray-700 text-sm font-bold mb-2">Логін</label>
-             <p class="">{{ form.username }}</p>
-             <label class="block text-gray-700 text-sm font-bold mb-2">Пароль</label>
-             <p class="">{{ form.password }}</p>
-          </div>
-          <button class="bg-green-500 text-white px-5 py-2" type="submit">Авторизуватися</button> 
-     </form>
-          <a href="/users/register" class="py-4 px-2 text-gray-500 font-semibold">Якщо в вас немає акаунта зареєструйтеся !</a>
-</div>
-
+ <body class="w-full h-full">
+    <h2 class="text-2xl text-center font-bold mb-4">Авторизація</h2>
+    <div class="container mx-auto max-w-lg py-8 justify-center items-center shadow-md m-10">
+        <form class="content bg-white-700 rounded px-8 pt-6 pb-8 mb-4 space-y-4" method="POST">
+            {% csrf_token %}
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-2">
+                {{ form.password.errors }}
+                <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                {{ form.password }}
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">Login
+            </button>
+        </form>
+    </div>
+    <a href="/users/register" class="py-4 px-2 text-gray-500 text-center font-semibold">Якщо в вас немає акаунта зареєструйтеся !</a>
+    </body>
 {% endblock content %}

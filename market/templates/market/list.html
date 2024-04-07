@@ -43,31 +43,16 @@
         </div>
         <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-5">
             {% for product in products %}
-                {% if category %}
-                    {% if product.category.slug == category.slug %}
-                        <a href="{% url 'market:detail' product.id %}">
-                            <div class="rounded overflow-hidden shadow-lg">
-                                <img class="w-600px h-800px" src="{{ product.image.url }}" alt="">
-                                <div class="px-6 py-4">
-                                    <p class="font-bold text-xl mb-2">{{ product.title }}</p>
-                                    <p class="font-bold text-lg text-indigo-500 mb-2">Виробник : {{ product.brand }}</p>
-                                    <p class="font-bold text-xl text-green-500 mb-2">{{ product.price }} ₴</p>
-                                </div>
-                            </div>
-                        </a>
-                    {% endif %}
-                {% else %}
-                    <a href="{% url 'market:detail' product.id %}">
-                        <div class="rounded overflow-hidden shadow-lg">
-                            <img class="w-600px h-800px" src="{{ product.image.url }}" alt="">
-                            <div class="px-6 py-4">
-                                <p class="font-bold text-xl mb-2">{{ product.title }}</p>
-                                <p class="font-bold text-lg text-indigo-500 mb-2">Виробник : {{ product.brand }}</p>
-                                <p class="font-bold text-xl text-green-500 mb-2">{{ product.price }} ₴</p>
-                            </div>
+                <a href="{% url 'checkout' %}?product_id={{ product.id }}">
+                    <div class="rounded overflow-hidden shadow-lg">
+                        <img class="w-600px h-800px" src="{{ product.image.url }}" alt="">
+                        <div class="px-6 py-4">
+                            <p class="font-bold text-xl mb-2">{{ product.title }}</p>
+                            <p class="font-bold text-lg text-indigo-500 mb-2">Виробник : {{ product.brand }}</p>
+                            <p class="font-bold text-xl text-green-500 mb-2">{{ product.price }} ₴</p>
                         </div>
-                    </a>
-                {% endif %}
+                    </div>
+                </a>
             {% empty %}
                 <li class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-4xl">Товари не знайдено</li>
             {% endfor %}

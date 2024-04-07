@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from .models import Cart, CartItem
 from market.models import Product
 from cart.forms import CartAddProductForm
+from order.models import Order, OrderItem
+
 
 @login_required
 def add_to_cart(request, product_id):
@@ -30,7 +32,6 @@ def add_to_cart(request, product_id):
     return render(request, 'cart/cart-view.html', {'form': form})
 
 
-
 def cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.cartitem_set.all()
@@ -41,6 +42,7 @@ def cart(request):
         'total_price': total_price
     }
     return render(request, 'cart/cart-view.html', context)
+
 
 def remove_from_cart(request, product_id):
     cart = Cart.objects.get(user=request.user)
@@ -80,30 +82,29 @@ def update_cart(request, cart_item_id):
     return redirect('cart:cart-view')
 
 
-def checkout(request):
-    # Перевірка, чи є товари в кошику перед переходом до оформлення замовлення
-    cart, created = Cart.objects.get_or_create(user=request.user)
-    if not cart.cartitem_set.exists():
-        return redirect('cart')
 
-    # Відображення форми для вводу даних користувача
+@login_required
+def create_order_from_cart(request):
     if request.method == 'POST':
-        form = CheckoutForm(request.POST)
-        if form.is_valid():
-            # Збереження даних користувача і переадресація на сторінку підтвердження покупки
-            form.save()
-            return redirect('order_confirmation')
+        cart = Cart.objects.get(user=request.user)
+        order = Order.objects.create(user=request.user)
+        total_price = 0
+
+        for cart_item in cart.cartitem_set.all():
+            order_item = OrderItem.objects.create(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                price=cart_item.product.price * cart_item.quantity
+            )
+            total_price += order_item.price
+
+        # Значення total_price було передано до об'єкту Order перед збереженням
+        order.total_price = total_price
+        order.save()
+
+        cart.cartitem_set.all().delete()
+
+        return redirect('order:order-detail', order_id=order.id)
     else:
-        form = CheckoutForm()
-    return render(request, 'cart/checkout.html', {'form': form})
-
-
-def confirm_order(request):
-    # Логіка підтвердження замовлення
-    # Цей фрагмент коду залежить від вашої конкретної логіки оформлення замовлення
-    # Після успішного оформлення замовлення перенаправте користувача на сторінку підтвердження покупки
-    return redirect('order_confirmation')
-
-
-def order_confirmation(request):
-    return render(request, 'cart/order_confirmation.html')
+        return redirect('cart:cart-view')
