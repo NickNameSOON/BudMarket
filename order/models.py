@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from market.models import Product
 
+
 class Order(models.Model):
-    PROCESSING = 'Опрацювання'
+    PROCESSING = 'Processing'
     PACKING = 'packing'
     DELIVERING = 'delivering'
     RECEIVED = 'received'
@@ -40,13 +41,13 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PROCESSING)
     payment_method = models.CharField(max_length=20, choices=PAYMENT_CHOICES, default=CASH)
-
     delivery_method = models.CharField(max_length=20, choices=DELIVERY_CHOICES)
 
     def calculate_total_price(self):
         total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
         self.total_price = total_price
         self.save()
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

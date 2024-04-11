@@ -14,7 +14,7 @@
                     <h1>Номер телефону : {{ user.profile.contact }}</h1>
                     <h1>Імя : {{ user.profile.firstName }}</h1>
                     <h1>Прізвище : {{ user.profile.lastName }}</h1>
-                    <h1>email: {{ user.email }}</h1>
+                    <h1>email: {{ user.profile.email }}</h1>
                     <address>address : {{ user.profile.address }}</address>
                     <a href="{% url 'users:update-profile' %}">Оновити дані профілю</a>
                 </div>

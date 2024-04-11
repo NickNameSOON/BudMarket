@@ -64,21 +64,6 @@ def order_confirmation(request):
     })
 
 
-def create_order(user, cart_items, payment_method):
-    order = Order(user=user, payment_method=payment_method)
-    try:
-        order.save()
-        for cart_item in cart_items:
-            OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity,
-                price=cart_item.product.price
-            )
-        return order
-    except Exception as e:
-        print(f"Помилка при створенні замовлення: {str(e)}")
-        return None
 
 def order_detail(request, order_id):
     order = get_object_or_404(Order, pk=order_id)

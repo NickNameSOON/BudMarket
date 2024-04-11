@@ -5,6 +5,11 @@ from .models import Cart, CartItem
 from market.models import Product
 from cart.forms import CartAddProductForm
 from order.models import Order, OrderItem
+from django.contrib import messages
+from django.db import transaction
+from django.urls import reverse
+
+
 
 
 @login_required
@@ -85,26 +90,34 @@ def update_cart(request, cart_item_id):
 
 @login_required
 def create_order_from_cart(request):
-    if request.method == 'POST':
-        cart = Cart.objects.get(user=request.user)
-        order = Order.objects.create(user=request.user)
-        total_price = 0
+    if request.method != 'POST':
+        messages.error(request, "Некоректний запит.")
+        return redirect('cart:cart-view')
 
-        for cart_item in cart.cartitem_set.all():
-            order_item = OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity,
-                price=cart_item.product.price * cart_item.quantity
-            )
-            total_price += order_item.price
+    try:
+        cart = Cart.objects.get(user=request.user)  # Або використайте get_or_create, якщо є така потреба
+        with transaction.atomic():
+            order = Order.objects.create(user=request.user)
+            total_price = 0
 
-        # Значення total_price було передано до об'єкту Order перед збереженням
-        order.total_price = total_price
-        order.save()
+            for cart_item in cart.cartitem_set.all():
+                order_item = OrderItem.objects.create(
+                    order=order,
+                    product=cart_item.product,
+                    quantity=cart_item.quantity,
+                    price=cart_item.product.price * cart_item.quantity
+                )
+                total_price += order_item.price
 
-        cart.cartitem_set.all().delete()
+            order.total_price = total_price
+            order.save()
 
-        return redirect('order:order-detail', order_id=order.id)
-    else:
+            cart.cartitem_set.all().delete()
+
+        return redirect(reverse('order:order-confirmation', kwargs={'order_id': order.id}))
+    except Cart.DoesNotExist:
+        messages.error(request, "Кошик не знайдено.")
+        return redirect('cart:create_order_from_cart')
+    except Exception as e:
+        messages.error(request, f"Помилка при створенні замовлення: {str(e)}")
         return redirect('cart:cart-view')

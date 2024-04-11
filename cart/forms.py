@@ -14,4 +14,4 @@ class CartAddProductForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['user', 'email', 'image', 'contact', 'firstName', 'lastName', 'address']
+        fields = ['user', 'email', 'image', 'contact', 'firstName', 'lastName', ]

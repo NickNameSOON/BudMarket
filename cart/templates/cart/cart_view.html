@@ -1,0 +1,47 @@
+{% extends "market/base.html" %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    {% if cart_items %}
+        <div class="overflow-hidden shadow-md mb-6">
+            <div class="px-6 py-4 bg-white border-b border-gray-200 font-bold uppercase">
+                Ваш кошик
+            </div>
+            {% for cart_item in cart_items %}
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0 flex items-center">
+                        <img class="max-h-20 max-w-20 mr-4" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.title }}">
+                        <div>
+                            <h3 class="text-xl font-bold">{{ cart_item.product.title }}</h3>
+                            <p>{{ cart_item.product.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <form action="{% url 'cart:update_cart' cart_item.id %}" method="post" class="flex items-center">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" class="form-input mr-2"/>
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                                Оновити
+                            </button>
+                        </form>
+                        <a href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}" class="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            Видалити
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-right font-bold text-xl mb-6">Загальна ціна: {{ cart_items.total_price }} грн.</div>
+        <form action="{% url 'cart:create_order_from_cart'%}" method="post" class="text-right">
+            {% csrf_token %}
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                Оформити замовлення
+            </button>
+        </form>
+    {% else %}
+        <div class="text-center text-3xl text-gray-500 m-10">Ваш кошик пустий.</div>
+    {% endif %}
+</div>
+{% endblock %}
