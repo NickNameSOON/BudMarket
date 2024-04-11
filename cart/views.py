@@ -31,7 +31,7 @@ def add_to_cart(request, product_id):
 
     return render(request, 'cart/cart-view.html', {'form': form})
 
-
+@login_required
 def cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.cartitem_set.all()
@@ -41,7 +41,7 @@ def cart(request):
         'cart_items': cart_items,
         'total_price': total_price
     }
-    return render(request, 'cart/cart-view.html', context)
+    return render(request, 'cart/cart_view.html', context)
 
 
 def remove_from_cart(request, product_id):

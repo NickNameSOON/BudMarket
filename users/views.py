@@ -9,11 +9,12 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            profile = form.save()
             username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            profile = authenticate(username=username, password=password, email=email)
+            login(request, profile)
             return redirect('/')
     else:
         form = RegistrationForm()
@@ -52,7 +53,11 @@ def profile(request):
         'order_history': order_history,
     }
 
-    return render(request, 'users/profile.html', context)
+    user = request.user
+    active_orders = Order.objects.filter(user=user, status__in=['processing', 'packing', 'delivering'])
+    inactive_orders = Order.objects.filter(user=user, status__in=['received', 'canceled'])
+    return render(request, 'users/profile.html', {'active_orders': active_orders, 'inactive_orders': inactive_orders})
+
 
 def update_profile(request):
     if request.method == 'POST':

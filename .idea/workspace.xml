@@ -5,42 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/cart/migrations/0002_alter_cart_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0002_alter_order_total_price.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0003_order_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/templates/order/create_order.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/templates/order/order_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/migrations/0007_profile_cart_alter_profile_contact.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/templates/users/profile_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/templates/market/catalog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/images/profiles/Знімок_екрана_104.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/products/2024/04/09/завантаження.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0004_alter_order_total_price.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0005_order_payment_method.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0006_order_delivery_method_alter_order_payment_method_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/cancel_order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/orderConfirmation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/order_confirmation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0008_alter_profile_cart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0009_alter_profile_cart_delete_userregister.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0010_rename_user_profile_username_profile_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0011_alter_profile_username.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0012_alter_profile_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0013_rename_username_profile_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BudMarket/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart-view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/templates/cart/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/templates/cart/order_confirmation.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/static/market/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/market/static/market/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/about_us.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/create_order.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/order_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/order_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwindcss-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwindcss-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +63,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -122,6 +130,7 @@
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\cart" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\order\templates\order" />
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\market\templates\market" />
     </key>
   </component>
@@ -201,7 +210,12 @@
       <workItem from="1712291178643" duration="3263000" />
       <workItem from="1712372797495" duration="2259000" />
       <workItem from="1712390443576" duration="6461000" />
-      <workItem from="1712458161920" duration="12591000" />
+      <workItem from="1712458161920" duration="18566000" />
+      <workItem from="1712547130251" duration="3186000" />
+      <workItem from="1712666262991" duration="5828000" />
+      <workItem from="1712672555803" duration="6405000" />
+      <workItem from="1712761272472" duration="7649000" />
+      <workItem from="1712819209868" duration="2741000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -259,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712239024366</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="commit">
+      <option name="closed" value="true" />
+      <created>1712471282615</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712471282615</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

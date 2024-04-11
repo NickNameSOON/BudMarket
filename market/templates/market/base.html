@@ -3,25 +3,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-       <link rel="stylesheet" href="{% static 'market/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'market/styles.css' %}">
 </head>
 <body>
 {% include "market/navbar.html" %}
 {% block content %}
 
 {% endblock content %}
-<footer class="bg-red-950 text-white mt-10">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center">
-        <a href="/" class="text-xl font-bold">BudMarket</a>
-      </div>
-      <div class="flex-column items-center mt-6">
-        <a href="{% url 'market:about_us' %}">Про нас</a>
-        <a href="{% url 'market:index' %}">Контакти</a>
-        <a href="{% url 'market:index' %}">Доставка</a>
-        <a href="{% url 'market:index' %}">Оплата</a>
-      </div>
+<footer class="bg-red-600 text-white py-4 w-full">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="flex items-center">
+            <a href="/" class="text-xl font-bold">BudMarket</a>
+        </div>
+        <div class="flex flex-col items-center space-y-2">
+            <a href="{% url 'market:about_us' %}">Про нас</a>
+            <a href="{% url 'market:index' %}">Контакти</a>
+            <a href="{% url 'market:index' %}">Доставка</a>
+            <a href="{% url 'market:index' %}">Оплата</a>
+        </div>
     </div>
-  </footer>
+</footer>
 </body>
 </html>
+

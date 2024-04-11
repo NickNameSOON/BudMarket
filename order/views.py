@@ -1,58 +1,98 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .forms import PurchaseForm, PaymentForm
 from .models import Order, OrderItem
-from .forms import PurchaseForm
-from users.models import Profile
+from cart.models import CartItem
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.db import transaction
+
 
 @login_required
-def create_order(request):
-    try:
-        cart_items = request.user.cart.cartitem_set.all()
-    except AttributeError:
-        messages.warning(request, 'Кошик користувача не знайдено.')
-        return redirect('cart:cart-view')
-
-    profile = request.user.profile
+def order_confirmation(request):
+    user_profile = request.user.profile
+    cart_items = CartItem.objects.filter(cart__user=request.user)
+    purchase_form = PurchaseForm(instance=user_profile)
+    payment_form = PaymentForm()
 
     if request.method == 'POST':
-        form = PurchaseForm(request.POST, initial={'contact': profile.contact, 'firstName': profile.firstName,
-                                                   'lastName': profile.lastName, 'address': profile.address})
-        if form.is_valid():
-            user_profile = Profile.objects.get(user=request.user)
-            if user_profile.address and user_profile.contact and user_profile.firstName and user_profile.lastName and user_profile.image:
-                order = Order.objects.create(user=request.user, total_price=0)
-                total_price = 0
+        payment_form = PaymentForm(request.POST)
+        if payment_form.is_valid():
+            payment_method = payment_form.cleaned_data['payment_method']
 
-                for cart_item in cart_items:
-                    order_item = OrderItem.objects.create(
-                        order=order,
-                        product=cart_item.product,
-                        quantity=cart_item.quantity,
-                        price=cart_item.product.price * cart_item.quantity
-                    )
-                    total_price += order_item.price
+            if payment_method == 'delivery':
+                purchase_form = PurchaseForm(request.POST, instance=user_profile)
+                if purchase_form.is_valid():
+                    purchase_form.save()
+                else:
+                    messages.error(request, "Будь ласка, вкажіть адресу доставки.")
+                    return render(request, 'order/order_confirmation.html', {
+                        'purchase_form': purchase_form,
+                        'payment_form': payment_form,
+                        'cart_items': cart_items
+                    })
 
-                order.total_price = total_price
-                order.save()
+            # Створення замовлення
+            order = Order.objects.create(
+                user=request.user,
+                payment_method=payment_method,
+                # Додайте інші поля як необхідно
+            )
 
-                request.user.cart.cartitem_set.all().delete()
+            # Додаємо товари з кошика до замовлення
+            order_items = [
+                OrderItem(
+                    order=order,
+                    product=cart_item.product,
+                    quantity=cart_item.quantity,
+                    price=cart_item.product.price
+                )
+                for cart_item in cart_items
+            ]
+            OrderItem.objects.bulk_create(order_items)
 
-                return redirect('order:order-detail', order_id=order.id)
-            else:
-                messages.warning(request, 'Будь ласка, заповніть всі дані профілю перед створенням замовлення.')
-                return redirect('order:create-order')
-    else:
-        form = PurchaseForm(
-            initial={'contact': profile.contact, 'firstName': profile.firstName, 'lastName': profile.lastName,
-                     'address': profile.address})
+            # Очищення кошика
+            cart_items.delete()
 
-    return render(request, 'order/create_order.html',
-                  {'form': form, 'cart_items': cart_items})
+            messages.success(request, "Ваше замовлення успішно оформлене.")
+            return redirect('order:order-detail', order_id=order.pk)
+
+    return render(request, 'order/order_confirmation.html', {
+        'purchase_form': purchase_form,
+        'payment_form': payment_form,
+        'cart_items': cart_items
+    })
 
 
-@login_required
+def create_order(user, cart_items, payment_method):
+    order = Order(user=user, payment_method=payment_method)
+    try:
+        order.save()
+        for cart_item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                price=cart_item.product.price
+            )
+        return order
+    except Exception as e:
+        print(f"Помилка при створенні замовлення: {str(e)}")
+        return None
+
 def order_detail(request, order_id):
-    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order = get_object_or_404(Order, pk=order_id)
+    if order.user != request.user:
+        # Якщо користувач не є власником замовлення, перенаправляємо його на сторінку заборони
+        return HttpResponseForbidden("You don't have permission to view this order.")
     return render(request, 'order/order_detail.html', {'order': order})
+
+
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, pk=order_id)
+    if request.method == 'POST':
+        # Тут ви можете виконати додаткову логіку, якщо потрібно перед відміною замовлення
+        order.status = Order.CANCELED
+        order.save()
+        return redirect('order:order-detail', order_id=order_id)
+    return render(request, 'order/cancel_order.html', {'order': order})

@@ -1,13 +1,17 @@
 {% extends "market/base.html" %}
 
 {% block content %}
+    <head>
+    <title>{{ product.title }}</title>
+    </head>
+    
    <div class="flex p-10 w-full h-200px">
       <img class="w-1/3 h-1/3" src="{{ product.image.url }}" alt="ProductPhoto">
       <div class="w-2/3 text-xl ml-10 mt-5">
          <p class="mt-5">{{ product.title }}</p>
          <p class="mt-5 text-gray-600">Виробник : {{ product.brand }}</p>
          <p class="mt-5 text-green-500">{{ product.price }} грн.</p>
-         <p class="mt-5 text-gray-600">{{ product.description }}</p>
+         <p class="mt-5 shadow-lg mb-2 text-gray-600">Опис : {{product.description }}</p>
          <!-- Форма для введення кількості товару -->
          <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
             {% csrf_token %}

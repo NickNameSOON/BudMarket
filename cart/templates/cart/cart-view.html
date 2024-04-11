@@ -1,74 +1,49 @@
-{% extends "market/base.html" %}
+{% extends 'market/base.html' %}
 
 {% block content %}
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 my-6">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+            <h2 class="text-2xl font-bold mb-6">Підтвердження замовлення</h2>
 
-    <h1 class="text-center text-4xl">Your Cart</h1>
-    {% for cart_item in cart_items %}
-        <main class="container-center mx-auto mt-10 bg-gray-300 overflow-hidden text-xl shadow-lg">
-        <a class="object-right-top text-red-800"
-           href="{% url 'cart:remove_from_cart' product_id=cart_item.product.id %}">Видалити</a>
-        <section class="mb-10">
-            <h2 class="text-2xl font-bold mb-4">{{ cart_item.product.title }}</h2>
-
-            <div class="flex flex-col md:flex-row">
-                <img src="{{ cart_item.product.image.url }}" alt="" class="md:w-1/2">
-                <div class="md:w-1/2 ml-4">
-                    <p class="text-lg mb-4">{{ cart_item.product.price }}</p>
-                    <p>{{ cart_item.product.description }}</p>
-                    <div class="mt-4">
-                        <form action="{% url 'cart:update_cart' cart_item.id %}" method="post">
-                            {% csrf_token %}
-                            <p>Кількість :</p>
-                            <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1"/>
-                            <button class="text-sm bg-green-500 text-white" type="submit">Update</button>
-                        </form>
-                    </div>
+            <form id="orderForm" action="{% url 'order:create-order' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-6">
+                    {{ purchase_form.as_p }}
                 </div>
-            </div>
-        </section>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <div class="mb-6">
+                    <label for="paymentMethod" class="block mb-2 text-sm font-medium text-gray-900">Спосіб оплати:</label>
+                    {{ payment_form.payment_method }}
+                </div>
 
-        <!-- JavaScript code for handling decrease quantity button click event -->
-        <script>
-            $(document).ready(function () {
-                $('.decrease-quantity-btn').click(function () {
-                    var productId = $(this).data('product-id');
-                    $.ajax({
-                        type: 'POST',
-                        url: '{% url 'cart:decrease_quantity' product_id=0 %}'.replace('0', productId),
-                        data: {
-                            product_id: productId,
-                            csrfmiddlewaretoken: '{{ csrf_token }}'
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                // Reload the page or update the quantity displayed
-                                location.reload();
-                            } else {
-                                // Display error message
-                                alert('Error decreasing quantity!');
-                            }
-                        },
-                        error: function (xhr, errmsg, err) {
-                            // Display error message
-                            alert('Error decreasing quantity!');
-                        }
-                    });
-                });
-            });
-        </script>
-        <p>{{ cart_items.total_price }}</p>
-    {% endfor %}
-</main>
-    <p>{{ cart_items.total_price }}</p>
-     {% if cart_items %}
-        <form action="{% url 'order:create-order' %}" method="post">
-            {% csrf_token %}
-            <!-- Додайте поля для введення даних покупки, які вам потрібні -->
-            <!-- Наприклад, ім'я, адреса доставки, контактна інформація тощо -->
-            <button class="bg-green-500 text-white px-5 py-2" type="submit">Купити</button>
-        </form>
-    {% endif %}
+                <div id="deliveryInfo" class="hidden">
+                    <h3 class="text-lg font-semibold mb-4">Дані для доставки:</h3>
+                    {{ purchase_form.address }}
+                </div>
 
-{% endblock content %}
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Підтвердити замовлення
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethodSelect = document.getElementById('id_payment_method');
+    const deliveryInfoSection = document.getElementById('deliveryInfo');
+
+    function toggleDeliveryInfo() {
+        const method = paymentMethodSelect.value;
+        deliveryInfoSection.style.display = method === 'delivery' ? 'block' : 'none';
+    }
+
+    paymentMethodSelect.addEventListener('change', toggleDeliveryInfo);
+
+    // Ініціалізуємо при завантаженні, на випадок якщо 'delivery' вже вибрано.
+    toggleDeliveryInfo();
+});
+</script>
+{% endblock %}
