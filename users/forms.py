@@ -44,11 +44,10 @@ class LoginForm(AuthenticationForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'contact', 'firstName', 'lastName', 'address']
+        fields = ['contactNumber', 'firstName', 'lastName', 'DeliveryAddress']
         labels = {
-            'image': 'Фото профілю',
-            'contact': 'Контактний номер',
+            'contactNumber': 'Контактний номер',
             'firstName': "Ім'я",
             'lastName': 'Прізвище',
-            'address': 'Адреса'
+            'DeliveryAddress': 'Адреса Доставки'
         }

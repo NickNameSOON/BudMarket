@@ -11,11 +11,11 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-xl m-2">{{ user.username }}</h1>
-                    <h1>Номер телефону : {{ user.profile.contact }}</h1>
+                    <h1>Номер телефону : {{ user.profile.contactNumber }}</h1>
                     <h1>Імя : {{ user.profile.firstName }}</h1>
                     <h1>Прізвище : {{ user.profile.lastName }}</h1>
                     <h1>email: {{ user.profile.email }}</h1>
-                    <address>address : {{ user.profile.address }}</address>
+                    <address>Збережена адреса доставки : {{ user.profile.DeliveryAddress }}</address>
                     <a href="{% url 'users:update-profile' %}">Оновити дані профілю</a>
                 </div>
             </div>

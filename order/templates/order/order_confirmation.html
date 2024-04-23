@@ -1,72 +1,118 @@
 {% extends 'market/base.html' %}
 
 {% block content %}
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 my-6">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <h2 class="text-2xl font-bold mb-6">Підтвердження замовлення</h2>
-
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold mb-4">Товари у вашому замовленні:</h3>
-                    {% for order_item in order.orderitem_set.all %}
-                        <div class="flex justify-between border-b border-gray-200 py-2">
-                            <span class="text-gray-600">{{ order_item.product.title }}</span>
-                            <span class="text-gray-900">Кількість: {{ order_item.quantity }} | Ціна: {{ order_item.price }} грн</span>
-                        </div>
-                    {% endfor %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-6">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <h2 class="text-2xl font-bold mb-6 text-center">Підтвердження замовлення</h2>
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold mb-4">Товари у вашому замовленні:</h3>
+                {% for cart_item in cart_items %}
+                <div class="flex flex-col border-b border-gray-200 py-2">
+                    <span class="text-black">{{ cart_item.product.title }}</span>
+                    <img class="w-1/5 h-1/5 object-cover" src="{{ cart_item.product.image.url }}" alt="">
+                    <span class="text-gray-900">Кількість: {{ cart_item.quantity }}</span>
+                    <span class="text-gray-900">Ціна: {{ cart_item.product.price }} грн</span>
                 </div>
-
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold mb-4">Дані для доставки:</h3>
-                    <p class="text-gray-600">Ім'я: {{ user_profile.firstName }}</p>
-                    <p class="text-gray-600">Прізвище: {{ user_profile.lastName }}</p>
-                    <p class="text-gray-600">Телефон: {{ user_profile.contact }}</p>
-                    <p class="text-gray-600">Електронна пошта: {{ user_profile.email }}</p>
-                </div>
-
-                <form id="paymentForm" action="" method="post" class="mb-8">
-                    {% csrf_token %}
-                    <div class="mb-6">
-                        <label for="paymentMethod" class="block mb-2 text-sm font-medium text-gray-900">Спосіб
-                            оплати:</label>
-                        <select id="paymentMethod" name="paymentMethod"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="creditCard">Кредитна картка</option>
-                            <option value="delivery">Доставка</option>
-                            <option value="pickup">Самовивіз</option>
-                        </select>
-                    </div>
-
-                    <div id="creditCardInfo" class="hidden">
-                        <div class="mb-6">
-                            <label for="cardNumber" class="block mb-2 text-sm font-medium text-gray-900">Номер
-                                карти:</label>
-                            <input type="text" id="cardNumber" name="cardNumber"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        </div>
-                        <!-- Додайте інші поля для кредитної картки за потреби -->
-                    </div>
-
-                    <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Підтвердити замовлення
-                    </button>
-                </form>
+                {% endfor %}
+                <p class="font-semibold mt-2">Загальна ціна: {{ total_price }} грн</p>
             </div>
+
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold mt-6 mb-4">Дані для зв'язку:</h3>
+                <div id="contactInfo" class="space-y-2">
+                    <p>Ім'я: <span id="firstName">{{ profile.firstName }}</span></p>
+                    <p>Прізвище: <span id="lastName">{{ profile.lastName }}</span></p>
+                    <p>Телефон: <span id="contact">{{ profile.contactNumber }}</span></p>
+                    <p>Електронна пошта: <span id="email">{{ profile.email }}</span></p>
+                </div>
+                <a href="{% url 'users:order-update-profile' %}" class="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded cursor-pointer mt-4">
+                    Редагувати
+                </a>
+            </div>
+
+            <form id="paymentForm" action="{% url 'order:create-order' %}" method="post" class="mb-8">
+                {% csrf_token %}
+                <div class="mb-6">
+                    <label for="paymentMethod" class="block mb-2 text-sm font-medium text-gray-900">Спосіб
+                        оплати:</label>
+                    <select id="paymentMethod" name="paymentMethod"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="creditCard">Кредитна картка</option>
+                        <option value="cash">Готівкою</option>
+                    </select>
+                </div>
+
+                <div id="creditCardInfo" class="hidden">
+                    <div class="mb-6">
+                        <label for="cardNumber" class="block mb-2 text-sm font-medium text-gray-900">Номер
+                            карти:</label>
+                        <input type="text" id="cardNumber" name="cardNumber"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="XXXX XXXX XXXX XXXX">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="deliveryMethod" class="block mb-2 text-sm font-medium text-gray-900">Спосіб отримання:</label>
+                    <select id="deliveryMethod" name="deliveryMethod"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="delivery">Доставка</option>
+                        <option value="pickup">Самовивіз з магазину</option>
+                    </select>
+                </div>
+
+                <div id="deliveryInfo" class="hidden">
+                    <div class="mb-6">
+                        <label for="deliveryAddress" class="block mb-2 text-sm font-medium text-gray-900">Адреса доставки:</label>
+                        <input type="text" id="deliveryAddress" name="delivery_address"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                               placeholder="Ваша адреса">
+                    </div>
+                </div>
+                <p id="pickupInfo" class="hidden">Адреса магазину: вулиця Прикладова, 10, Київ</p>
+
+                <button type="submit"
+                        class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Підтвердити замовлення
+                </button>
+            </form>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const paymentMethodSelect = document.getElementById('paymentMethod');
-            const creditCardInfo = document.getElementById('creditCardInfo');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethodSelect = document.getElementById('paymentMethod');
+    const creditCardInfo = document.getElementById('creditCardInfo');
+    const deliveryMethodSelect = document.getElementById('delivery_method');
+    const deliveryInfo = document.getElementById('deliveryInfo');
+    const pickupInfo = document.getElementById('pickupInfo');
 
-            function togglePaymentFields() {
-                creditCardInfo.style.display = paymentMethodSelect.value === 'creditCard' ? 'block' : 'none';
-            }
+    if (!paymentMethodSelect || !creditCardInfo || !deliveryMethodSelect || !deliveryInfo || !pickupInfo) {
+        console.error('Some elements do not exist on the page');
+        return; // Stop further execution if elements are missing
+    }
 
-            paymentMethodSelect.addEventListener('change', togglePaymentFields);
-            togglePaymentFields();
-        });
-    </script>
+    function togglePaymentFields() {
+        creditCardInfo.style.display = paymentMethodSelect.value === 'creditCard' ? 'block' : 'none';
+    }
+
+    function toggleDeliveryFields() {
+        if (deliveryMethodSelect.value === 'delivery') {
+            deliveryInfo.style.display = 'block';
+            pickupInfo.style.display = 'none';
+        } else if (deliveryMethodSelect.value === 'pickup') {
+            deliveryInfo.style.display = 'none';
+            pickupInfo.style.display = 'block';
+        }
+    }
+
+    paymentMethodSelect.addEventListener('change', togglePaymentFields);
+    deliveryMethodSelect.addEventListener('change', toggleDeliveryFields);
+    togglePaymentFields();
+    toggleDeliveryFields();
+});
+
+</script>
 {% endblock %}

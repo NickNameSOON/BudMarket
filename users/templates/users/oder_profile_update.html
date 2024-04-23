@@ -1,0 +1,13 @@
+{% extends "market/base.html" %}
+
+{% block title %}Оновлення профілю{% endblock %}
+
+{% block content %}
+    <h1>Оновлення профілю</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зберегти зміни</button>
+    </form>
+{% endblock %}

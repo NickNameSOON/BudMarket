@@ -4,11 +4,11 @@ from market.models import Product
 
 
 class Order(models.Model):
-    PROCESSING = 'Processing'
-    PACKING = 'packing'
-    DELIVERING = 'delivering'
-    RECEIVED = 'received'
-    CANCELED = 'canceled'
+    PROCESSING = 'Опрацювання'
+    PACKING = 'Комплектація'
+    DELIVERING = 'Доставляється'
+    RECEIVED = 'Отримано покупцем'
+    CANCELED = 'Відмінено'
 
     STATUS_CHOICES = [
         (PROCESSING, 'Опрацювання'),
@@ -18,16 +18,16 @@ class Order(models.Model):
         (CANCELED, 'Відмінено'),
     ]
 
-    PICKUP = 'pickup'
-    DELIVERY = 'delivery'
+    PICKUP = 'Самовиніс'
+    DELIVERY = 'Доставка'
 
     DELIVERY_CHOICES = [
         (PICKUP, 'Самовивіз з магазину'),
         (DELIVERY, 'Доставка'),
     ]
 
-    CASH = 'cash'
-    CARD = 'card'
+    CASH = 'Готівка'
+    CARD = 'Карта'
 
     PAYMENT_CHOICES = [
         (CASH, 'Готівка'),
@@ -40,13 +40,16 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PROCESSING)
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_CHOICES, default=CASH)
-    delivery_method = models.CharField(max_length=20, choices=DELIVERY_CHOICES)
+    delivery_method = models.CharField(max_length=10, choices=[('delivery', 'Доставка'), ('pickup', 'Самовивіз')])
+    payment_method = models.CharField(max_length=10, choices=[('card', 'Кредитна карта'), ('cash', 'Готівка')])
+    delivery_address = models.CharField(max_length=100, null=True, blank=True)
+    transactionNumber = models.CharField(max_length=100, null=True, blank=True)
 
-    def calculate_total_price(self):
-        total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
-        self.total_price = total_price
-        self.save()
+
+def calculate_total_price(self):
+    total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
+    self.total_price = total_price
+    self.save()
 
 
 class OrderItem(models.Model):

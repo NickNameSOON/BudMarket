@@ -1,0 +1,74 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Підтвердження замовлення</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Товари у вашому замовленні:</h5>
+            <div class="mb-4">
+                {% for cart_item in cart_items %}
+                <div class="row mb-2">
+                    <div class="col-md-8">
+                        <p>{{ cart_item.product.title }} ({{ cart_item.quantity }} шт.) - {{ cart_item.product.price }} грн за одиницю</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.title }}" class="img-fluid">
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="font-weight-bold">Загальна вартість: {{ total_price }} грн</p>
+            </div>
+
+            <h5 class="card-title">Дані для зв'язку:</h5>
+            <div id="contactInfo">
+                <p>Ім'я: {{ profile.firstName }}</p>
+                <p>Прізвище: {{ profile.lastName }}</p>
+                <p>Телефон: {{ profile.contactNumber }}</p>
+                <p>Електронна пошта: {{ profile.email }}</p>
+            </div>
+
+            <form action="{% url 'order:create-order' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="paymentMethod">Спосіб оплати:</label>
+                    <select id="paymentMethod" name="paymentMethod" class="form-control">
+                        <option value="creditCard">Кредитна картка</option>
+                        <option value="cash">Готівкою</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="delivery_method">Спосіб отримання:</label>
+                    <select id="delivery_method" name="delivery_method" class="form-control" onchange="toggleDeliveryAddress(this)">
+                        <option value="pickup">Самовивіз</option>
+                        <option value="delivery">Доставка</option>
+                    </select>
+                </div>
+
+                <div id="deliveryAddress" class="form-group d-none">
+                    <label for="delivery_address">Адреса доставки:</label>
+                    <input type="text" id="delivery_address" name="delivery_address" class="form-control" placeholder="Введіть вашу адресу">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Підтвердити замовлення</button>
+            </form>
+        </div>
+    </div>
+</div>
+ <form method="post">
+ {% csrf_token %}
+     {{ form.as.p }}
+
+ </form>
+<script>
+function toggleDeliveryAddress(select) {
+    const deliveryAddress = document.getElementById('deliveryAddress');
+    if (select.value === 'delivery') {
+        deliveryAddress.classList.remove('d-none');
+    } else {
+        deliveryAddress.classList.add('d-none');
+    }
+}
+</script>
+{% endblock %}

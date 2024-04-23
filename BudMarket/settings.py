@@ -77,7 +77,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Kiev'
 
@@ -103,9 +103,9 @@ LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://dbe5-62-122-202-169.ngrok-free.app'
+    'https://c7e3-93-170-170-36.ngrok-free.app/'
 ]
 
-CORS_ALLOWED_ORIGINS = ['https://dbe5-62-122-202-169.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://c7e3-93-170-170-36.ngrok-free.app/']
 
-CORS_ORIGIN_WHITELIST = ['https://dbe5-62-122-202-169.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://c7e3-93-170-170-36.ngrok-free.app/']

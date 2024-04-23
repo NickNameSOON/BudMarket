@@ -5,19 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/cart/templates/cart/cart_view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/products/2024/04/11/3e3bd4e54fcf0358c.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0008_rename_cardnumber_order_transactionnumber_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/confirmation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/0014_rename_address_profile_deliveryaddress_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/oder_profile_update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart-view.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/catalog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/orderConfirmation.js" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/orderConfirmation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/order_confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/order_confirmation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +41,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -68,31 +78,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;App Engine server.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.BudMarket.executor&quot;: &quot;Run&quot;,
-    &quot;Django Server.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nickn/OneDrive/Desktop/BudMarket/order&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\PyCharm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "App Engine server.Unnamed.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.BudMarket.executor": "Run",
+    "Django Server.Unnamed.executor": "Run",
+    "JavaScript Debug.order_confirmation.html.executor": "Run",
+    "Python.manage.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/nickn/OneDrive/Desktop/gym_site",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "D:\\PyCharm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\order" />
@@ -104,6 +115,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Django Server.Unnamed">
+    <configuration name="order_confirmation.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BudMarket/order/templates/order/order_confirmation.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BudMarket" />
       <option name="ENV_FILES" value="" />
@@ -129,10 +143,12 @@
     </configuration>
     <list>
       <item itemvalue="Django Server.Unnamed" />
+      <item itemvalue="JavaScript Debug.order_confirmation.html" />
       <item itemvalue="Python.manage" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.order_confirmation.html" />
         <item itemvalue="Python.manage" />
       </list>
     </recent_temporary>
@@ -185,7 +201,20 @@
       <workItem from="1712672555803" duration="6405000" />
       <workItem from="1712761272472" duration="7649000" />
       <workItem from="1712819209868" duration="5800000" />
-      <workItem from="1712831775742" duration="2287000" />
+      <workItem from="1712831775742" duration="3327000" />
+      <workItem from="1712854632663" duration="10375000" />
+      <workItem from="1712865115210" duration="500000" />
+      <workItem from="1712937356990" duration="1331000" />
+      <workItem from="1712988159784" duration="1641000" />
+      <workItem from="1713120754885" duration="3013000" />
+      <workItem from="1713189217844" duration="1906000" />
+      <workItem from="1713344089690" duration="576000" />
+      <workItem from="1713345608501" duration="66000" />
+      <workItem from="1713346472347" duration="900000" />
+      <workItem from="1713374906573" duration="113000" />
+      <workItem from="1713395787996" duration="1450000" />
+      <workItem from="1713786190145" duration="3634000" />
+      <workItem from="1713884953886" duration="7058000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -259,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712822044993</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="commit">
+      <option name="closed" value="true" />
+      <created>1712834174950</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712834174950</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +329,10 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/cart/views.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/order/forms.py</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

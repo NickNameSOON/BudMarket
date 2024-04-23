@@ -5,27 +5,30 @@ from .forms import RegistrationForm, LoginForm, ProfileUpdateForm
 from .models import Profile
 from order.models import Order
 
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            profile = form.save()
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            profile = authenticate(username=username, password=password, email=email)
+            password2 = form.cleaned_data['password2']
+            form.save()
+            profile = authenticate(username=username, password=password, password2=password2, email=email)
             login(request, profile)
             return redirect('/')
     else:
         form = RegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            password = form.cleaned_data['password1']
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -39,24 +42,17 @@ def user_login(request):
 def profile(request):
     user = request.user
     profile = user.profile
-
-    # Отримуємо активні замовлення користувача
-    active_orders = Order.objects.filter(user=user)
-
-    # Отримуємо історію замовлень користувача
-    order_history = Order.objects.filter(user=user)
+    active_orders = Order.objects.filter(user=user, status__in=['Опрацювання', 'Комплектація', 'Доставляється'])
+    inactive_orders = Order.objects.filter(user=user, status__in=['Отримано покупцем', 'Відмінено'])
 
     context = {
         'user': user,
         'profile': profile,
         'active_orders': active_orders,
-        'order_history': order_history,
+        'inactive_orders': inactive_orders,
     }
 
-    user = request.user
-    active_orders = Order.objects.filter(user=user, status__in=['processing', 'packing', 'delivering'])
-    inactive_orders = Order.objects.filter(user=user, status__in=['received', 'canceled'])
-    return render(request, 'users/profile.html', {'active_orders': active_orders, 'inactive_orders': inactive_orders})
+    return render(request, 'users/profile.html', context=context)
 
 
 def update_profile(request):
@@ -64,8 +60,20 @@ def update_profile(request):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect('users:profile')  # Після успішного оновлення перенаправте користувача на головну сторінку або на іншу відповідну сторінку
+            return redirect('users:profile')
     else:
         form = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'users/profile_update.html', {'form': form})
+
+
+def order_update_profile(request):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('order:order-confirmation')
+    else:
+        form = ProfileUpdateForm(instance=request.user.profile)
+
+    return render(request, 'users/oder_profile_update.html', {'form': form})

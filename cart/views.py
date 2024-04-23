@@ -10,8 +10,6 @@ from django.db import transaction
 from django.urls import reverse
 
 
-
-
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -35,6 +33,7 @@ def add_to_cart(request, product_id):
         form = CartAddProductForm()
 
     return render(request, 'cart/cart-view.html', {'form': form})
+
 
 @login_required
 def cart(request):
@@ -87,15 +86,22 @@ def update_cart(request, cart_item_id):
     return redirect('cart:cart-view')
 
 
-
 @login_required
 def create_order_from_cart(request):
-    if request.method != 'POST':
-        messages.error(request, "Некоректний запит.")
+    try:
+        cart = Cart.objects.get(user=request.user)
+    except Cart.DoesNotExist:
+        messages.error(request, "Кошик не знайдено.")
         return redirect('cart:cart-view')
 
-    try:
-        cart = Cart.objects.get(user=request.user)  # Або використайте get_or_create, якщо є така потреба
+    if request.method == 'GET':
+        # Відображення сторінки підтвердження
+        cart_items = cart.cartitem_set.all()
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+        return render(request, 'order/order_confirmation.html', {'cart_items': cart_items, 'total_price': total_price})
+
+    elif request.method == 'POST':
+        # Обробка створення замовлення
         with transaction.atomic():
             order = Order.objects.create(user=request.user)
             total_price = 0
@@ -115,9 +121,6 @@ def create_order_from_cart(request):
             cart.cartitem_set.all().delete()
 
         return redirect(reverse('order:order-confirmation', kwargs={'order_id': order.id}))
-    except Cart.DoesNotExist:
-        messages.error(request, "Кошик не знайдено.")
-        return redirect('cart:create_order_from_cart')
-    except Exception as e:
-        messages.error(request, f"Помилка при створенні замовлення: {str(e)}")
+    else:
+        messages.error(request, "Некоректний запит.")
         return redirect('cart:cart-view')
