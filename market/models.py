@@ -74,7 +74,6 @@ class ProductManager(models.Manager):
 
 
 class ProductProxy(Product):
-
     objects = ProductManager()
 
     class Meta:

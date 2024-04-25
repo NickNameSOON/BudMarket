@@ -21,6 +21,18 @@
                                 </div>
                             {% endfor %}
                         </div>
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-bold mb-4">Бренди</h3>
+                            {% for brand in brands %}
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="brand-{{ brand.brand }}" name="brand"
+                                           value="{{ brand.brand }}" class="mr-2"
+                                            {% if brand.brand in selected_brands %} checked {% endif %}>
+                                    <label for="brand-{{ brand.brand }}" class="text-lg">{{ brand.brand }}
+                                        ({{ brand.count }})</label>
+                                </div>
+                            {% endfor %}
+                        </div>
                         <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit">Фільтрувати
                         </button>
@@ -38,6 +50,16 @@
                             товари</h2>
                     {% endif %}
                 </div>
+                <form method="get" action="{% url 'market:search_results' %}">
+                    <input type="text" name="q" placeholder="Пошук за назвою"
+                           class="border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                           style="padding: 10px; margin-right: 10px;">
+                    <button type="submit"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Шукати
+                    </button>
+                </form>
+
                 <div class="mt-4">
                     <div class="text-center lg:text-left ">
                         <form method="get" action="{% url 'market:catalog' %}" class="inline-block">
@@ -48,7 +70,8 @@
                                 <option value="min_price">Мінімальна ціна</option>
                                 <option value="max_price">Максимальна ціна</option>
                             </select>
-                            <button type="submit" class="ml-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            <button type="submit"
+                                    class="ml-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Застосувати
                             </button>
                         </form>

@@ -102,10 +102,8 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://c7e3-93-170-170-36.ngrok-free.app/'
-]
+CSRF_TRUSTED_ORIGINS = ['https://a38c-62-122-202-167.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://c7e3-93-170-170-36.ngrok-free.app/']
+CORS_ALLOWED_ORIGINS = ['https://a38c-62-122-202-167.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://c7e3-93-170-170-36.ngrok-free.app/']
+CORS_ORIGIN_WHITELIST = ['https://a38c-62-122-202-167.ngrok-free.app']

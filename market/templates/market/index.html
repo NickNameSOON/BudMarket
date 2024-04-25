@@ -14,17 +14,15 @@
             <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md-mt-5 md:text-xl lg:mx-0">
                 Купуйте найкраще для вашої оселі</p>
         </div>
-        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 flex-column xl:gid-cols-3 lg:grid-cols-5">
+        <div class="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             {% for products in products %}
-                <a href="{% url 'market:detail' products.id %}">
-                    <div class="rounded overflow-hidden shadow-lg">
-                        <img class="w-600px h-800px" src="{{ products.image.url }}" alt="">
+                <a class="block rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200" href="{% url 'market:detail' products.id %}">
+                        <img class="w-full h-48 object-cover" src="{{ products.image.url }}" alt="">
                         <div class="px-6 py-4">
                             <p class="front-bold text-xl mb-2">{{ products.title }}</p>
                             <p class="font-bold text-lg text-indigo-500 mb-2">Виробник : {{ products.brand }}</p>
                             <p class="front-bold text-xl text-green-500 mb-2">{{ products.price }} ₴</p>
                         </div>
-                    </div>
                 </a>
             {% empty %}
                 <li class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">No products found</li>
