@@ -2,8 +2,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, LoginForm, ProfileUpdateForm
-from .models import Profile
 from order.models import Order
+from django.urls import reverse_lazy
+from .forms import CustomPasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+
 
 
 def register(request):
@@ -15,7 +18,7 @@ def register(request):
             password = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
             form.save()
-            profile = authenticate(username=username, password=password, password2=password2, email=email)
+            user = authenticate(username=username, password=password, password2=password2, email=email)
             login(request, profile)
             return redirect('/')
     else:
@@ -77,3 +80,9 @@ def order_update_profile(request):
         form = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'users/oder_profile_update.html', {'form': form})
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = 'users/change_password.html'
+    success_url = reverse_lazy('')

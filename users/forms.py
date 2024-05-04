@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Profile
+from django.contrib.auth.forms import PasswordChangeForm
 
 User = get_user_model()
 
@@ -51,3 +52,24 @@ class ProfileUpdateForm(forms.ModelForm):
             'lastName': 'Прізвище',
             'DeliveryAddress': 'Адреса Доставки'
         }
+
+
+from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Старий пароль",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
+    )
+    new_password1 = forms.CharField(
+        label="Новий пароль",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+    )
+    new_password2 = forms.CharField(
+        label="Підтвердіть новий пароль",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+    )
