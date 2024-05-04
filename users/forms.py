@@ -54,8 +54,6 @@ class ProfileUpdateForm(forms.ModelForm):
         }
 
 
-from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(
