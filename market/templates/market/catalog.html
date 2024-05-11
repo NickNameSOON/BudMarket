@@ -3,110 +3,117 @@
 {% load static %}
 
 {% block content %}
-    <div class=" mx-auto sm:px-6 lg:px-8">
+    <div class="mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row-reverse">
-            <!-- Sidebar for Category Selection on the right -->
-            <aside id="sidebar" class="w-1/5 px-2 sm:px-0 lg:px-2 overflow-y-auto mt-2 shadow-lg">
+            <!-- Sidebar for Category and Brand Selection -->
+            <aside id="sidebar" class="w-1/5 px-2 overflow-y-auto mt-2 shadow-lg">
+                <!-- Sorting Form -->
+                
+                <!-- Categories Form -->
                 {% if categories %}
-                    <form method="get" action="{% url 'market:catalog' %}" class="sticky top-20 py-8">
+                    <form method="get" action="{% url 'market:catalog' %}" class="sticky top-20 py-4">
+                        <fieldset class="mt-2 mb-2">
+                            <legend class="text-lg font-semibold mb-2">Сортувати за ціною:</legend>
+                            <div class="flex items-center mb-1">
+                                <input type="radio" id="no_sort" name="sort" value="" class="mr-2">
+                                <label for="no_sort">Без сортування</label>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <input type="radio" id="min_price" name="sort" value="min_price" class="mr-2">
+                                <label for="min_price">Мінімальна ціна</label>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <input type="radio" id="max_price" name="sort" value="max_price" class="mr-2">
+                                <label for="max_price">Максимальна ціна</label>
+                            </div>
+                        </fieldset>
+                    <div class="mb-2">
                         <h3 class="text-2xl font-bold mb-4">Категорії</h3>
                         <div class="space-y-2">
-                            <a href="{% url 'market:catalog' %}">Скинути</a>
-
                             {% for c in categories %}
                                 <div class="flex items-center">
                                     <input type="radio" id="{{ c.slug }}" name="category" value="{{ c.slug }}"
                                            class="mr-2">
-                                    <label for="{{ c.slug }}" class="text-lg">{{ c.name }}</label>
+                                    <label for="{{ c.slug }}">{{ c.name }}</label>
                                 </div>
                             {% endfor %}
                         </div>
+                    </div>
+                        <h3 class="text-2xl font-bold mb-4">Бренди</h3>
                         <div class="space-y-2">
-                            <h3 class="text-2xl font-bold mb-4">Бренди</h3>
                             {% for brand in brands %}
                                 <div class="flex items-center">
                                     <input type="checkbox" id="brand-{{ brand.brand }}" name="brand"
                                            value="{{ brand.brand }}" class="mr-2"
                                             {% if brand.brand in selected_brands %} checked {% endif %}>
-                                    <label for="brand-{{ brand.brand }}" class="text-lg">{{ brand.brand }}
-                                        ({{ brand.count }})</label>
+                                    <label for="brand-{{ brand.brand }}">{{ brand.brand }} ({{ brand.count }})</label>
                                 </div>
                             {% endfor %}
                         </div>
-                        <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        <button class="mt-4 w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded"
                                 type="submit">Фільтрувати
                         </button>
+                        <a class="text-red-700 " href="{% url 'market:catalog' %}">Скинути</a>
                     </form>
                 {% endif %}
             </aside>
 
-            <!-- Main Content -->
+            <!-- Main Content Area -->
             <main class="flex-1">
                 <div class="text-center lg:text-left">
                     {% if category %}
-                        <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">{{ c.name }}</h2>
+                        <h2 class="text-4xl font-extrabold text-gray-900">{{ category.name }}</h2>
                     {% else %}
-                        <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl text-center md:text-6xl">Всі
-                            товари</h2>
+                        <h2 class="text-4xl font-extrabold text-gray-900">Всі товари</h2>
                     {% endif %}
                 </div>
-                <form method="get" action="{% url 'market:search_results' %}">
-                    <input type="text" name="q" placeholder="Пошук за назвою"
-                           class="border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                           style="padding: 10px; margin-right: 10px;">
-                    <button type="submit"
-                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Шукати
-                    </button>
+                <!-- Search Form -->
+                <form method="get" action="{% url 'market:search_results' %}"
+                      class="flex justify-center items-center my-4">
+                    <div class="flex border-2 border-gray-300 focus-within:border-green-500 focus-within:ring focus-within:ring-green-200 rounded-lg shadow-sm overflow-hidden">
+                        <input type="text" name="q" placeholder="Пошук за назвою"
+                               class="p-8 w-full focus:outline-none text-lg">
+                        <button type="submit"
+                                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-r-lg">
+                            Шукати
+                        </button>
+                    </div>
                 </form>
-
-                <div class="mt-4">
-                    <div class="text-center lg:text-left ">
-                        <form method="get" action="{% url 'market:catalog' %}" class="inline-block">
-                            <label for="sort" class="mr-2">Сортувати за:</label>
-                            <select name="sort" id="sort"
-                                    class="border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                <option value="">Без сортування</option>
-                                <option value="min_price">Мінімальна ціна</option>
-                                <option value="max_price">Максимальна ціна</option>
-                            </select>
-                            <button type="submit"
-                                    class="ml-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                Застосувати
-                            </button>
-                        </form>
-                    </div>
-                    <div class="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {% for product in products %}
-                            <a href="{% url 'market:detail' product.id %}"
-                               class="block rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200">
-                                <img class="w-full h-48 object-cover" src="{{ product.image.url }}" alt="">
-                                <div class="px-6 py-4">
-                                    <p class="font-bold text-xl mb-2">{{ product.title }}</p>
-                                    <p class="text-lg text-indigo-500 mb-2">Виробник: {{ product.brand }}</p>
-                                    <p class="font-bold text-xl text-green-500">{{ product.price }} ₴</p>
-                                </div>
-                            </a>
-                        {% empty %}
-                            <div class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-4xl">Товари не
-                                знайдено
+                <!-- Products Grid -->
+                <div class="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {% for product in products %}
+                        <a href="{% url 'market:detail' product.id %}"
+                           class="block rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200">
+                            <img class="w-full h-48 object-cover" src="{{ product.image.url }}" alt="">
+                            <div class="px-6 py-4">
+                                <p class="font-bold text-xl mb-2">{{ product.title }}</p>
+                                <p class="text-lg text-gray-400 mb-2">Виробник: {{ product.brand }}</p>
+                                <p class="font-bold text-xl text-green-500">{{ product.price }} ₴</p>
                             </div>
-                        {% endfor %}
-                    </div>
+                        </a>
+                    {% empty %}
+                        <div class="text-4xl font-extrabold text-gray-900">Товари не знайдено</div>
+                    {% endfor %}
                 </div>
             </main>
         </div>
     </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="?page=1">&laquo; перша</a>
+            <a href="?page={{ products.previous_page_number }}">попередня</a>
+        {% endif %}
+
+        <span class="current">
+            Сторінка {{ products.number }} з {{ products.paginator.num_pages }}.
+        </span>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">наступна</a>
+            <a href="?page={{ products.paginator.num_pages }}">остання &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock content %}
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-
-        button.addEventListener('click', function () {
-            sidebar.classList.toggle('hidden');
-        });
-    });
-</script>

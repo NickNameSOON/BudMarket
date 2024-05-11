@@ -30,6 +30,8 @@ def product_detail(request, product_id):
     return render(request, 'market/detail.html', context={'product': product, 'form': form})
 
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def catalog(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -37,7 +39,7 @@ def catalog(request, category_slug=None):
 
     selected_category_slug = request.GET.get('category')
     selected_brands = request.GET.getlist('brand')
-
+    sort_param = request.GET.get('sort')
     products = Product.objects.filter(available=True)
 
     if selected_category_slug:
@@ -47,21 +49,30 @@ def catalog(request, category_slug=None):
     if selected_brands:
         products = products.filter(brand__in=selected_brands)
 
-    sort_param = request.GET.get('sort')
     if sort_param == 'min_price':
         products = products.order_by('price')
     elif sort_param == 'max_price':
         products = products.order_by('-price')
 
+    # Setup paginator
+    paginator = Paginator(products, 20)  # Відображати 20 товарів на сторінку
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # Якщо сторінка не є числом, відображати першу сторінку.
+        products = paginator.page(1)
+    except EmptyPage:
+        # Якщо номер сторінки більший, ніж загальна кількість сторінок, відображати останню сторінку.
+        products = paginator.page(paginator.num_pages)
+
     return render(request, 'market/catalog.html', {
         'category': category,
         'categories': categories,
-        'brands': brands,  # Додайте це для використання у шаблоні
+        'brands': brands,
         'products': products
     })
-
-
-logger = logging.getLogger(__name__)
 
 
 def catalog_search(request):
@@ -90,14 +101,11 @@ def aboutUs(request):
 
 class SearchResultsView(ListView):
     model = Product
-    template_name = 'market/catalog.html'  # Оновлено шлях до шаблону
+    template_name = 'market/products_list.html'  # переконайтесь, що це правильний шаблон
 
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            object_list = Product.objects.filter(
-                Q(title__icontains=query) | Q(slug__icontains=query)
-            )
-            return object_list
+            return Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
         else:
             return Product.objects.none()

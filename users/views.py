@@ -5,8 +5,8 @@ from .forms import RegistrationForm, LoginForm, ProfileUpdateForm
 from order.models import Order
 from django.urls import reverse_lazy
 from .forms import CustomPasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
-
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
+    PasswordResetConfirmView, PasswordResetCompleteView
 
 
 def register(request):
@@ -18,7 +18,7 @@ def register(request):
             password = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
             form.save()
-            user = authenticate(username=username, password=password, password2=password2, email=email)
+            authenticate(username=username, password=password, password2=password2, email=email)
             login(request, profile)
             return redirect('/')
     else:
@@ -86,3 +86,22 @@ class CustomPasswordChangeView(PasswordChangeView):
     form_class = CustomPasswordChangeForm
     template_name = 'users/change_password.html'
     success_url = reverse_lazy('')
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'users/password_reset_form.html'
+    email_template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy('users:password_reset_done')
+
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'users/password_reset_confirm.html'
+    success_url = reverse_lazy('users:password_reset_complete')
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'users/password_reset_complete.html'

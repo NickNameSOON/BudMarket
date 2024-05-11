@@ -33,3 +33,8 @@ class DeliveryForm(forms.Form):
 
         return cleaned_data
 
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['payment_method', 'delivery_method', 'delivery_address', 'payment_intent_id']

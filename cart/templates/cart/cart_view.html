@@ -34,7 +34,7 @@
             {% endfor %}
         </div>
         <div class="text-right font-bold text-xl mb-6">Загальна ціна: {{ cart_items.total_price }} грн.</div>
-        <form action="{% url 'order:order-confirmation'%}" method="get" class="text-right">
+        <form action="{% url 'order:order-confirm'%}" method="get" class="text-right">
             {% csrf_token %}
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
                 Оформити замовлення

@@ -59,15 +59,15 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(
         label="Старий пароль",
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'placeholder': '************', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}),
     )
     new_password1 = forms.CharField(
         label="Новий пароль",
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': '************', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}),
     )
     new_password2 = forms.CharField(
         label="Підтвердіть новий пароль",
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': '************', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}),
     )

@@ -43,7 +43,8 @@ class Order(models.Model):
     delivery_method = models.CharField(max_length=10, choices=[('delivery', 'Доставка'), ('pickup', 'Самовивіз')])
     payment_method = models.CharField(max_length=10, choices=[('card', 'Кредитна карта'), ('cash', 'Готівка')])
     delivery_address = models.CharField(max_length=100, null=True, blank=True)
-    transactionNumber = models.CharField(max_length=100, null=True, blank=True)
+    payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
+    paid = models.BooleanField(default=False)
 
 
 def calculate_total_price(self):
@@ -57,3 +58,14 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class Payment(models.Model):
+    amount = models.DecimalField(max_digits=8, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    success = models.BooleanField(default=False)
+    stripe_payment_intent = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Payment {'success' if self.success else 'failure'} on {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
+

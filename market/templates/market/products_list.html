@@ -1,13 +1,31 @@
-{% for product in products %}
-<a href="{% url 'market:detail' product.id %}"
-   class="block rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200">
-    <img class="w-full h-48 object-cover" src="{{ product.image.url }}" alt="{{ product.title }}">
-    <div class="px-6 py-4">
-        <p class="font-bold text-xl mb-2">{{ product.title }}</p>
-        <p class="text-lg text-indigo-500 mb-2">Виробник: {{ product.brand }}</p>
-        <p class="font-bold text-xl text-green-500">{{ product.price }} ₴</p>
+<!DOCTYPE html>
+{% extends "market/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container mx-auto px-4">
+        <h1 class="text-2xl font-bold text-center my-6">Результати пошуку</h1>
+        {% if products %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for product in products %}
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <img class="w-full h-48 object-cover" src="{{ product.image.url }}" alt="{{ product.title }}">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2">{{ product.title }}</div>
+                            <p class="text-gray-700 text-base">{{ product.description }}</p>
+                            <p class="text-green-500 text-xl">{{ product.price }} ₴</p>
+                            <a href="{% url 'market:detail' product.id %}"
+                               class="block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Деталі
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p class="text-xl">Нічого не знайдено за вашим запитом.</p>
+            </div>
+        {% endif %}
     </div>
-</a>
-{% empty %}
-<div class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-4xl">Товари не знайдено</div>
-{% endfor %}
+{% endblock content %}

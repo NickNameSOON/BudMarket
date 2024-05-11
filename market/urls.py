@@ -11,6 +11,5 @@ urlpatterns = [
     path('catalog/', views.catalog, name='catalog'),
     path('catalog/<str:category_slug>/', views.catalog, name='catalog_by_category'),
     path('catalog/search/', views.catalog_search, name='catalog_search'),  # змінено URL
-    path(r'search/', SearchResultsView.as_view(), name='search_results'),
-
+    path('search/', SearchResultsView.as_view(), name='search_results'),
 ]
