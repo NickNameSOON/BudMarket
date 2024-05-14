@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-h=2gh5_oxqekwh7-$ym0w=78aoqls9+cs^+&kzy=+x3&c4g_#&'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -102,11 +102,11 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://921c-62-122-202-247.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://b847-62-122-202-247.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://921c-62-122-202-247.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://b847-62-122-202-247.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://921c-62-122-202-247.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://b847-62-122-202-247.ngrok-free.app']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

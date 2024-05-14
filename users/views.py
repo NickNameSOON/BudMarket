@@ -45,8 +45,8 @@ def user_login(request):
 def profile(request):
     user = request.user
     profile = user.profile
-    active_orders = Order.objects.filter(user=user, status__in=['Опрацювання', 'Комплектація', 'Доставляється'])
-    inactive_orders = Order.objects.filter(user=user, status__in=['Отримано покупцем', 'Відмінено'])
+    active_orders = Order.objects.filter(user=user, status__in=['Опрацювання', 'Комплектація', 'Доставляється']).order_by('-created_at')
+    inactive_orders = Order.objects.filter(user=user, status__in=['Отримано покупцем', 'Відмінено']).order_by('-created_at')
 
     context = {
         'user': user,
