@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-h=2gh5_oxqekwh7-$ym0w=78aoqls9+cs^+&kzy=+x3&c4g_#&'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -102,11 +102,11 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://a38c-62-122-202-167.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://921c-62-122-202-247.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://a38c-62-122-202-167.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://921c-62-122-202-247.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://a38c-62-122-202-167.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://921c-62-122-202-247.ngrok-free.app']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -120,3 +120,5 @@ EMAIL_HOST_PASSWORD = 'EbIE21ODiSa34d50'
 WAYFORPAY_ACCOUNT = 'freelance_user_663e1b76e16a3'
 WAYFORPAY_SECRET_KEY = 'a93171a82971a88fa32e7208d10d2ac297a165a7'
 WAYFORPAY_API_URL = 'https://secure.wayforpay.com/pay'
+
+LOGIN_URL = '/users/login_required/'

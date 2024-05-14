@@ -1,0 +1,14 @@
+{% extends "market/base.html" %}
+
+{% block content %}
+    <body class="w-full h-full ">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mt-4 mb-4">Немає доступу</h1>
+            <h2 class="text-xl max-w-lg mx-auto mt-8 mb-8 my-10">Для того щоб перейти на цю сторінку потрібно авторизуватися</h2>
+            <div class="space-x-4 mt-6">
+                <a href="/users/register" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Зареєстуватися</a>
+                <a href="/users/login" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Авторизуватися</a>
+            </div>
+        </div>
+    </body>
+{% endblock content %}

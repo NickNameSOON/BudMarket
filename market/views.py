@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Product
+from .models import Category, Product, ProductAttribute, ProductAttributeValue
 from cart.forms import CartAddProductForm
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
+from django.http import JsonResponse
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +29,9 @@ def delete_product(request, product_id):
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)
     form = CartAddProductForm()
-    return render(request, 'market/detail.html', context={'product': product, 'form': form})
+    product_attributes = ProductAttributeValue.objects.filter(product=product)
+    return render(request, 'market/detail.html',
+                  context={'product': product, 'form': form, 'product_attributes': product_attributes})
 
 
 def catalog(request, category_slug=None):
@@ -56,10 +59,9 @@ def catalog(request, category_slug=None):
         products = products.order_by('-price')
 
     if query:
-        products = products.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        products = products.filter(Q(title__icontains(query) | Q(description__icontains(query))))
 
-    # Setup paginator
-    paginator = Paginator(products, 20)  # Відображати 20 товарів на сторінку
+    paginator = Paginator(products, 20)
     page = request.GET.get('page')
 
     try:
@@ -82,3 +84,12 @@ def catalog(request, category_slug=None):
 
 def aboutUs(request):
     return render(request, 'market/about_us.html')
+
+
+def product_attribute_list(request):
+    category_id = request.GET.get('category__id')
+    if category_id:
+        attributes = ProductAttribute.objects.filter(category_id=category_id)
+        results = [{'id': attr.id, 'text': attr.name} for attr in attributes]
+        return JsonResponse({'results': results})
+    return JsonResponse({'results': []})

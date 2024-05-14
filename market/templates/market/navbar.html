@@ -2,14 +2,14 @@
 <nav class="bg-red-800 shadow-lg">
     <div class="max-w-8xl max-auto px-8">
         <div class="flex justify-between">
-            <div class="flex space-x-7">
+            <div class="flex space-x-7 flex justify-between">
                 <div>
                     <a href="/" class="flex items-center px-2 py-4">
                         <img class="h-12 w-12" src="{% static 'market/src/Images/logo2.png' %}" alt="logo"/>
                         <span class="text-xl text-white font-['Kelly Slab']">БудМаркет</span>
                     </a>
                 </div>
-                <div class="items-center flex space-x-1">
+                <div class="flex justify-end items-center space-x-1">
                     <a href="/" class="py-4 px-2 text-white font-semibold">Головна</a>
                     <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:catalog' %}">Каталог</a>
                     <a class="py-4 px-2 text-white font-semibold" href="{% url 'cart:cart-view' %}">Кошик</a>
@@ -20,6 +20,7 @@
                         <a href="{% url 'users:login' %}" class="py-4 px-2 text-white font-semibold">Авторизуватися</a>
                     {% endif %}
                 </div>
+
             </div>
         </div>
     </div>

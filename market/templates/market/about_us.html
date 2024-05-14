@@ -1,16 +1,34 @@
-<!DOCTYPE html>
 {% extends "market/base.html" %}
 {% load static %}
 
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
+
 {% block content %}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-center text-4xl">Інформація про нас :</h1>
-        <p>BudMarket - це магазин будівельних та господарських товарів який працює більше 10 років.</p>
-        <list class="">
-            <p>Контактний номер телефону : </p>
-            <p>Email : </p>
-            <p>Viber : </p>
-            <p>Telegram :</p>
-        </list>
+        <h1 class="text-center text-4xl mt-6 mb-6">Інформація про нас :</h1>
+        <p class="text-2xl mt-3 mb-3">BudMarket - це магазин будівельних та господарських товарів який працює більше 10 років.</p>
+        <ul class="mt-6 mb-6">
+            <li>
+                <p>Контактний номер телефону : 0963616798 </p>
+            </li>
+            <li>
+                <p>Email : </p>
+            </li>
+            <li>
+                <p>Viber : </p>
+            </li>
+            <li>
+                <p>Telegram : <a href="https://t.me/savchukR" target="_blank" rel="noopener noreferrer">@savchukR</a></p>
+            </li>
+        </ul>
+        <div class="flex justify-center">
+            <a href="#" class="text-gray-500 hover:text-gray-700 mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-gray-700 mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-gray-700 mx-2"><i class="fab fa-instagram"></i></a>
+        </div>
     </div>
 {% endblock %}
+

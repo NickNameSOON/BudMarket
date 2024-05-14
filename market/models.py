@@ -2,24 +2,11 @@ from django.db import models
 from django.utils.text import slugify
 import random
 import string
-from django.urls import reverse
-
 
 def rand_slug():
-    """
-    Generates a random slug consisting of lowercase letters and digits.
-
-    Returns:
-        str: The randomly generated slug.
-    """
-    return '>'.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(3))
-
+    return ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(3))
 
 class Category(models.Model):
-    """
-    Represents a category in the marketplace.
-
-    """
     name = models.CharField(max_length=200, db_index=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', null=True, blank=True)
     slug = models.SlugField('URL', max_length=200, unique=True, db_index=True, null=True, blank=True)
@@ -43,6 +30,16 @@ class Category(models.Model):
             self.slug = slugify(rand_slug() + '-pickBetter' + self.name)
         super(Category, self).save(*args, **kwargs)
 
+class ProductAttribute(models.Model):
+    name = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, related_name='attributes', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Характеристика товару'
+        verbose_name_plural = 'Характеристики товарів'
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, null=True)
@@ -62,19 +59,16 @@ class Product(models.Model):
         verbose_name_plural = 'Товари'
 
     def __str__(self):
-        """
-        Returns a string representation of the object.
-        """
         return self.title
 
-
-class ProductManager(models.Manager):
-    def get_queryset(self):
-        return super(ProductManager, self).get_queryset().filter(available=True)
-
-
-class ProductProxy(Product):
-    objects = ProductManager()
+class ProductAttributeValue(models.Model):
+    product = models.ForeignKey(Product, related_name='attribute_values', on_delete=models.CASCADE)
+    attribute = models.ForeignKey(ProductAttribute, related_name='values', on_delete=models.CASCADE)
+    value = models.CharField(max_length=200)
 
     class Meta:
-        proxy = True
+        verbose_name = 'Значення характеристики товару'
+        verbose_name_plural = 'Значення характеристик товарів'
+
+    def __str__(self):
+        return f'{self.attribute.name}: {self.value}'

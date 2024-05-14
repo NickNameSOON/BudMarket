@@ -58,6 +58,10 @@ def profile(request):
     return render(request, 'users/profile.html', context=context)
 
 
+def login_required(request):
+    return render(request, 'users/login_required.html')
+
+
 def update_profile(request):
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
