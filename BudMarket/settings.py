@@ -1,8 +1,11 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-h=2gh5_oxqekwh7-$ym0w=78aoqls9+cs^+&kzy=+x3&c4g_#&'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 
 DEBUG = True
 
@@ -102,22 +105,24 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://1657-93-170-170-36.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://b391-62-122-202-219.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://1657-93-170-170-36.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://b391-62-122-202-219.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://1657-93-170-170-36.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://b391-62-122-202-219.ngrok-free.app']
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_POST = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'volodymyr.r.savchuk@ukd.edu.ua'
-EMAIL_HOST_PASSWORD = 'EbIE21ODiSa34d50'
+load_dotenv()  # Load environment variables from .env file
 
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-STRIPE_SECRET_KEY = 'sk_test_51PEjm4Cg6m0iLRueZY5kFGcwi3HblJj9lrY1gFXdHMXgtZ2xZEERb4RKZOesQyqhQ9UuPpDo62cuLahxWdnIzxmb00ot6Lsrlw'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51PEjm4Cg6m0iLRueNocsWnaENSVUwNjuDy3lWngIGHMLmNqJLi7MKFupYQWMlyTse1NS6faJzmSQt8qUOHpkmNbK00uRV0VfsE'
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+
 
 LOGIN_URL = '/users/login_required/'

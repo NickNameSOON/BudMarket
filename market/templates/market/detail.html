@@ -21,9 +21,8 @@
             <p class="mt-5 text-green-500 ">{{ product.price }} грн.</p>
             <div class="flex mt-4">
                 <form method="get" action="{% url 'order:confirm-buy-now' product.id %}">
-                    <button type="submit" class="red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">Buy Now</button>
+                    <button type="submit" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">Buy Now</button>
                 </form>
-
                 <form class="" method="post" action="{% url 'cart:add_to_cart' product.id %}">
                     {% csrf_token %}
                     <button type="submit"

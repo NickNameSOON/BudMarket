@@ -137,17 +137,36 @@ def order_confirm(request):
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+@login_required
 @login_required
 def confirm_buy_now(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     profile = Profile.objects.get(user=request.user)
 
     if request.method == 'POST':
-        payment_method = request.POST['payment_method']
-        delivery_method = request.POST['delivery_method']
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName')
+        contactNumber = request.POST.get('contactNumber')
+        email = request.POST.get('email')
+        payment_method = request.POST.get('paymentMethod')
+        delivery_method = request.POST.get('delivery_method')
         delivery_address = request.POST.get('delivery_address', '')
 
-        # Create the order
+        if payment_method == 'creditCard':
+            cardNumber = request.POST.get('cardNumber')
+            cardExpiry = request.POST.get('cardExpiry')
+            cardCVC = request.POST.get('cardCVC')
+            if not (cardNumber and cardExpiry and cardCVC):
+                messages.error(request, "Будь ласка, заповніть усі поля даних карти.")
+                return redirect('order:confirm-buy-now', product_id=product_id)
+
+        if not (firstName and lastName and contactNumber and email):
+            messages.error(request, "Будь ласка, заповніть усі обов’язкові поля.")
+            return redirect('order:confirm-buy-now', product_id=product_id)
+
+        # Створення замовлення
         order = Order.objects.create(
             user=request.user,
             delivery_method=delivery_method,
@@ -162,16 +181,20 @@ def confirm_buy_now(request, product_id):
             price=product.price
         )
 
-        # Create Stripe payment intent
-        intent = stripe.PaymentIntent.create(
-            amount=int(order.total_price * 100),  # Amount in cents
-            currency='uah',
-            metadata={'order_id': order.id}
-        )
-        order.payment_intent_id = intent['id']
-        order.save()
+        # Створення платіжного наміру Stripe
+        if payment_method == 'creditCard':
+            intent = stripe.PaymentIntent.create(
+                amount=int(order.total_price * 100),  # Сума в копійках
+                currency='uah',
+                metadata={'order_id': order.id}
+            )
+            order.payment_intent_id = intent['id']
+            order.save()
+            return JsonResponse({'client_secret': intent['client_secret']})
 
-        return JsonResponse({'client_secret': intent['client_secret']})
+        order.save()
+        messages.success(request, "Ваше замовлення було успішно створене.")
+        return redirect('order:order-success')
 
     context = {
         'product': product,
@@ -179,6 +202,9 @@ def confirm_buy_now(request, product_id):
     }
     return render(request, 'order/confirm_buy_now.html', context)
 
+@login_required
+def order_success(request):
+    return render(request, 'order/success.html')
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -205,5 +231,3 @@ def stripe_webhook(request):
     return HttpResponse(status=200)
 
 
-def order_success(request):
-    return render(request, 'order/success.html')
