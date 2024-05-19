@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from market.models import Product
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     products = models.ManyToManyField(Product, through='CartItem')
 
     def get_total_price(self):

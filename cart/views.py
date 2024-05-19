@@ -32,7 +32,7 @@ def add_to_cart(request, product_id):
     else:
         form = CartAddProductForm()
 
-    return render(request, 'cart/cart-view.html', {'form': form})
+    return render(request, 'cart/cart_view.html', {'form': form})
 
 
 @login_required

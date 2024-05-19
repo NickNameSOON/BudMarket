@@ -18,7 +18,7 @@
                         <p class="mt-2"><strong>Номер телефону:</strong> {{ user.profile.contactNumber }}</p>
                         <p class="mt-2"><strong>Ім'я:</strong> {{ user.profile.firstName }}</p>
                         <p class="mt-2"><strong>Прізвище:</strong> {{ user.profile.lastName }}</p>
-                        <p class="mt-2"><strong>Email:</strong> {{ user.profile.email }}</p>
+                        <p class="mt-2"><strong>Email:</strong> {{ user.email }}</p>
                         <p class="mt-2"><strong>Збережена адреса доставки:</strong> {{ user.profile.DeliveryAddress }}
                         </p>
                         <a href="{% url 'users:update-profile' %}" class="text-blue-500 hover:underline">Оновити дані
@@ -50,14 +50,14 @@
                             {% endfor %}
                         </ul>
                         <button id="toggle-orders"
-                                class="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Більше
+                                class="mt-4 w-full bg-transparent text-gray-500 font-bold py-2 px-4 rounded">Розгорнути
                         </button>
                     {% else %}
                         <p>Активних замовлень немає</p>
                     {% endif %}
                 </div>
 
-                <div class="bg-white mx-auto rounded shadow-lg p-6">
+                <div class="bg-white mx-auto ml-6 rounded shadow-lg p-6">
                     <h1 class="text-4xl font-bold mb-4 text-center">Неактивні замовлення</h1>
                     {% if inactive_orders %}
                         <ul class="list-disc pl-5 space-y-4">
@@ -100,10 +100,10 @@
             toggleButton.addEventListener('click', function () {
                 if (isExpanded) {
                     ordersList.style.maxHeight = '200px';
-                    toggleButton.textContent = 'Більше';
+                    toggleButton.textContent = 'Розгорнути';
                 } else {
                     ordersList.style.maxHeight = 'none';
-                    toggleButton.textContent = 'Менше';
+                    toggleButton.textContent = 'Згорнути';
                 }
                 isExpanded = !isExpanded;
             });

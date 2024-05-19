@@ -102,11 +102,11 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://b847-62-122-202-247.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://1657-93-170-170-36.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://b847-62-122-202-247.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://1657-93-170-170-36.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://b847-62-122-202-247.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://1657-93-170-170-36.ngrok-free.app']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -117,8 +117,7 @@ EMAIL_HOST_USER = 'volodymyr.r.savchuk@ukd.edu.ua'
 EMAIL_HOST_PASSWORD = 'EbIE21ODiSa34d50'
 
 
-WAYFORPAY_ACCOUNT = 'freelance_user_663e1b76e16a3'
-WAYFORPAY_SECRET_KEY = 'a93171a82971a88fa32e7208d10d2ac297a165a7'
-WAYFORPAY_API_URL = 'https://secure.wayforpay.com/pay'
+STRIPE_SECRET_KEY = 'sk_test_51PEjm4Cg6m0iLRueZY5kFGcwi3HblJj9lrY1gFXdHMXgtZ2xZEERb4RKZOesQyqhQ9UuPpDo62cuLahxWdnIzxmb00ot6Lsrlw'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51PEjm4Cg6m0iLRueNocsWnaENSVUwNjuDy3lWngIGHMLmNqJLi7MKFupYQWMlyTse1NS6faJzmSQt8qUOHpkmNbK00uRV0VfsE'
 
 LOGIN_URL = '/users/login_required/'

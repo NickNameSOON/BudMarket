@@ -10,7 +10,7 @@
                     {% for cart_item in cart_items %}
                         <div class="flex mb-4 items-center shadow-lg p-4 bg-gray-50 rounded-lg">
                             <div class="w-1/4">
-                                <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.title }}" class="w-48 h-48 object-cover rounded-lg">
+                                <img src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.title }}" class="w-200px h-48 object-cover rounded-lg">
                             </div>
                             <div class="w-3/4 pl-4">
                                 <p class="text-lg">{{ cart_item.product.title }} ({{ cart_item.quantity }} шт.) - {{ cart_item.product.price }} грн за одиницю</p>

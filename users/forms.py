@@ -10,17 +10,10 @@ User = get_user_model()
 
 
 class RegistrationForm(UserCreationForm):
-    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username',
-                                                                            'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
-
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email',
-                                                                           'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
-
-    password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password',
-                                                                                 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
-
-    password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
-                                                                                 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
+    password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
 
     def clean_password1(self):
         password1 = self.cleaned_data['password1']
@@ -36,6 +29,13 @@ class RegistrationForm(UserCreationForm):
             raise ValidationError("Passwords do not match.")
         return cleaned_data
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'shadow appearance-none border rounded py-2 px-3 mr-15 text-gray-700 leading-tight focus:outline-none'}))
@@ -45,12 +45,13 @@ class LoginForm(AuthenticationForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['contactNumber', 'firstName', 'lastName', 'DeliveryAddress']
+        fields = ['contactNumber', 'firstName', 'email', 'lastName', 'DeliveryAddress']
         labels = {
             'contactNumber': 'Контактний номер',
             'firstName': "Ім'я",
             'lastName': 'Прізвище',
-            'DeliveryAddress': 'Адреса Доставки'
+            'DeliveryAddress': 'Адреса Доставки',
+            'email': 'Електронна пошта'
         }
 
 

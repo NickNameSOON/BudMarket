@@ -1,29 +1,42 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, LoginForm, ProfileUpdateForm
+from .forms import RegistrationForm, LoginForm, ProfileUpdateForm, User
 from order.models import Order
+from cart.models import Cart
 from django.urls import reverse_lazy
 from .forms import CustomPasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
-    PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from .models import Profile
 
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            user = form.save()
             username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-            form.save()
-            authenticate(username=username, password=password, password2=password2, email=email)
-            login(request, profile)
-            return redirect('/')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
     else:
         form = RegistrationForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile = Profile.objects.create(user=instance)
+        cart = Cart.objects.create(user=instance)  # Створюємо Cart тільки з параметром user
+        profile.cart = cart
+        profile.save()
+
 
 
 def user_login(request):
@@ -45,8 +58,11 @@ def user_login(request):
 def profile(request):
     user = request.user
     profile = user.profile
-    active_orders = Order.objects.filter(user=user, status__in=['Опрацювання', 'Комплектація', 'Доставляється']).order_by('-created_at')
-    inactive_orders = Order.objects.filter(user=user, status__in=['Отримано покупцем', 'Відмінено']).order_by('-created_at')
+    active_orders = Order.objects.filter(user=user,
+                                         status__in=['Опрацювання', 'Комплектація', 'Доставляється']).order_by(
+        '-created_at')
+    inactive_orders = Order.objects.filter(user=user, status__in=['Отримано покупцем', 'Відмінено']).order_by(
+        '-created_at')
 
     context = {
         'user': user,

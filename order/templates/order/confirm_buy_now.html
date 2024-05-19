@@ -1,0 +1,107 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-10 px-12 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold mb-4 text-center">Підтвердження замовлення</h2>
+        <div class="card mb-6">
+            <div class="card-body">
+                <h5 class="text-xl font-semibold mb-4">Товар у вашому замовленні:</h5>
+                <div class="mb-4">
+                    <div class="flex mb-4 items-center shadow-lg p-4 bg-gray-50 rounded-lg">
+                        <div class="w-1/4">
+                            <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-200px h-48 object-cover rounded-lg">
+                        </div>
+                        <div class="w-3/4 pl-4">
+                            <p class="text-lg">{{ product.title }} (1 шт.) - {{ product.price }} грн за одиницю</p>
+                        </div>
+                    </div>
+                    <p class="font-bold text-xl">Загальна вартість: {{ product.price }} грн</p>
+                </div>
+
+                <h5 class="text-xl font-semibold mb-4">Дані для зв'язку:</h5>
+                <div id="contactInfo" class="mb-4">
+                    <p class="text-lg"><strong>Ім'я:</strong> {{ profile.firstName }}</p>
+                    <p class="text-lg"><strong>Прізвище:</strong> {{ profile.lastName }}</p>
+                    <p class="text-lg"><strong>Телефон:</strong> {{ profile.contactNumber }}</p>
+                    <p class="text-lg"><strong>Електронна пошта:</strong> {{ profile.email }}</p>
+                </div>
+
+                <form id="payment-form" action="{% url 'order:confirm-buy-now' product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="paymentMethod" class="block text-lg font-medium">Спосіб оплати:</label>
+                        <select id="paymentMethod" name="payment_method" class="block w-full mt-1 p-2 border rounded-lg">
+                            <option value="card">Кредитна картка</option>
+                            <option value="cash">Готівка</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="delivery_method" class="block text-lg font-medium">Спосіб отримання:</label>
+                        <select id="delivery_method" name="delivery_method" class="block w-full mt-1 p-2 border rounded-lg" onchange="toggleDeliveryAddress(this)">
+                            <option value="pickup">Самовивіз</option>
+                            <option value="delivery">Доставка</option>
+                        </select>
+                    </div>
+
+                    <div id="deliveryAddress" class="mb-4 hidden">
+                        <label for="delivery_address" class="block text-lg font-medium">Адреса доставки:</label>
+                        <input type="text" id="delivery_address" name="delivery_address" class="block w-full mt-1 p-2 border rounded-lg" placeholder="Введіть вашу адресу">
+                    </div>
+
+                    <button id="submit-button" type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Підтвердити замовлення</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        function toggleDeliveryAddress(select) {
+            const deliveryAddress = document.getElementById('deliveryAddress');
+            if (select.value === 'delivery') {
+                deliveryAddress.classList.remove('hidden');
+            } else {
+                deliveryAddress.classList.add('hidden');
+            }
+        }
+
+        const stripe = Stripe('{{ stripe_publishable_key }}');
+
+        const paymentForm = document.getElementById('payment-form');
+        paymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const { paymentMethod } = paymentForm.elements;
+            if (paymentMethod.value === 'card') {
+                const response = await fetch(paymentForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify({
+                        payment_method: paymentMethod.value,
+                        delivery_method: paymentForm.elements['delivery_method'].value,
+                        delivery_address: paymentForm.elements['delivery_address'].value,
+                    }),
+                });
+                const { client_secret } = await response.json();
+
+                const { error } = await stripe.confirmCardPayment(client_secret, {
+                    payment_method: {
+                        card: stripe.elements().create('card'),
+                    },
+                });
+
+                if (error) {
+                    alert(error.message);
+                } else {
+                    window.location.href = '/order/success/';
+                }
+            } else {
+                paymentForm.submit();
+            }
+        });
+    </script>
+{% endblock %}

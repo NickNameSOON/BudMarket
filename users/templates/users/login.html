@@ -16,11 +16,12 @@
                     <label class="block text-center text-gray-700 text-sm font-bold mb-2">Пароль</label>
                     {{ form.password }}
                 </div>
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-16 rounded focus:outline-none focus:shadow-outline"
+                <button class="mt-4 w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                         type="submit">Авторизація
                 </button>
             </form>
             <a class="text-gray-500" href="{% url 'users:register' %}">Якщо в вас немає акаунту зареєструйтеся</a>
+            <a class="text-gray-500" href="{% url 'users:password_reset' %}">Забули пароль ?</a>
         </div>
     </div>
     </body>

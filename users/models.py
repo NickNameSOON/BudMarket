@@ -18,14 +18,6 @@ class Profile(models.Model):
         return self.user.username
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        profile = Profile.objects.create(user=instance)
-        cart = Cart.objects.create(user=instance, cart=instance)
-        profile.cart = cart
-        profile.save()
-
 
 @receiver(post_save, sender=Profile)
 def save_user_profile(sender, instance, **kwargs):

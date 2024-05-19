@@ -46,11 +46,10 @@ class Order(models.Model):
     payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
     paid = models.BooleanField(default=False)
 
-
-def calculate_total_price(self):
-    total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
-    self.total_price = total_price
-    self.save()
+    def calculate_total_price(self):
+        total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
+        self.total_price = total_price
+        self.save()
 
 
 class OrderItem(models.Model):
