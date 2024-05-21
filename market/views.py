@@ -17,6 +17,14 @@ def index(request):
     return render(request, "market/index.html", context)
 
 
+def index1(request):
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, "market/index1.html", context)
+
+
 def delete_product(request, product_id):
     product = Product.objects.get(id=product_id)
     if request.method == "POST":

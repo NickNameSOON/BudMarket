@@ -105,11 +105,11 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://b391-62-122-202-219.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://790f-62-122-202-114.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://b391-62-122-202-219.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://790f-62-122-202-114.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://b391-62-122-202-219.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://790f-62-122-202-114.ngrok-free.app']
 
 load_dotenv()  # Load environment variables from .env file
 

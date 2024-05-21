@@ -1,27 +1,23 @@
 {% load static %}
-<nav class="bg-red-800 shadow-lg">
-    <div class="max-w-8xl max-auto px-8">
-        <div class="flex justify-between">
-            <div class="flex space-x-7 justify-between">
-                <div>
-                    <a href="/" class="flex items-center px-2 py-4">
-                        <img class="h-12 w-12" src="{% static 'market/src/Images/logo2.png' %}" alt="logo"/>
-                        <span class="text-xl text-white font-['Kelly Slab']">БудМаркет</span>
-                    </a>
-                </div>
-                <div class="flex text-center justify-end items-center space-x-1">
-                    <a href="/" class="py-4 px-2 text-white font-semibold">Головна</a>
-                    <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:catalog' %}">Каталог</a>
-                    <a class="py-4 px-2 text-white font-semibold" href="{% url 'cart:cart-view' %}">Кошик</a>
-                    <a class="py-4 px-2 text-white font-semibold" href="{% url 'market:about_us' %}">Про нас</a>
-                    {% if user.is_authenticated %}
-                        <a class="py-4 px-2 text-white font-semibold" href="{% url 'users:profile' %}">Профіль</a>
-                    {% else %}
-                        <a href="{% url 'users:login' %}" class="py-4 px-2 text-white font-semibold">Авторизуватися</a>
-                    {% endif %}
-                </div>
-
-            </div>
+<header class="bg-red-700 text-white py-4">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+        <div class="text-2xl font-bold mb-2 md:mb-0">БудМаркет</div>
+        <nav class="space-x-4 mb-2 md:mb-0">
+            <a href="{% url 'market:catalog' %}" class="hover:underline">Каталог</a>
+            <a href="{% url 'market:about_us' %}" class="hover:underline">Про Нас</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+            <input type="text" placeholder="Пошук..." class="px-2 py-1 rounded">
+            <a href="{% url 'users:profile' %}" class="hover:underline">
+                <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+            </a>
+            <a href="{% url 'cart:cart-view' %}" class="hover:underline">
+                <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </a>
         </div>
     </div>
-</nav>
+</header>
