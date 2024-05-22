@@ -1,0 +1,100 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-10 px-12 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold mb-4 text-center">Підтвердження замовлення</h2>
+        <div class="card mb-6">
+            <div class="card-body">
+                <h5 class="text-xl font-semibold mb-4">Товар для покупки:</h5>
+                <div class="flex mb-4 items-center shadow-lg p-4 bg-gray-50 rounded-lg">
+                    <div class="w-1/4">
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-200px h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="w-3/4 pl-4">
+                        <p class="text-lg">{{ product.title }} - {{ product.price }} грн</p>
+                    </div>
+                </div>
+                <p class="font-bold text-xl">Загальна вартість: {{ product.price }} грн</p>
+
+                <h5 class="text-xl font-semibold mb-4">Дані для зв'язку:</h5>
+                <form action="{% url 'order:confirm-buy-now' product.id %}" method="post" id="order-form">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="firstName" class="block text-lg font-medium">Ім'я:</label>
+                        <input type="text" id="firstName" name="firstName" class="block w-full mt-1 p-2 border rounded-lg" value="{{ profile.firstName }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="lastName" class="block text-lg font-medium">Прізвище:</label>
+                        <input type="text" id="lastName" name="lastName" class="block w-full mt-1 p-2 border rounded-lg" value="{{ profile.lastName }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="contactNumber" class="block text-lg font-medium">Телефон:</label>
+                        <input type="text" id="contactNumber" name="contactNumber" class="block w-full mt-1 p-2 border rounded-lg" value="{{ profile.contactNumber }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-lg font-medium">Електронна пошта:</label>
+                        <input type="email" id="email" name="email" class="block w-full mt-1 p-2 border rounded-lg" value="{{ profile.email }}" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="paymentMethod" class="block text-lg font-medium">Спосіб оплати:</label>
+                        <select id="paymentMethod" name="paymentMethod" class="block w-full mt-1 p-2 border rounded-lg" required onchange="togglePaymentFields(this)">
+                            <option value="cash">Готівкою</option>
+                            <option value="creditCard">Кредитна картка</option>
+                        </select>
+                    </div>
+
+                    <div id="cardDetails" class="mb-4 hidden">
+                        <label for="cardNumber" class="block text-lg font-medium">Номер картки:</label>
+                        <input type="text" id="cardNumber" name="cardNumber" class="block w-full mt-1 p-2 border rounded-lg">
+                        <label for="cardExpiry" class="block text-lg font-medium mt-4">Термін дії (MM/YY):</label>
+                        <input type="text" id="cardExpiry" name="cardExpiry" class="block w-full mt-1 p-2 border rounded-lg">
+                        <label for="cardCVC" class="block text-lg font-medium mt-4">CVC:</label>
+                        <input type="text" id="cardCVC" name="cardCVC" class="block w-full mt-1 p-2 border rounded-lg">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="delivery_method" class="block text-lg font-medium">Спосіб отримання:</label>
+                        <select id="delivery_method" name="delivery_method" class="block w-full mt-1 p-2 border rounded-lg" required onchange="toggleDeliveryAddress(this)">
+                            <option value="pickup">Самовивіз</option>
+                            <option value="delivery">Доставка</option>
+                        </select>
+                    </div>
+
+                    <div id="deliveryAddress" class="mb-4 hidden">
+                        <label for="delivery_address" class="block text-lg font-medium">Адреса доставки:</label>
+                        <input type="text" id="delivery_address" name="delivery_address" class="block w-full mt-1 p-2 border rounded-lg" placeholder="Введіть вашу адресу">
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Підтвердити замовлення</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePaymentFields(select) {
+            const cardDetails = document.getElementById('cardDetails');
+            if (select.value === 'creditCard') {
+                cardDetails.classList.remove('hidden');
+                document.getElementById('cardNumber').required = true;
+                document.getElementById('cardExpiry').required = true;
+                document.getElementById('cardCVC').required = true;
+            } else {
+                cardDetails.classList.add('hidden');
+                document.getElementById('cardNumber').required = false;
+                document.getElementById('cardExpiry').required = false;
+                document.getElementById('cardCVC').required = false;
+            }
+        }
+
+        function toggleDeliveryAddress(select) {
+            const deliveryAddress = document.getElementById('deliveryAddress');
+            if (select.value === 'delivery') {
+                deliveryAddress.classList.remove('hidden');
+            } else {
+                deliveryAddress.classList.add('hidden');
+            }
+        }
+    </script>
+{% endblock %}

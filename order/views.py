@@ -140,7 +140,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @login_required
-@login_required
 def confirm_buy_now(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     profile = Profile.objects.get(user=request.user)

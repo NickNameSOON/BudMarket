@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/market/templates/market/catalog1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/market/templates/market/index1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/templates/market/detail1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/confirm_buy_now1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/confirmation1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/templates/market/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/templates/market/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/market/templates/market/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/market/templates/market/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/confirm_buy_now.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/confirm_buy_now.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/confirmation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,7 @@
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "django.template.preview.state": "SHOW_EDITOR",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/nickn/OneDrive/Desktop/BudMarket/market/templates/market",
+    "last_opened_file_path": "C:/Users/nickn/OneDrive/Desktop/BudMarket/order/templates/order",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,6 +105,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\order\templates\order" />
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\market\templates\market" />
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\users\templates\users" />
       <recent name="C:\Users\nickn\OneDrive\Desktop\BudMarket\order" />
@@ -243,7 +245,7 @@
       <workItem from="1716036575673" duration="14030000" />
       <workItem from="1716159695648" duration="709000" />
       <workItem from="1716240150499" duration="5559000" />
-      <workItem from="1716323220075" duration="7027000" />
+      <workItem from="1716323220075" duration="13139000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -429,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716159771756</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="commit">
+      <option name="closed" value="true" />
+      <created>1716330519283</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716330519283</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
