@@ -58,11 +58,19 @@
                 </div>
 
                 <button class="w-full bg-red-500 text-white py-2 rounded">Застосувати</button>
-                <a href="#" class="block mt-4 text-red-500 text-center">Скинути</a>
+                <a href="{% url 'market:catalog' %}" class="block mt-4 text-red-500 text-center">Скинути</a>
             </form>
 
-            <!-- Product Grid -->
+            <!-- Main Content -->
             <div class="w-3/4 p-4">
+                <!-- Search Form -->
+                <form method="get" action="{% url 'market:catalog' %}" class="mb-6">
+                    <input type="text" name="q" placeholder="Пошук" value="{{ query }}"
+                           class="w-full p-2 border border-gray-300 rounded">
+                    <button type="submit" class="hidden">Пошук</button>
+                </form>
+
+                <!-- Product Grid -->
                 <h1 class="text-3xl text-center font-bold mb-6">Каталог</h1>
                 <div class="grid grid-cols-4 gap-4">
                     <!-- Loop through products and create a card for each one -->
@@ -75,25 +83,26 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="pagination text-center mt-6">
+                <span class="step-links">
+                    {% if products.has_previous %}
+                        <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; перша</a>
+                        <a href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">попередня</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Сторінка {{ products.number }} з {{ products.paginator.num_pages }}
+                    </span>
+
+                    {% if products.has_next %}
+                        <a href="?page=
+                                {{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}">наступна</a>
+                        <a href="?page={{ products.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">остання &raquo;</a>
+                    {% endif %}
+                </span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="pagination text-center">
-                    <span class="step-links">
-                        {% if products.has_previous %}
-                            <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; перша</a>
-                            <a href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">попередня</a>
-                        {% endif %}
-
-                        <span class="current">
-                            Сторінка {{ products.number }} з {{ products.paginator.num_pages }}
-                        </span>
-
-                        {% if products.has_next %}
-                            <a href="?page={{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}">наступна</a>
-                            <a href="?page={{ products.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">остання &raquo;</a>
-                        {% endif %}
-                    </span>
     </div>
     </body>
     </html>

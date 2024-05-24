@@ -12,15 +12,39 @@
             <a href="{% url 'market:about_us' %}" class="hover:underline">Про Нас</a>
         </nav>
         <div class="flex items-center space-x-4">
-            <input type="text" placeholder="Пошук..." class="px-2 py-1 rounded">
+            <form method="get" action="{% url 'market:catalog' %}"
+                  class="flex justify-center  my-2 mx-16">
+                <div class="flex border-2 border-gray-300 focus-within:ring rounded-lg overflow-hidden">
+                    <input type="text" name="q" placeholder="Пошук..." value="{{ query }}"
+                           class="px-24 py-1 ">
+                    <button type="submit"
+                            class="bg-white py-2 px-4 flex items-center justify-center">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z"
+                                  stroke="#9D9D9D" stroke-width="2"></path>
+                            <path d="M17 17L14 14" stroke="#9D9D9D" stroke-width="2" stroke-linecap="round"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
             <a href="{% url 'users:profile' %}" class="hover:underline">
-                <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 21V20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V21" stroke="#F9F9F9"
+                          stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7C16 9.20914 14.2091 11 12 11Z"
+                          stroke="#F9F9F9" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
+
             </a>
             <a href="{% url 'cart:cart-view' %}" class="hover:underline">
-                <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 22C8.55228 22 9 21.5523 9 21C9 20.4477 8.55228 20 8 20C7.44772 20 7 20.4477 7 21C7 21.5523 7.44772 22 8 22Z"
+                          stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M19 22C19.5523 22 20 21.5523 20 21C20 20.4477 19.5523 20 19 20C18.4477 20 18 20.4477 18 21C18 21.5523 18.4477 22 19 22Z"
+                          stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2.0498 2.04999H4.0498L6.7098 14.47C6.80738 14.9248 7.06048 15.3315 7.42552 15.6198C7.79056 15.9082 8.24471 16.0603 8.7098 16.05H18.4898C18.945 16.0493 19.3863 15.8933 19.7408 15.6078C20.0954 15.3224 20.3419 14.9245 20.4398 14.48L22.0898 7.04999H5.1198"
+                          stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
             </a>
         </div>

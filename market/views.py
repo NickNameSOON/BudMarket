@@ -67,7 +67,7 @@ def catalog(request, category_slug=None):
         products = products.order_by('-price')
 
     if query:
-        products = products.filter(Q(title__icontains(query) | Q(description__icontains(query))))
+        products = products.filter(Q(title__icontains=query) | Q(description__icontains=query))
 
     paginator = Paginator(products, 20)
     page = request.GET.get('page')

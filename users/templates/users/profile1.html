@@ -1,0 +1,116 @@
+{% extends "market/base.html" %}
+
+{% block title %}Профіль користувача{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container mx-auto p-4 bg-gray-100">
+        {% if user.profile %}
+            <div class="bg-white rounded shadow-lg p-6 mb-6 mx-auto">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center">
+                        <h1 class="text-4xl font-bold mb-4 text-center">Профіль користувача</h1>
+                        <a class="mt-4 bg-red-500 text-white font-semibold py-2 px-4 rounded hover:bg-red-700 text-center"
+                           href="{% url 'users:logout' %}">Вийти з акаунту</a>
+                    </div>
+                    <div class="ml-4">
+                        <h2 class="text-2xl font-semibold">{{ user.username }}</h2>
+                        <p class="mt-2"><strong>Номер телефону:</strong> {{ user.profile.contactNumber }}</p>
+                        <p class="mt-2"><strong>Ім'я:</strong> {{ user.profile.firstName }}</p>
+                        <p class="mt-2"><strong>Прізвище:</strong> {{ user.profile.lastName }}</p>
+                        <p class="mt-2"><strong>Email:</strong> {{ user.email }}</p>
+                        <p class="mt-2"><strong>Збережена адреса доставки:</strong> {{ user.profile.DeliveryAddress }}
+                        </p>
+                        <a href="{% url 'users:update-profile' %}" class="text-blue-500 hover:underline">Оновити дані
+                            профілю</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="grid p-10 grid-cols-2 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded shadow-lg p-6">
+                    <h1 class="text-4xl font-bold text-green-700 mb-4 text-center">Активні замовлення</h1>
+                    {% if active_orders %}
+                        <ul id="active-orders-list" class="list-disc pl-5 space-y-4">
+                            {% for order in active_orders %}
+                                <li>
+                                    <a href="{% url 'order:order-detail' order.id %}"
+                                       class="text-blue-500 ml-2 hover:underline">
+                                        <strong>Замовлення №{{ order.id }}</strong>
+                                    </a>
+                                    <ul class="list-inside list-disc ml-4 mt-2">
+                                        {% for item in order.orderitem_set.all %}
+                                            <li>{{ item.product.title }} - Ціна: {{ item.price }} грн. -
+                                                Кількість: {{ item.quantity }} - Сума: {{ item.price|floatformat:"2" }}
+                                                грн.
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <button id="toggle-orders"
+                                class="mt-4 w-full bg-transparent text-gray-500 font-bold py-2 px-4 rounded">Розгорнути
+                        </button>
+                    {% else %}
+                        <p>Активних замовлень немає</p>
+                    {% endif %}
+                </div>
+
+                <div class="bg-white mx-auto ml-6 rounded shadow-lg p-6">
+                    <h1 class="text-4xl font-bold mb-4 text-center">Неактивні замовлення</h1>
+                    {% if inactive_orders %}
+                        <ul class="list-disc pl-5 space-y-4">
+                            {% for order in inactive_orders %}
+                                <li>
+                                    <a href="{% url 'order:order-detail' order.id %}"
+                                       class="text-blue-500 ml-2 hover:underline">
+                                        <strong>Замовлення №{{ order.id }}</strong>
+                                    </a>
+                                    <ul class="list-inside list-disc ml-4 mt-2">
+                                        {% for item in order.orderitem_set.all %}
+                                            <li>{{ item.product.title }} - Ціна: {{ item.price }} грн. -
+                                                Кількість: {{ item.quantity }} - Сума: {{ item.price|floatformat:"2" }}
+                                                грн.
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Неактивних замовлень немає</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <form action="" method="post" class="bg-white rounded shadow-lg p-6">
+                <h1 class="text-4xl font-bold mb-4">Створення профілю</h1>
+                <!-- Form fields here -->
+            </form>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById('toggle-orders');
+            const ordersList = document.getElementById('active-orders-list');
+            let isExpanded = false;
+
+            toggleButton.addEventListener('click', function () {
+                if (isExpanded) {
+                    ordersList.style.maxHeight = '200px';
+                    toggleButton.textContent = 'Розгорнути';
+                } else {
+                    ordersList.style.maxHeight = 'none';
+                    toggleButton.textContent = 'Згорнути';
+                }
+                isExpanded = !isExpanded;
+            });
+
+            // Set initial max-height to 200px to hide some orders initially
+            ordersList.style.maxHeight = '200px';
+            ordersList.style.overflow = 'hidden';
+        });
+    </script>
+{% endblock %}
