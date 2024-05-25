@@ -43,11 +43,12 @@ def cart(request):
     context = {
         'cart': cart,
         'cart_items': cart_items,
-        'total_price': total_price
+        'total_price': total_price,
     }
     return render(request, 'cart/cart_view.html', context)
 
 
+@login_required
 def remove_from_cart(request, product_id):
     cart = Cart.objects.get(user=request.user)
     product = Product.objects.get(pk=product_id)
@@ -56,33 +57,17 @@ def remove_from_cart(request, product_id):
     return redirect('cart:cart-view')
 
 
-def decrease_quantity(request, product_id):
-    cart = get_object_or_404(Cart, user=request.user)
-    product = get_object_or_404(Product, pk=product_id)
-    cart_item = get_object_or_404(CartItem, cart=cart, product=product)
-
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-        return JsonResponse({'success': True})
-    else:
-        cart_item.delete()
-        return JsonResponse({'success': False})
-
-
 @login_required
 def update_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, pk=cart_item_id)
     if request.method == 'POST':
-        form = CartAddProductForm(request.POST)
-        if form.is_valid():
-            quantity = form.cleaned_data['quantity']
-            if quantity > 0:
-                cart_item.quantity = quantity
-                cart_item.save()
-            else:
-                # Якщо кількість введена неправильно, можна видалити товар з кошика
-                cart_item.delete()
+        action = request.POST.get('action')
+        if action == 'increase':
+            cart_item.quantity += 1
+        elif action == 'decrease' and cart_item.quantity > 1:
+            cart_item.quantity -= 1
+        elif action == 'decrease' and cart_item.quantity == 1:
+            cart_item.delete()
+            return redirect('cart:cart-view')
+        cart_item.save()
     return redirect('cart:cart-view')
-
-

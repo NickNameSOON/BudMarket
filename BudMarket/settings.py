@@ -60,10 +60,15 @@ WSGI_APPLICATION = 'BudMarket.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'budmarket',
+        'USER': 'postgres',
+        'PASSWORD': '1231',
+        'HOST': 'localhost',   # або IP-адреса вашого сервера PostgreSQL
+        'PORT': '5432',        # порт по замовчуванню для PostgreSQL
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

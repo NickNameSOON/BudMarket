@@ -1,30 +1,66 @@
 {% extends 'market/base.html' %}
 {% block content %}
-    <div class="bg-gray-100 h-screen flex items-center justify-center">
-        <div class="bg-white px-8 shadow-lg rounded-lg p-8 max-w-2xl w-full">
-            <h1 class="text-center text-4xl font-bold mb-6">Інформація про замовлення</h1>
-            <div class="mb-6">
-                <p class="text-lg mb-2"><strong>Номер замовлення:</strong> {{ order.id }}</p>
-                <p class="text-lg mb-2"><strong>Статус:</strong> {{ order.status }}</p>
-                <p class="text-lg mb-2"><strong>Дата створення:</strong> {{ order.created_at }}</p>
-                <p class="text-lg mb-2"><strong>Загальна вартість:</strong> {{ order.total_price }}</p>
-                <p class="text-lg mb-2"><strong>Спосіб отримання:</strong> {{ order.get_delivery_method_display }}</p>
-                <p class="text-lg mb-6"><strong>Метод оплати:</strong> {{ order.get_payment_method_display }}</p>
+    <!DOCTYPE html>
+    <html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Замовлення №{{ order.id }}</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto p-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between">
+                    <h2 class="text-xl font-semibold mb-4">Замовлення №{{ order.id }}</h2>
+
+                </div>
+                <p class="mb-2"><strong>Статус:</strong> {{ order.status }}</p>
+                {% for order_item in order.orderitem_set.all %}
+                    <div class="border-b py-4">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-gray-200 h-16 w-16"></div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-semibold">{{ order_item.product }}</h3>
+                                <p class="text-gray-600">{{ order_item.quantity }}</p>
+                                <p class="text-green-500 font-semibold mt-2">{{ order_item.price }} ₴</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-4">
+                        <p class="text-lg font-semibold">Сума замовлення: <span
+                                class="text-green-500">{{ order.total_price }} ₴</span></p>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="mb-6">
-                <h3 class="text-2xl font-semibold mb-4">Товари:</h3>
-                <ul class="list-disc list-inside">
-                    {% for order_item in order.orderitem_set.all %}
-                        <li class="text-lg">{{ order_item.product }} - {{ order_item.quantity }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-4">Контактні дані</h2>
+                <p class="mb-2"><span
+                        class="font-semibold">{{ user.profile.firstName }} {{ user.profile.lastName }}</span></p>
+                <p class="mb-2"><span class="font-semibold">{{ user.profile.contactNumber }}</span></p>
+                <h2 class="text-xl font-semibold mb-4 mt-6">Спосіб доставки</h2>
+                <p class="mb-2"><span class="font-semibold">{{ order.get_delivery_method_display }}</span></p>
+                <h2 class="text-xl font-semibold mb-4 mt-6">Спосіб оплати</h2>
+                <p class="mb-2"><span class="font-semibold">{{ order.get_payment_method_display }}</span></p>
+                <h2 class="text-xl font-semibold mb-4 mt-6">Дата покупки</h2>
+                <p class="mb-2"><span class="font-semibold">{{ order.created_at }}</span></p>
             </div>
-            <form action="{% url 'order:cancel-order' order_id=order.id %}" method="post" class="text-center">
-                {% csrf_token %}
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Відмінити
-                    замовлення
-                </button>
-            </form>
+        </div>
+        <div class="flex justify-between mt-12">
+            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded">Продовжити покупки</a>
+            {% if order.status == 'Опрацювання' %}
+                <form action="{% url 'order:cancel-order' order_id=order.id %}" method="post"
+                      class="text-center">
+                    {% csrf_token %}
+                    <button type="submit" class="border border-red-500 text-red-500 px-4 py-2 rounded">
+                        Відмінити
+                        замовлення
+                    </button>
+                </form>
+            {% endif %}
         </div>
     </div>
+    </body>
+    </html>
 {% endblock %}
