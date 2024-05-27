@@ -1,0 +1,129 @@
+{% extends "market/base.html" %}
+
+{% block title %}Профіль користувача{% endblock %}
+
+{% block content %}
+    <div class="bg-gray-100">
+        {% if user.profile %}
+            <div class="max-w-7xl mx-auto p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="bg-green-500 text-white w-16 h-16 flex items-center justify-center rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 2c-2.208 0-4.211.895-5.657 2.343C5.344 16.79 4.5 18.708 4.5 21h15c0-2.292-.844-4.21-2.343-5.657C16.211 13.895 14.208 13 12 13z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-bold">{{ user.username }}</h2>
+                            <p>{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'users:logout' %}" class="bg-red-600 text-white px-4 py-2 rounded">Вийти з аккаунту</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md mt-6 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold mb-6">Персональні дані</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="text-gray-500">Прізвище</div>
+                            <div class="text-xl font-semibold">{{ profile.lastName }}</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Ім'я</div>
+                            <div class="text-xl font-semibold">{{ profile.firstName }}</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="text-gray-500">Телефон</div>
+                        <div class="text-xl font-semibold">{{ profile.contactNumber }}</div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="text-gray-500">Адреса доставки</div>
+                        <div class="text-xl font-semibold">{{ profile.DeliveryAddress }}</div>
+                    </div>
+                    <div class="flex justify-end mt-6">
+                        <a href="{% url 'users:update-profile' %}" class="text-red-600 hover:underline">Редагувати</a>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold mt-8 mb-4">Мої замовлення</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white items-center rounded-lg shadow p-6">
+                        <h4 class="text-xl font-semibold text-center mb-4 text-green-500">Активні</h4>
+                        <div id="active-orders-list" class="space-y-2">
+                            {% if active_orders %}
+                                {% for order in active_orders %}
+                                    <a class="bg-gray-100 p-4 rounded flex justify-between items-center"
+                                       href="{% url 'order:order-detail' order.id %}">
+                                        <span>Замовлення №{{ order.id }}</span>
+                                        <span class="text-gray-500">{{ order.status }}</span>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <button id="toggle-active-orders" class="mt-4 items-center text-center text-gray-500">Розгорнути</button>
+                    </div>
+
+                    <div class="bg-white items-center rounded-lg shadow p-6">
+                        <h4 class="text-xl text-center font-semibold mb-4 text-green-500">Завершені</h4>
+                        <div id="inactive-orders-list" class="space-y-2">
+                            {% if inactive_orders %}
+                                {% for order in inactive_orders %}
+                                    <a class="bg-gray-100 p-4 rounded flex justify-between items-center"
+                                       href="{% url 'order:order-detail' order.id %}">
+                                        <span>Замовлення №{{ order.id }}</span>
+                                        <span class="text-gray-500">{{ order.status }}</span>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <button id="toggle-inactive-orders" class="mt-4 text-center text-gray-500">Розгорнути</button>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const activeToggleButton = document.getElementById('toggle-active-orders');
+            const activeOrdersList = document.getElementById('active-orders-list');
+            let isActiveExpanded = false;
+
+            activeToggleButton.addEventListener('click', function () {
+                if (isActiveExpanded) {
+                    activeOrdersList.style.maxHeight = '200px';
+                    activeToggleButton.textContent = 'Розгорнути';
+                } else {
+                    activeOrdersList.style.maxHeight = 'none';
+                    activeToggleButton.textContent = 'Згорнути';
+                }
+                isActiveExpanded = !isActiveExpanded;
+            });
+
+            activeOrdersList.style.maxHeight = '200px';
+            activeOrdersList.style.overflow = 'hidden';
+
+            const inactiveToggleButton = document.getElementById('toggle-inactive-orders');
+            const inactiveOrdersList = document.getElementById('inactive-orders-list');
+            let isInactiveExpanded = false;
+
+            inactiveToggleButton.addEventListener('click', function () {
+                if (isInactiveExpanded) {
+                    inactiveOrdersList.style.maxHeight = '200px';
+                    inactiveToggleButton.textContent = 'Розгорнути';
+                } else {
+                    inactiveOrdersList.style.maxHeight = 'none';
+                    inactiveToggleButton.textContent = 'Згорнути';
+                }
+                isInactiveExpanded = !isInactiveExpanded;
+            });
+
+            inactiveOrdersList.style.maxHeight = '200px';
+            inactiveOrdersList.style.overflow = 'hidden';
+        });
+    </script>
+{% endblock %}

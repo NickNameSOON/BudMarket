@@ -1,0 +1,9 @@
+{% extends 'market/base.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-10 px-12 p-6 bg-white  rounded-lg text-center">
+    <h2 class="text-2xl font-bold mb-4">Замовлення підтверджено!</h2>
+    <p class="text-lg mb-6">Дякуємо за ваше замовлення. Ваше замовлення було успішно прийнято .</p>
+    <a href="{% url 'market:index' %}" class="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Повернутися на головну</a>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "market/base.html" %}
+
+{% block content %}
+    <head>
+    <title>Редагування профілю</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <div class="bg-white flex items-center justify-center min-h-screen">
+        <div class="bg-white p-10 rounded-lg shadow-lg w-96 border">
+            <h2 class="text-2xl text-center font-bold mb-4">Оновлення даних профілю</h2>
+            <form class="rounded mb-4 space-y-4" method="POST"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="mt-4 w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                        type="submit">Зберегти зміни
+                </button>
+            </form>
+            <div class="flex justify-between">
+                <a href="{% url 'users:change_password' %}"
+                   class="text-center bg-white text-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded">Змінити
+                    пароль</a>
+                <a href=""
+                   class="text-center bg-white text-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded">Змінити
+                    електронну пошту</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
