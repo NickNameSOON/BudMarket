@@ -38,39 +38,30 @@ def catalog(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     brands = Product.objects.values('brand').annotate(count=Count('id')).order_by('brand').distinct()
-
     selected_category_slug = request.GET.get('category')
     selected_brands = request.GET.getlist('brand')
     sort_param = request.GET.get('sort')
     query = request.GET.get('q', '')
-
     products = Product.objects.filter(available=True)
-
     if selected_category_slug:
         category = get_object_or_404(Category, slug=selected_category_slug)
         products = products.filter(category=category)
-
     if selected_brands:
         products = products.filter(brand__in=selected_brands)
-
     if sort_param == 'min_price':
         products = products.order_by('price')
     elif sort_param == 'max_price':
         products = products.order_by('-price')
-
     if query:
         products = products.filter(Q(title__icontains=query) | Q(description__icontains=query))
-
     paginator = Paginator(products, 20)
     page = request.GET.get('page')
-
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-
     return render(request, 'market/catalog.html', {
         'category': category,
         'categories': categories,

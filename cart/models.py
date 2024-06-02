@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from market.models import Product
 
+
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     products = models.ManyToManyField(Product, through='CartItem')
@@ -12,6 +13,7 @@ class Cart(models.Model):
             total_price += item.product.get_price() * item.quantity
         return total_price
 
+
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
@@ -19,5 +21,3 @@ class CartItem(models.Model):
 
     def get_product_price(self):
         return self.product.price * self.quantity
-
-

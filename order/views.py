@@ -81,7 +81,7 @@ def process_order(request):
             return redirect(reverse('order:order-detail', kwargs={'order_id': order.id}))
 
     else:
-        return redirect('cart:cart-view')  # Якщо не POST запит, поверніться до кошика
+        return redirect('cart:cart-view')
 
 
 def order_detail(request, order_id):
@@ -135,8 +135,6 @@ def order_confirm(request):
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @login_required

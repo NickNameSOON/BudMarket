@@ -10,3 +10,4 @@ urlpatterns = [
     path('catalog/', views.catalog, name='catalog'),
     path('catalog/<str:category_slug>/', views.catalog, name='catalog_by_category'),
 ]
+

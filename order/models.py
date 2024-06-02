@@ -18,7 +18,7 @@ class Order(models.Model):
         (CANCELED, 'Відмінено'),
     ]
 
-    PICKUP = 'Самовиніс'
+    PICKUP = 'Самовивіз'
     DELIVERY = 'Доставка'
 
     DELIVERY_CHOICES = [

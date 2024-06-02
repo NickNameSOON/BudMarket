@@ -8,7 +8,8 @@ from order.models import Order
 from cart.models import Cart
 from django.urls import reverse_lazy
 from .forms import CustomPasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
+    PasswordResetConfirmView, PasswordResetCompleteView
 from .models import Profile
 
 
@@ -28,15 +29,13 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile.objects.create(user=instance)
-        cart = Cart.objects.create(user=instance)  # Створюємо Cart тільки з параметром user
+        cart = Cart.objects.create(user=instance)
         profile.cart = cart
         profile.save()
-
 
 
 def user_login(request):

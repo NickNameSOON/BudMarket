@@ -19,13 +19,10 @@ def add_to_cart(request, product_id):
         form = CartAddProductForm(request.POST)
         if form.is_valid():
             quantity = form.cleaned_data['quantity']
-            # Перевіряємо, чи товар вже є в кошику
             cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
             if not created:
-                # Якщо товар вже є в кошику, збільшуємо кількість
                 cart_item.quantity += quantity
             else:
-                # Якщо товару немає в кошику, створюємо новий запис
                 cart_item.quantity = quantity
             cart_item.save()
             return redirect('cart:cart-view')
@@ -71,3 +68,4 @@ def update_cart(request, cart_item_id):
             return redirect('cart:cart-view')
         cart_item.save()
     return redirect('cart:cart-view')
+
