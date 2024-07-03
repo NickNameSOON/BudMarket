@@ -14,29 +14,11 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import stripe
 from users.models import Profile
+import logging
 
+logger = logging.getLogger(__name__)
 
-def generate_signature(data):
-    sorted_string = ';'.join(str(data[k]) for k in sorted(data.keys()))
-    return hashlib.sha1((sorted_string + settings.WAYFORPAY_SECRET_KEY).encode('utf-8')).hexdigest()
-
-
-def initiate_payment(order):
-    data = {
-        'merchantAccount': settings.WAYFORPAY_ACCOUNT,
-        'merchantDomainName': 'example.com',
-        'orderReference': str(order.id),
-        'orderDate': int(order.created_at.timestamp()),
-        'amount': str(order.total_price),
-        'currency': 'UAH',
-        'productName': [item.product.title for item in order.orderitem_set.all()],
-        'productCount': [str(item.quantity) for item in order.orderitem_set.all()],
-        'productPrice': [str(item.product.price) for item in order.orderitem_set.all()],
-        'language': 'UA'
-    }
-    data['merchantSignature'] = generate_signature(data)
-    response = requests.post(settings.WAYFORPAY_API_URL, json=data)
-    return response.json()
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @login_required
@@ -48,8 +30,14 @@ def process_order(request):
             messages.error(request, "Кошик не знайдено.")
             return redirect('cart:cart-view')
 
+        logger.info('Cart found: %s', cart)
+
         delivery_address = request.POST.get('delivery_address')
         payment_method = request.POST.get('paymentMethod')
+
+        if payment_method not in ['stripe', 'cash']:
+            messages.error(request, "Невідомий метод оплати.")
+            return redirect('cart:cart-view')
 
         with transaction.atomic():
             order = Order.objects.create(
@@ -57,6 +45,8 @@ def process_order(request):
                 delivery_address=delivery_address,
                 payment_method=payment_method
             )
+            logger.info('Order created: %s', order)
+
             total_price = 0
             for cart_item in cart.cartitem_set.all():
                 order_item = OrderItem.objects.create(
@@ -69,17 +59,24 @@ def process_order(request):
 
             order.total_price = total_price
             order.save()
+            logger.info('Order updated with total price: %s', total_price)
 
             cart.cartitem_set.all().delete()
 
-            if payment_method == 'WayForPay':
-                payment_response = initiate_payment(order)
-                if payment_response.get('error'):
-                    messages.error(request, "Помилка оплати: " + payment_response['error'])
-                    return redirect(reverse('order:order-detail', kwargs={'order_id': order.id}))
-                return redirect(payment_response['payment_url'])
-            return redirect(reverse('order:order-detail', kwargs={'order_id': order.id}))
-
+            if payment_method == 'stripe':
+                intent = stripe.PaymentIntent.create(
+                    amount=int(order.total_price * 100),  # Сума в копійках
+                    currency='uah',
+                    metadata={'order_id': order.id}
+                )
+                order.payment_intent_id = intent['id']
+                order.save()
+                logger.info('Stripe PaymentIntent created: %s', intent['id'])
+                return JsonResponse({'client_secret': intent['client_secret']})
+            else:
+                order.save()
+                messages.success(request, "Ваше замовлення було успішно створене.")
+                return redirect('order:order-success')
     else:
         return redirect('cart:cart-view')
 
@@ -117,7 +114,7 @@ def save_transaction_id(request):
 
 def order_confirm(request):
     if not request.user.is_authenticated:
-        return redirect('login')  # Перенаправлення на сторінку логіну, якщо користувач не авторизований
+        return redirect('login')
 
     cart = Cart.objects.filter(user=request.user).first()
     if not cart:
@@ -134,9 +131,6 @@ def order_confirm(request):
     return render(request, 'order/confirmation.html', context)
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
 @login_required
 def confirm_buy_now(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -151,19 +145,14 @@ def confirm_buy_now(request, product_id):
         delivery_method = request.POST.get('delivery_method')
         delivery_address = request.POST.get('delivery_address', '')
 
-        if payment_method == 'creditCard':
-            cardNumber = request.POST.get('cardNumber')
-            cardExpiry = request.POST.get('cardExpiry')
-            cardCVC = request.POST.get('cardCVC')
-            if not (cardNumber and cardExpiry and cardCVC):
-                messages.error(request, "Будь ласка, заповніть усі поля даних карти.")
-                return redirect('order:confirm-buy-now', product_id=product_id)
+        if payment_method not in ['creditCard', 'cash']:
+            messages.error(request, "Невідомий метод оплати.")
+            return redirect('order:confirm-buy-now', product_id=product_id)
 
         if not (firstName and lastName and contactNumber and email):
             messages.error(request, "Будь ласка, заповніть усі обов’язкові поля.")
             return redirect('order:confirm-buy-now', product_id=product_id)
 
-        # Створення замовлення
         order = Order.objects.create(
             user=request.user,
             delivery_method=delivery_method,
@@ -171,17 +160,16 @@ def confirm_buy_now(request, product_id):
             delivery_address=delivery_address,
             total_price=product.price
         )
-        order_item = OrderItem.objects.create(
+        OrderItem.objects.create(
             order=order,
             product=product,
             quantity=1,
             price=product.price
         )
 
-        # Створення платіжного наміру Stripe
         if payment_method == 'creditCard':
             intent = stripe.PaymentIntent.create(
-                amount=int(order.total_price * 100),  # Сума в копійках
+                amount=int(order.total_price * 100),
                 currency='uah',
                 metadata={'order_id': order.id}
             )
@@ -199,9 +187,11 @@ def confirm_buy_now(request, product_id):
     }
     return render(request, 'order/confirm_buy_now.html', context)
 
+
 @login_required
 def order_success(request):
     return render(request, 'order/success.html')
+
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -226,5 +216,3 @@ def stripe_webhook(request):
         order.save()
 
     return HttpResponse(status=200)
-
-

@@ -1,0 +1,28 @@
+{% extends 'market/base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Редагування користувача</title>
+    </head>
+    <body>
+    <h1>Редагування користувача</h1>
+    <form action="/update_user/" method="post">
+        <label for="first_name">Ім'я: {{ profile.firstName }}</label><br>
+        <input type="text" id="first_name" name="first_name"><br>
+        <label for="last_name">Прізвище: {{ profile.lastName }}</label><br>
+        <input type="text" id="last_name" name="last_name"><br>
+        <label for="email">Email: {{ profile.email }}</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="contactNumber">Номер телефону: {{ profile.contactNumber }}</label><br>
+        <input type="tel" id="contactNumber" name="contactNumber"><br>
+        <label for="DeliveryAddress">Адреса доставки: {{ profile.firstName }}</label><br>
+        <input type="text" id="DeliveryAddress" name="DeliveryAddress"><br><br>
+        <input type="submit" value="Зберегти">
+    </form>
+    </body>
+    </html>
+
+{% endblock %}

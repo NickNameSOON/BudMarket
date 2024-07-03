@@ -4,13 +4,13 @@
 {% block content %}
     <div class="container mx-auto p-4">
         <h1 class="text-3xl font-bold mb-6">Оформлення замовлення</h1>
-        <div class="flex">
-            <!-- Order Details Form -->
-            <div class="w-3/4 p-4 bg-white rounded shadow-md">
-                <form method="post" action="{% url 'order:confirm-buy-now' product.id %}">
+        <div class="flex flex-col lg:flex-row">
+            <div class="w-full lg:w-3/4 p-4 bg-white rounded shadow-md mb-4 lg:mb-0">
+                <form method="post" action="{% url 'order:process-order' %}">
                     {% csrf_token %}
                     <div class="mb-6">
-                        <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">1</span> Контактні дані *</h2>
+                        <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">1</span> Контактні дані *
+                        </h2>
                         <div class="mb-4">
                             <label class="block mb-2" for="contactNumber">Телефон *</label>
                             <input type="tel" id="contactNumber" name="contactNumber" class="w-full border p-2 rounded"
@@ -31,15 +31,18 @@
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">2</span> Доставка *</h2>
                         <div class="mb-4">
                             <label class="block mb-2">
-                                <input type="radio" name="delivery_method" value="delivery" class="mr-2" required>
+                                <input type="radio" name="delivery_method" id="delivery" value="delivery" class="mr-2"
+                                       required>
                                 Доставка
                             </label>
-                            <input type="text" name="delivery_address" class="w-full border p-2 rounded"
+                            <input type="text" name="delivery_address" id="delivery_address"
+                                   class="w-full border p-2 rounded"
                                    placeholder="Вкажи населений пункт">
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2">
-                                <input type="radio" name="delivery_method" value="pickup" class="mr-2" required>
+                                <input type="radio" name="delivery_method" id="pickup" value="pickup" class="mr-2"
+                                       required>
                                 Самовивіз
                             </label>
                         </div>
@@ -48,7 +51,8 @@
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">3</span> Оплата *</h2>
                         <div class="mb-4">
                             <label class="block mb-2">
-                                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" class="mr-2" required>
+                                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" class="mr-2"
+                                       required>
                                 Карта
                             </label>
                             <label class="block mb-2">
@@ -75,36 +79,49 @@
                         <label class="block mb-2" for="comment">Коментар до замовлення</label>
                         <textarea id="comment" name="comment" class="w-full border p-2 rounded"></textarea>
                     </div>
+                    <div>
+                        <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Підтвердити замовлення
+                        </button>
+                    </div>
+
                 </form>
             </div>
-
-            <!-- Order Summary -->
-            <div class="w-1/4 p-4 ml-4 bg-white rounded shadow-md">
+            <div class="w-full lg:w-1/4 p-4 bg-white rounded shadow-md">
                 <h2 class="text-lg font-semibold mb-4">Замовлення</h2>
-                <div class="mb-4 flex shadow-lg">
-                    <img src="{{ product.image.url }}" class="bg-gray-200 h-24 w-24 rounded mb-2">
-                    <div class="ml-4">
-                        <p class="text-gray-700">{{ product.title }}</p>
-                        <p class="text-gray-500">1 шт.</p>
-                        <p class="text-gray-700 font-semibold">{{ product.price }} ₴</p>
+                {% for cart_item in cart_items %}
+                    <div class="mb-4 flex shadow-lg">
+                        <img src="{{ cart_item.product.image.url }}" class="bg-gray-200 h-24 w-24 rounded mb-2">
+                        <div class="ml-4">
+                            <p class="text-gray-700">{{ cart_item.product.title }}</p>
+                            <p class="text-gray-500">{{ cart_item.quantity }}</p>
+                            <p class="text-gray-700 font-semibold">{{ cart_item.product.price }} ₴</p>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
                 <div class="mb-4">
                     <p class="text-gray-700">Вартість замовлення:</p>
-                    <p class="text-gray-700">{{ product.price }} ₴</p>
+                    <p class="text-gray-700">{{ total_price }} ₴</p>
                 </div>
                 <div class="mb-4">
-                    <p class="text-gray-700">До оплати без доставки:</p>
-                    <p class="text-gray-700">{{ product.price }} ₴</p>
+                    <p class="text-gray-700">Вартість доставки:</p>
+                    <p class="text-gray-700">200 ₴</p>
                 </div>
-                <form action="{% url 'order:confirm-buy-now' product.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Підтвердити замовлення</button>
-                </form>
+                <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Підтвердити замовлення</button>
             </div>
         </div>
     </div>
+
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', togglePaymentFields);
+            });
+
+            // Initial call to set the correct state of the payment fields
+            togglePaymentFields();
+        });
+
         function togglePaymentFields() {
             const cardDetails = document.getElementById('cardDetails');
             const creditCardRadio = document.getElementById('creditCard');
@@ -120,12 +137,5 @@
                 document.getElementById('cardCVC').required = false;
             }
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
-            paymentRadios.forEach(radio => {
-                radio.addEventListener('change', togglePaymentFields);
-            });
-        });
     </script>
 {% endblock %}

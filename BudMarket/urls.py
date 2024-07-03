@@ -12,6 +12,7 @@ urlpatterns = [
     path('cart/', include("cart.urls", namespace="cart")),
     path('order/', include("order.urls", namespace="order")),
     path('admin/market/productattribute/', product_attribute_list, name='product_attribute_list'),
+    path('admin_panel/', include("admin_panel.urls", namespace="admin_panel")),
 
 ]
 

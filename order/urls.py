@@ -12,5 +12,4 @@ urlpatterns = [
     path('confirm-buy-now/<int:product_id>/', views.confirm_buy_now, name='confirm-buy-now'),
     path('webhook/', views.stripe_webhook, name='stripe-webhook'),
     path('success/', views.order_success, name='order-success'),
-
 ]

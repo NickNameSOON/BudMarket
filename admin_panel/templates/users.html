@@ -1,0 +1,44 @@
+{% extends 'market/base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Список користувачів</title>
+    </head>
+    <body class="bg-gray-100 mx-auto ">
+    <div class="container p-6 bg-white shadow rounded">
+        <h1 class="text-2xl font-bold mb-4">Список користувачів</h1>
+        <form method="get" class="mb-4 flex">
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Шукати</button>
+        </form>
+        <table class="min-w-full bg-white">
+            <thead>
+            <tr>
+                <th class="py-2 px-4 border-b border-gray-200"><a href="?sort=id">ID</a></th>
+                <th class="py-2 px-4 border-b border-gray-200">Ім'я</th>
+                <th class="py-2 px-4 border-b border-gray-200">Прізвище</th>
+                <th class="py-2 px-4 border-b border-gray-200">Email</th>
+                <th class="py-2 px-4 border-b border-gray-200">Номер телефону</th>
+                <th class="py-2 px-4 border-b border-gray-200"><a href="?sort=purchase_time">Час покупки</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.user.id }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.firstName }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.lastName }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.email }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.contactNumber }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ user.user.date_joined }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+    </html>
+{% endblock %}

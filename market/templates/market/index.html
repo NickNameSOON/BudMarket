@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 {% extends 'market/base.html' %}
+{% load static %}
 {% block content %}
-    <head>
-        <title>БудМаркет</title>
-    </head>
-    <body class="bg-gray-100">
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl text-center font-bold mb-2">Покращіть своє житло <span class="text-red-600">за вигідними цінами</span>
-        </h1>
-        <p class="text-lg text-center mb-6">Купуйте найкраще для вашої оселі</p>
-        <h2 class="text-2xl space-x-4 font-semibold ml-44 mb-4">Рекомендуємо до покупки:</h2>
-        <div class="flex justify-center items-center space-x-3">
-            <button id="scroll-left" class="focus:outline-none">
-                <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            <div id="products-carousel" class="flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
-                {% for product in products %}
-                    <a href="{% url 'market:detail' product.id %}" class="min-w-[16.66%] flex-shrink-0">
-                        <div class="bg-white p-4 rounded-lg shadow-md w-[308px] h-[323px] flex flex-col justify-between">
-                            <img src="{{ product.image.url }}" class="h-32 bg-gray-300 rounded-md mb-2">
-                            <h3 class="text-xl font-semibold truncate-text">{{ product.title }}</h3>
-                            <p class="truncate-text">Виробник: {{ product.brand }}</p>
-                            <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
-                        </div>
-                    </a>
-                {% empty %}
-                    <div class="text-4xl font-extrabold text-gray-900">No products found</div>
-                {% endfor %}
-            </div>
-            <button id="scroll-right" class="focus:outline-none">
-                <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24">
-                    <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-                </svg>
-            </button>
+<head>
+    <title>БудМаркет</title>
+</head>
+<body class="bg-gray-100 ">
+<main class="container h-auto w-full mx-auto px-4 py-8">
+    <h1 class="text-3xl text-center font-bold mb-2">Покращіть своє житло <span class="text-red-600">за вигідними цінами</span></h1>
+    <p class="text-lg text-center mb-6">Купуйте найкраще для вашої оселі</p>
+    <h2 class="text-2xl font-semibold mb-4">Рекомендуємо до покупки:</h2>
+    <div class="flex justify-center items-center space-x-3">
+        <button id="scroll-left" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+        </button>
+        <div id="products-carousel" class="flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
+            {% for product in products %}
+                <a href="{% url 'market:detail' product.id %}" class="min-w-[90%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[20%] xl:min-w-[16.66%] flex-shrink-0">
+                    <div class="bg-white p-4 rounded-lg shadow-md w-[90%] sm:w-[308px] md:w-[308px] h-[323px] flex flex-col justify-between">
+                        <img src="{{ product.image.url }}" class="h-32 bg-gray-300 rounded-md mb-2">
+                        <h3 class="text-xl font-semibold truncate-text">{{ product.title }}</h3>
+                        <p class="truncate-text">Виробник: {{ product.brand }}</p>
+                        <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="text-4xl font-extrabold text-gray-900">No products found</div>
+            {% endfor %}
         </div>
-    </main>
+        <button id="scroll-right" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+            </svg>
+        </button>
+    </div>
+</main>
 
-    <script>
-        const scrollContainer = document.getElementById('products-carousel');
-        const scrollAmount = scrollContainer.clientWidth;
+<script>
+    const scrollContainer = document.getElementById('products-carousel');
+    const scrollAmount = scrollContainer.clientWidth;
 
-        document.getElementById('scroll-left').onclick = function () {
-            scrollContainer.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        };
+    document.getElementById('scroll-left').onclick = function () {
+        scrollContainer.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    };
 
-        document.getElementById('scroll-right').onclick = function () {
-            scrollContainer.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        };
-    </script>
-    </body>
+    document.getElementById('scroll-right').onclick = function () {
+        scrollContainer.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    };
+</script>
+</body>
 {% endblock content %}
-
-

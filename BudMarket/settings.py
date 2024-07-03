@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     "crispy_forms",
     "crispy_tailwind",
+    'admin_panel',
+
 ]
 
 MIDDLEWARE = [
@@ -110,11 +112,11 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://2e34-62-122-202-118.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://macaw-workable-happily.ngrok-free.app']
 
-CORS_ALLOWED_ORIGINS = ['https://2e34-62-122-202-118.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['https://macaw-workable-happily.ngrok-free.app']
 
-CORS_ORIGIN_WHITELIST = ['https://2e34-62-122-202-118.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['https://macaw-workable-happily.ngrok-free.app']
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -129,5 +131,29 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 
+# settings.py
+WAYFORPAY_MERCHANT_ACCOUNT = 'freelance_user_663e1b76e16a3'
+WAYFORPAY_SECRET_KEY = 'a93171a82971a88fa32e7208d10d2ac297a165a7'
+WAYFORPAY_API_URL = 'https://api.wayforpay.com/api'
+
 
 LOGIN_URL = '/users/login_required/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'log.log',  # Шлях до файлу логів
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
