@@ -12,14 +12,11 @@ from django.db import transaction
 from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import stripe
 from users.models import Profile
 import logging
 
+
 logger = logging.getLogger(__name__)
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
 
 @login_required
 def process_order(request):
@@ -30,12 +27,10 @@ def process_order(request):
             messages.error(request, "Кошик не знайдено.")
             return redirect('cart:cart-view')
 
-        logger.info('Cart found: %s', cart)
-
         delivery_address = request.POST.get('delivery_address')
         payment_method = request.POST.get('paymentMethod')
 
-        if payment_method not in ['stripe', 'cash']:
+        if payment_method not in ['cash', 'wayforpay']:
             messages.error(request, "Невідомий метод оплати.")
             return redirect('cart:cart-view')
 
@@ -45,7 +40,6 @@ def process_order(request):
                 delivery_address=delivery_address,
                 payment_method=payment_method
             )
-            logger.info('Order created: %s', order)
 
             total_price = 0
             for cart_item in cart.cartitem_set.all():
@@ -59,20 +53,38 @@ def process_order(request):
 
             order.total_price = total_price
             order.save()
-            logger.info('Order updated with total price: %s', total_price)
 
             cart.cartitem_set.all().delete()
 
-            if payment_method == 'stripe':
-                intent = stripe.PaymentIntent.create(
-                    amount=int(order.total_price * 100),  # Сума в копійках
-                    currency='uah',
-                    metadata={'order_id': order.id}
-                )
-                order.payment_intent_id = intent['id']
-                order.save()
-                logger.info('Stripe PaymentIntent created: %s', intent['id'])
-                return JsonResponse({'client_secret': intent['client_secret']})
+            if payment_method == 'cart':
+                payment_data = {
+                    'orderReference': str(order.id),
+                    'merchantAccount': settings.WAYFORPAY_MERCHANT_ACCOUNT,
+                    'orderDate': int(order.created_at.timestamp()),
+                    'amount': float(order.total_price),
+                    'currency': 'UAH',
+                    'productName': [item.product.title for item in order.orderitem_set.all()],
+                    'productPrice': [float(item.price) for item in order.orderitem_set.all()],
+                    'productCount': [item.quantity for item in order.orderitem_set.all()],
+                    'merchantSignature': hashlib.sha256(
+                        (settings.WAYFORPAY_MERCHANT_ACCOUNT +
+                         str(order.id) +
+                         str(int(order.created_at.timestamp())) +
+                         str(float(order.total_price)) +
+                         'UAH' +
+                         ''.join([item.product.name for item in order.orderitem_set.all()]) +
+                         ''.join([str(float(item.price)) for item in order.orderitem_set.all()]) +
+                         ''.join([str(item.quantity) for item in order.orderitem_set.all()]) +
+                         settings.WAYFORPAY_SECRET_KEY).encode('utf-8')).hexdigest()
+                }
+                response = requests.post(settings.WAYFORPAY_API_URL, json=payment_data)
+                payment_response = response.json()
+
+                if payment_response['reasonCode'] == 1100:
+                    return JsonResponse({'invoiceUrl': payment_response['invoiceUrl']})
+                else:
+                    messages.error(request, "Помилка при обробці платежу WayForPay.")
+                    return redirect('cart:cart-view')
             else:
                 order.save()
                 messages.success(request, "Ваше замовлення було успішно створене.")
@@ -167,15 +179,35 @@ def confirm_buy_now(request, product_id):
             price=product.price
         )
 
-        if payment_method == 'creditCard':
-            intent = stripe.PaymentIntent.create(
-                amount=int(order.total_price * 100),
-                currency='uah',
-                metadata={'order_id': order.id}
-            )
-            order.payment_intent_id = intent['id']
-            order.save()
-            return JsonResponse({'client_secret': intent['client_secret']})
+        if payment_method == 'cart':
+            payment_data = {
+                'orderReference': str(order.id),
+                'merchantAccount': settings.WAYFORPAY_MERCHANT_ACCOUNT,
+                'orderDate': int(order.created_at.timestamp()),
+                'amount': float(order.total_price),
+                'currency': 'UAH',
+                'productName': [product.title],
+                'productPrice': [float(product.price)],
+                'productCount': [1],
+                'merchantSignature': hashlib.sha256(
+                    (settings.WAYFORPAY_MERCHANT_ACCOUNT +
+                     str(order.id) +
+                     str(int(order.created_at.timestamp())) +
+                     str(float(order.total_price)) +
+                     'UAH' +
+                     product.name +
+                     str(float(product.price)) +
+                     '1' +
+                     settings.WAYFORPAY_SECRET_KEY).encode('utf-8')).hexdigest()
+            }
+            response = requests.post(settings.WAYFORPAY_API_URL, json=payment_data)
+            payment_response = response.json()
+
+            if payment_response['reasonCode'] == 1100:
+                return JsonResponse({'invoiceUrl': payment_response['invoiceUrl']})
+            else:
+                messages.error(request, "Помилка при обробці платежу WayForPay.")
+                return redirect('order:confirm-buy-now', product_id=product_id)
 
         order.save()
         messages.success(request, "Ваше замовлення було успішно створене.")
@@ -194,25 +226,17 @@ def order_success(request):
 
 
 @csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
+def wayforpay_callback(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        order_reference = data.get('orderReference')
+        order = get_object_or_404(Order, id=order_reference)
 
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        return HttpResponse(status=400)
+        if data.get('transactionStatus') == 'Approved':
+            order.paid = True
+            order.save()
+            return JsonResponse({'status': 'success'})
 
-    if event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
-        order_id = payment_intent['metadata']['order_id']
-        order = Order.objects.get(id=order_id)
-        order.paid = True
-        order.save()
+        return JsonResponse({'status': 'error', 'message': 'Payment not approved'}, status=400)
+    return JsonResponse({'status': 'error'}, status=400)
 
-    return HttpResponse(status=200)
