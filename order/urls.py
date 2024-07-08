@@ -11,5 +11,6 @@ urlpatterns = [
     path('save-transaction/', views.save_transaction_id, name='save-transaction'),
     path('confirm-buy-now/<int:product_id>/', views.confirm_buy_now, name='confirm-buy-now'),
     path('success/', views.order_success, name='order-success'),
-    path('wayforpay-callback/', views.wayforpay_callback, name='wayforpay-callback'),
+    path('liqpay-callback/', views.liqpay_callback, name='liqpay-callback'),
+
 ]

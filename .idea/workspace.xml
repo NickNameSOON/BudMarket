@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/order/migrations/0013_order_contact_number_order_first_name_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0014_order_comment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/confirm_buy_nowLiqpay.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/templates/order/confirmation Liqpay.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/confirm_buy_now.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/confirm_buy_now.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/order/confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/order/confirmation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
     </list>
@@ -266,7 +274,9 @@
       <workItem from="1718753627407" duration="475000" />
       <workItem from="1719320863735" duration="2308000" />
       <workItem from="1720048805767" duration="902000" />
-      <workItem from="1720079790009" duration="635000" />
+      <workItem from="1720079790009" duration="8502000" />
+      <workItem from="1720115286432" duration="800000" />
+      <workItem from="1720422386997" duration="2841000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -516,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720048918750</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="commit">
+      <option name="closed" value="true" />
+      <created>1720080431738</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1720080431738</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -29,13 +29,6 @@
                     </div>
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">2</span> Доставка *</h2>
-                         <div class="mb-4">
-                            <label class="block mb-2">
-                                <input type="radio" name="delivery_method" id="pickup" value="pickup" class="mr-2"
-                                       required>
-                                Самовивіз
-                            </label>
-                        </div>
                         <div class="mb-4">
                             <label class="block mb-2">
                                 <input type="radio" name="delivery_method" id="delivery" value="delivery" class="mr-2"
@@ -46,15 +39,47 @@
                                    class="w-full border p-2 rounded"
                                    placeholder="Вкажи населений пункт">
                         </div>
+                        <div class="mb-4">
+                            <label class="block mb-2">
+                                <input type="radio" name="delivery_method" id="pickup" value="pickup" class="mr-2"
+                                       required>
+                                Самовивіз
+                            </label>
+                        </div>
                     </div>
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">3</span> Оплата *</h2>
                         <div class="mb-4">
                             <label class="block mb-2">
+                                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" class="mr-2"
+                                       required>
+                                Карта
+                            </label>
+                            <label class="block mb-2">
                                 <input type="radio" id="cash" name="paymentMethod" value="cash" class="mr-2">
-                                Готівкю при отриманні
+                                Готівка
                             </label>
                         </div>
+                        <div id="cardDetails" class="hidden mb-6">
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardNumber">Номер карти *</label>
+                                <input type="text" id="cardNumber" name="cardNumber" class="w-full border p-2 rounded">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardExpiry">Термін дії *</label>
+                                <input type="text" id="cardExpiry" name="cardExpiry" class="w-full border p-2 rounded">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardCVC">CVC *</label>
+                                <input type="text" id="cardCVC" name="cardCVC" class="w-full border p-2 rounded">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">
+                            <input type="radio" id="liqpay" name="paymentMethod" value="liqpay" class="mr-2" required>
+                            LiqPay
+                        </label>
                     </div>
 
                     <div class="mb-6">
@@ -93,6 +118,62 @@
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', togglePaymentFields);
+            });
 
+            // Initial call to set the correct state of the payment fields
+            togglePaymentFields();
+        });
+
+        function togglePaymentFields() {
+            const cardDetails = document.getElementById('cardDetails');
+            const creditCardRadio = document.getElementById('creditCard');
+            if (creditCardRadio.checked) {
+                cardDetails.classList.remove('hidden');
+                document.getElementById('cardNumber').required = true;
+                document.getElementById('cardExpiry').required = true;
+                document.getElementById('cardCVC').required = true;
+            } else {
+                cardDetails.classList.add('hidden');
+                document.getElementById('cardNumber').required = false;
+                document.getElementById('cardExpiry').required = false;
+                document.getElementById('cardCVC').required = false;
+            }
+        }
     </script>
+    <script>
+        document.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.target;
+            var formData = new FormData(form);
+            var paymentMethod = formData.get('paymentMethod');
+
+            if (paymentMethod === 'liqpay') {
+                fetch("{% url 'order:process-order' %}", {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json()).then(data => {
+                    if (data.payment_data) {
+                        var liqpayForm = document.createElement('form');
+                        liqpayForm.setAttribute('method', 'POST');
+                        liqpayForm.setAttribute('action', 'https://www.liqpay.ua/api/3/checkout');
+                        liqpayForm.innerHTML = data.payment_data;
+                        document.body.appendChild(liqpayForm);
+                        liqpayForm.submit();
+                    } else {
+                        // Обробка помилок
+                        console.error('Помилка під час обробки платежу');
+                    }
+                }).catch(error => {
+                    console.error('Помилка:', error);
+                });
+            } else {
+                form.submit();
+            }
+        });
+    </script>
+
 {% endblock %}

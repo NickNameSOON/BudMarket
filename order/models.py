@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from market.models import Product
 
-
 class Order(models.Model):
     PROCESSING = 'Опрацювання'
     PACKING = 'Комплектація'
@@ -45,19 +44,22 @@ class Order(models.Model):
     delivery_address = models.CharField(max_length=100, null=True, blank=True)
     payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
     paid = models.BooleanField(default=False)
+    contact_number = models.CharField(max_length=20, null=True, blank=True)
+    first_name = models.CharField(max_length=30, null=True, blank=True)
+    last_name = models.CharField(max_length=30, null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
+
 
     def calculate_total_price(self):
         total_price = sum(item.price * item.quantity for item in self.orderitem_set.all())
         self.total_price = total_price
         self.save()
 
-
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-
 
 class Payment(models.Model):
     amount = models.DecimalField(max_digits=8, decimal_places=2)
@@ -67,4 +69,3 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"Payment {'success' if self.success else 'failure'} on {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
-

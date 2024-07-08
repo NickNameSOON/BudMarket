@@ -128,13 +128,9 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
-
-# settings.py
-WAYFORPAY_MERCHANT_ACCOUNT = 'freelance_user_663e1b76e16a3'
-WAYFORPAY_SECRET_KEY = 'a93171a82971a88fa32e7208d10d2ac297a165a7'
-WAYFORPAY_API_URL = 'https://api.wayforpay.com/api'
+LIQPAY_PUBLIC_KEY = 'sandbox_i69207852812'
+LIQPAY_PRIVATE_KEY = 'sandbox_6EExRwNHnX6Xdu7xfEZ9SHEu5qokMpCHrajy6fa7'
+LIQPAY_API_URL = 'https://www.liqpay.ua/api/request'
 
 
 LOGIN_URL = '/users/login_required/'

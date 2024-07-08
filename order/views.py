@@ -14,9 +14,10 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from users.models import Profile
 import logging
-
+from liqpay import LiqPay
 
 logger = logging.getLogger(__name__)
+
 
 @login_required
 def process_order(request):
@@ -29,8 +30,12 @@ def process_order(request):
 
         delivery_address = request.POST.get('delivery_address')
         payment_method = request.POST.get('paymentMethod')
+        comment = request.POST.get('comment')
+        delivery_method = request.POST.get('delivery_method')
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
 
-        if payment_method not in ['cash', 'wayforpay']:
+        if payment_method not in ['cash', 'liqpay']:
             messages.error(request, "Невідомий метод оплати.")
             return redirect('cart:cart-view')
 
@@ -38,7 +43,11 @@ def process_order(request):
             order = Order.objects.create(
                 user=request.user,
                 delivery_address=delivery_address,
-                payment_method=payment_method
+                delivery_method=delivery_method,
+                payment_method=payment_method,
+                comment=comment,
+                first_name= first_name,
+                last_name=last_name,
             )
 
             total_price = 0
@@ -56,35 +65,21 @@ def process_order(request):
 
             cart.cartitem_set.all().delete()
 
-            if payment_method == 'cart':
-                payment_data = {
-                    'orderReference': str(order.id),
-                    'merchantAccount': settings.WAYFORPAY_MERCHANT_ACCOUNT,
-                    'orderDate': int(order.created_at.timestamp()),
-                    'amount': float(order.total_price),
+            if payment_method == 'liqpay':
+                liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+                params = {
+                    'action': 'pay',
+                    'amount': str(order.total_price),
                     'currency': 'UAH',
-                    'productName': [item.product.title for item in order.orderitem_set.all()],
-                    'productPrice': [float(item.price) for item in order.orderitem_set.all()],
-                    'productCount': [item.quantity for item in order.orderitem_set.all()],
-                    'merchantSignature': hashlib.sha256(
-                        (settings.WAYFORPAY_MERCHANT_ACCOUNT +
-                         str(order.id) +
-                         str(int(order.created_at.timestamp())) +
-                         str(float(order.total_price)) +
-                         'UAH' +
-                         ''.join([item.product.name for item in order.orderitem_set.all()]) +
-                         ''.join([str(float(item.price)) for item in order.orderitem_set.all()]) +
-                         ''.join([str(item.quantity) for item in order.orderitem_set.all()]) +
-                         settings.WAYFORPAY_SECRET_KEY).encode('utf-8')).hexdigest()
+                    'description': 'Payment for order #{}'.format(order.id),
+                    'order_id': str(order.id),
+                    'version': '3',
+                    'sandbox': 1,  # 1 - sandbox mode, 0 - live mode
+                    'server_url': request.build_absolute_uri(reverse('order:liqpay-callback')),
+                    'result_url': request.build_absolute_uri(reverse('order:order-success')),
                 }
-                response = requests.post(settings.WAYFORPAY_API_URL, json=payment_data)
-                payment_response = response.json()
-
-                if payment_response['reasonCode'] == 1100:
-                    return JsonResponse({'invoiceUrl': payment_response['invoiceUrl']})
-                else:
-                    messages.error(request, "Помилка при обробці платежу WayForPay.")
-                    return redirect('cart:cart-view')
+                payment_data = liqpay.cnb_form(params)
+                return JsonResponse({'payment_data': payment_data})
             else:
                 order.save()
                 messages.success(request, "Ваше замовлення було успішно створене.")
@@ -144,80 +139,78 @@ def order_confirm(request):
 
 
 @login_required
+@login_required
 def confirm_buy_now(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, id=product_id)
     profile = Profile.objects.get(user=request.user)
 
+    # Отримання даних з полів введення
     if request.method == 'POST':
-        firstName = request.POST.get('firstName')
-        lastName = request.POST.get('lastName')
-        contactNumber = request.POST.get('contactNumber')
-        email = request.POST.get('email')
-        payment_method = request.POST.get('paymentMethod')
+        contact_number = request.POST.get('contactNumber')
+        first_name = request.POST.get('firstName')
+        last_name = request.POST.get('lastName')
         delivery_method = request.POST.get('delivery_method')
-        delivery_address = request.POST.get('delivery_address', '')
+        delivery_address = request.POST.get('delivery_address')
+        payment_method = request.POST.get('paymentMethod')
+        comment = request.POST.get('comment')
 
-        if payment_method not in ['creditCard', 'cash']:
+        if payment_method not in ['cash', 'liqpay']:
             messages.error(request, "Невідомий метод оплати.")
-            return redirect('order:confirm-buy-now', product_id=product_id)
+            return redirect('cart:cart-view')
 
-        if not (firstName and lastName and contactNumber and email):
-            messages.error(request, "Будь ласка, заповніть усі обов’язкові поля.")
-            return redirect('order:confirm-buy-now', product_id=product_id)
+        #Створення замовлення
+        with transaction.atomic():
+            try:
+                order = Order.objects.create(
+                    user=request.user,
+                    delivery_address=delivery_address if delivery_method == 'delivery' else 'Самовивіз',
+                    delivery_method=delivery_method,
+                    payment_method=payment_method,
+                    contact_number=contact_number,
+                    first_name=first_name,
+                    last_name=last_name,
+                    comment=comment,
+                )
 
-        order = Order.objects.create(
-            user=request.user,
-            delivery_method=delivery_method,
-            payment_method=payment_method,
-            delivery_address=delivery_address,
-            total_price=product.price
-        )
-        OrderItem.objects.create(
-            order=order,
-            product=product,
-            quantity=1,
-            price=product.price
-        )
+                order_item = OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=1,
+                    price=product.price
+                )
 
-        if payment_method == 'cart':
-            payment_data = {
-                'orderReference': str(order.id),
-                'merchantAccount': settings.WAYFORPAY_MERCHANT_ACCOUNT,
-                'orderDate': int(order.created_at.timestamp()),
-                'amount': float(order.total_price),
-                'currency': 'UAH',
-                'productName': [product.title],
-                'productPrice': [float(product.price)],
-                'productCount': [1],
-                'merchantSignature': hashlib.sha256(
-                    (settings.WAYFORPAY_MERCHANT_ACCOUNT +
-                     str(order.id) +
-                     str(int(order.created_at.timestamp())) +
-                     str(float(order.total_price)) +
-                     'UAH' +
-                     product.name +
-                     str(float(product.price)) +
-                     '1' +
-                     settings.WAYFORPAY_SECRET_KEY).encode('utf-8')).hexdigest()
-            }
-            response = requests.post(settings.WAYFORPAY_API_URL, json=payment_data)
-            payment_response = response.json()
+                order.total_price = order_item.price
+                order.save()
 
-            if payment_response['reasonCode'] == 1100:
-                return JsonResponse({'invoiceUrl': payment_response['invoiceUrl']})
-            else:
-                messages.error(request, "Помилка при обробці платежу WayForPay.")
-                return redirect('order:confirm-buy-now', product_id=product_id)
+                # Оплата за допомогою сервісу Liqpay
+                if payment_method == 'liqpay':
+                    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+                    params = {
+                        'action': 'pay',
+                        'amount': str(order.total_price),
+                        'currency': 'UAH',
+                        'description': 'Payment for order #{}'.format(order.id),
+                        'order_id': str(order.id),
+                        'version': '3',
+                        'sandbox': 1,  # 1 - sandbox mode, 0 - live mode
+                        'server_url': request.build_absolute_uri(reverse('order:liqpay-callback')),
+                        'result_url': request.build_absolute_uri(reverse('order:order-success')),
+                    }
+                    payment_data = liqpay.cnb_form(params)
+                    return JsonResponse({'payment_data': payment_data})
+                else:
+                    messages.success(request, "Ваше замовлення було успішно створене.")
+                    return redirect('order:order-success')
 
-        order.save()
-        messages.success(request, "Ваше замовлення було успішно створене.")
-        return redirect('order:order-success')
-
-    context = {
-        'product': product,
-        'profile': profile,
-    }
-    return render(request, 'order/confirm_buy_now.html', context)
+            except Exception as e:
+                messages.error(request, f"Сталася помилка під час обробки вашого замовлення: {str(e)}")
+                return redirect('cart:cart-view')
+    else:
+        context = {
+            'product': product,
+            'profile': profile,
+        }
+        return render(request, 'order/confirm_buy_now.html', context)
 
 
 @login_required
@@ -226,17 +219,21 @@ def order_success(request):
 
 
 @csrf_exempt
-def wayforpay_callback(request):
+def liqpay_callback(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        order_reference = data.get('orderReference')
-        order = get_object_or_404(Order, id=order_reference)
+        order_id = data.get('order_id')
+        transaction_id = data.get('transaction_id')
+        status = data.get('status')
 
-        if data.get('transactionStatus') == 'Approved':
+        order = get_object_or_404(Order, id=order_id)
+
+        if status == 'success':
             order.paid = True
+            order.payment_id = transaction_id
             order.save()
             return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'failure', 'message': 'Payment not successful'}, status=400)
 
-        return JsonResponse({'status': 'error', 'message': 'Payment not approved'}, status=400)
     return JsonResponse({'status': 'error'}, status=400)
-

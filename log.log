@@ -2829,3 +2829,360 @@ C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
 Watching for file changes with StatReloader
 C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
 Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\nickn\OneDrive\Desktop\BudMarket\BudMarket\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /order/confirm-buy-now/1/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 174, in confirm_buy_now
+    order = Order.objects.create(
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Order() got unexpected keyword arguments: 'contact_number', 'first_name', 'last_name'
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Starting new HTTPS connection (1): api.wayforpay.com:443
+https://api.wayforpay.com:443 "POST /api HTTP/1.1" 200 None
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Starting new HTTPS connection (1): api.wayforpay.com:443
+https://api.wayforpay.com:443 "POST /api HTTP/1.1" 200 None
+Starting new HTTPS connection (1): api.wayforpay.com:443
+https://api.wayforpay.com:443 "POST /api HTTP/1.1" 200 None
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\BudMarket\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\BudMarket\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\liqpay\__init__.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\liqpay\__init__.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+Watching for file changes with StatReloader
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 71, in process_order
+    'server_url': request.build_absolute_uri(reverse('order:liqpay_callback')),
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'liqpay_callback' not found. 'liqpay_callback' is not a valid view function or pattern name.
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /order/process/
+Traceback (most recent call last):
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py", line 43, in process_order
+    order = Order.objects.create(
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickn\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Order() got unexpected keyword arguments: 'lastName'
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\nickn\OneDrive\Desktop\BudMarket\order\views.py changed, reloading.
+Watching for file changes with StatReloader

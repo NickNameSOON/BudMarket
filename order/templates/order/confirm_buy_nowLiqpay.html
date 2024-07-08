@@ -31,26 +31,44 @@
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">2</span> Доставка *</h2>
                         <div class="mb-4">
                             <label class="block mb-2">
-                                <input type="radio" name="delivery_method" value="pickup" class="mr-2" required>
-                                Самовивіз
-                            </label>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-2">
                                 <input type="radio" name="delivery_method" value="delivery" class="mr-2" required>
                                 Доставка
                             </label>
                             <input type="text" name="delivery_address" class="w-full border p-2 rounded"
                                    placeholder="Вкажи населений пункт">
                         </div>
+                        <div class="mb-4">
+                            <label class="block mb-2">
+                                <input type="radio" name="delivery_method" value="pickup" class="mr-2" required>
+                                Самовивіз
+                            </label>
+                        </div>
                     </div>
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold mb-4"><span class="text-green-500">3</span> Оплата *</h2>
                         <div class="mb-4">
                             <label class="block mb-2">
+                                <input type="radio" id="cart" name="paymentMethod" value="cart" class="mr-2" required>
+                                Карта
+                            </label>
+                            <label class="block mb-2">
                                 <input type="radio" id="cash" name="paymentMethod" value="cash" class="mr-2">
                                 Готівка
                             </label>
+                        </div>
+                        <div id="cardDetails" class="hidden mb-6">
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardNumber">Номер карти *</label>
+                                <input type="text" id="cardNumber" name="cardNumber" class="w-full border p-2 rounded">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardExpiry">Термін дії *</label>
+                                <input type="text" id="cardExpiry" name="cardExpiry" class="w-full border p-2 rounded">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2" for="cardCVC">CVC *</label>
+                                <input type="text" id="cardCVC" name="cardCVC" class="w-full border p-2 rounded">
+                            </div>
                         </div>
                     </div>
                     <div class="mb-6">
