@@ -50,7 +50,7 @@ class Product(models.Model):
     title = models.CharField("назва", max_length=200, db_index=True)
     slug = models.SlugField("URL", max_length=200, db_index=True, null=True, blank=True)
     brand = models.CharField("бренд", max_length=200, db_index=True, null=True, blank=True)
-    image = models.ImageField("зображення", upload_to='products/%Y/%m/%d', blank=True)
+    image = models.ImageField("Титульне зображення", upload_to='products/%Y/%m/%d', blank=True)
     description = models.TextField("опис", null=True, blank=True)
     price = models.DecimalField('ціна', max_digits=10, decimal_places=2)
     available = models.BooleanField("Наявність", default=True)
@@ -78,3 +78,27 @@ class ProductAttributeValue(models.Model):
     def __str__(self):
         return f'{self.attribute.name}: {self.value}'
 
+
+# models.py
+
+class HomeImage(models.Model):
+    image = models.ImageField("Зображення", upload_to='banners/%Y/%m/%d')
+    alt = models.CharField("Альтернативний текст", max_length=200)
+    order = models.PositiveIntegerField("Порядок", default=0)
+    url = models.URLField("URL", max_length=200, blank=True, null=True, default='#')
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Банер'
+        verbose_name_plural = 'Банери'
+
+    def __str__(self):
+        return self.alt
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products/%Y/%m/%d')
+
+    def __str__(self):
+        return f"{self.product.title} Image"

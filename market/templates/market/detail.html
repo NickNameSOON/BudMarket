@@ -9,18 +9,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ product.title }}</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <!-- Include SweetAlert2 library -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
-    <body class="bg-gray-100">
-    <div class="container mx-auto p-4">
+    <body class="bg-gray-100 min-h-screen flex flex-col">
+    <main class="container mx-auto px-4 py-8 flex-grow">
         <div class="flex flex-col md:flex-row">
             <!-- Product Image Slider -->
             <div class="w-full md:w-1/2 p-4 flex items-center justify-center mb-6 md:mb-0">
-                <div class="text-4xl text-gray-500 mr-2 cursor-pointer">&lt;</div>
-                <img src="{{ product.image.url }}"
-                     class="bg-gray-200 h-64 md:h-96 flex items-center justify-center rounded">
-                <div class="text-4xl text-gray-500 ml-2 cursor-pointer"> &gt;</div>
+                <div class="relative w-full">
+                    <div class="carousel">
+                        {% for image in images %}
+                            <div class="carousel-item {{ forloop.first|yesno:'block,hidden' }}">
+                                <img src="{{ image.image.url }}" alt="{{ product.title }}"
+                                     class="w-full h-64 md:h-96 object-cover rounded">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button id="prev"
+                            class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full">
+                        ‹
+                    </button>
+                    <button id="next"
+                            class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full">
+                        ›
+                    </button>
+                </div>
             </div>
 
             <!-- Product Details -->
@@ -49,7 +61,7 @@
                     </form>
                     <form method="post" action="{% url 'cart:add_to_cart' product.id %}" id="add-to-cart-form">
                         {% csrf_token %}
-                        <input type="hidden" name="quantity" value="1"> <!-- Додайте це поле для кількості -->
+                        <input type="hidden" name="quantity" value="1">
                         <button type="submit"
                                 class="bg-transparent border border-red-500 text-red-500 py-2 px-4 rounded flex items-center justify-center">
                             <svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -63,7 +75,24 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const prev = document.getElementById('prev');
+            const next = document.getElementById('next');
+            const items = document.querySelectorAll('.carousel-item');
+            let current = 0;
+
+            function showSlide(index) {
+                items[current].classList.add('hidden');
+                current = (index + items.length) % items.length;
+                items[current].classList.remove('hidden');
+            }
+
+            prev.addEventListener('click', () => showSlide(current - 1));
+            next.addEventListener('click', () => showSlide(current + 1));
+        });
+    </script>
     </body>
     </html>
 {% endblock content %}

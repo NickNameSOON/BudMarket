@@ -1,0 +1,16 @@
+<!-- templates/admin/market/homeimage/change_form.html -->
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+{% block after_related_objects %}
+    <div class="admin-image-preview" data-url="{{ adminform.form.instance.url }}">
+        {% if adminform.form.instance.image %}
+            <img src="{{ adminform.form.instance.image.url }}" alt="{{ adminform.form.instance.alt }}" style="max-width: 200px; cursor: pointer;">
+        {% endif %}
+    </div>
+    <datalist id="url-list">
+        {% for url in url_list %}
+            <option value="{{ url }}">{{ url }}</option>
+        {% endfor %}
+    </datalist>
+{% endblock %}

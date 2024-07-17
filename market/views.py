@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Product, ProductAttribute, ProductAttributeValue
+from .models import Category, Product, ProductAttribute, ProductAttributeValue, HomeImage, ProductImage
 from cart.forms import CartAddProductForm
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -8,11 +8,24 @@ from django.http import JsonResponse
 
 logger = logging.getLogger(__name__)
 
+import random
+
 
 def index(request):
+    categories = Category.objects.all()
+    category_products = {}
     products = Product.objects.all()
+
+    for category in categories:
+        products = list(Product.objects.filter(category=category))
+        random.shuffle(products)
+        category_products[category] = products[:10]
+
+    HomeImages = HomeImage.objects.all()
     context = {
-        'products': products,
+        'category_products': category_products,
+        'HomeImages': HomeImages,
+        'products': products
     }
     return render(request, "market/index.html", context)
 
@@ -28,10 +41,11 @@ def delete_product(request, product_id):
 
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)
+    images = ProductImage.objects.filter(product=product)
     form = CartAddProductForm()
     product_attributes = ProductAttributeValue.objects.filter(product=product)
     return render(request, 'market/detail.html',
-                  context={'product': product, 'form': form, 'product_attributes': product_attributes})
+                  context={'product': product, 'form': form, 'product_attributes': product_attributes, 'images': images})
 
 
 def catalog(request, category_slug=None):

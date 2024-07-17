@@ -139,7 +139,6 @@ def order_confirm(request):
 
 
 @login_required
-@login_required
 def confirm_buy_now(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     profile = Profile.objects.get(user=request.user)

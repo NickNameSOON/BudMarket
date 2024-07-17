@@ -2,83 +2,92 @@
 {% extends "market/base.html" %}
 
 {% block content %}
-<html lang="uk">
-<head>
-    <title>Каталог</title>
-</head>
-<body class="bg-gray-100">
-<div class="container mx-auto p-4">
-    <div class="flex flex-col md:flex-row">
-        <!-- Sidebar Filters -->
-        <form method="get" action="{% url 'market:catalog' %}" class="w-full md:w-1/4 p-4 bg-white rounded shadow-md mb-4 md:mb-0">
-            <h2 class="text-lg font-semibold mb-4">Сортувати за:</h2>
-            <div class="mb-4">
-                <div class="flex items-center mb-1">
-                    <input type="radio" id="no_sort" name="sort" value="" class="mr-2" {% if not sort_param %}checked{% endif %}>
-                    <label for="no_sort">Без сортування</label>
+    <html lang="uk">
+    <head>
+        <title>Каталог</title>
+    </head>
+    <body class="bg-gray-100 min-h-screen flex flex-col">
+    <main class="container h-auto w-full mx-auto px-4 py-8 flex-grow">
+        <div class="flex flex-col md:flex-row">
+            <!-- Sidebar Filters -->
+            <form method="get" action="{% url 'market:catalog' %}"
+                  class="w-full md:w-1/4 p-4 bg-white rounded shadow-md mb-4 md:mb-0">
+                <h2 class="text-lg font-semibold mb-4">Сортувати за:</h2>
+                <div class="mb-4">
+                    <div class="flex items-center mb-1">
+                        <input type="radio" id="no_sort" name="sort" value="" class="mr-2"
+                               {% if not sort_param %}checked{% endif %}>
+                        <label for="no_sort">Без сортування</label>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <input type="radio" id="min_price" name="sort" value="min_price" class="mr-2"
+                               {% if sort_param == 'min_price' %}checked{% endif %}>
+                        <label for="min_price">Мінімальна ціна</label>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <input type="radio" id="max_price" name="sort" value="max_price" class="mr-2"
+                               {% if sort_param == 'max_price' %}checked{% endif %}>
+                        <label for="max_price">Максимальна ціна</label>
+                    </div>
                 </div>
-                <div class="flex items-center mb-1">
-                    <input type="radio" id="min_price" name="sort" value="min_price" class="mr-2" {% if sort_param == 'min_price' %}checked{% endif %}>
-                    <label for="min_price">Мінімальна ціна</label>
-                </div>
-                <div class="flex items-center mb-1">
-                    <input type="radio" id="max_price" name="sort" value="max_price" class="mr-2" {% if sort_param == 'max_price' %}checked{% endif %}>
-                    <label for="max_price">Максимальна ціна</label>
-                </div>
-            </div>
 
-            <h2 class="text-lg font-semibold mb-4">Категорії</h2>
-            <div class="mb-4">
-                {% for c in categories %}
-                <div class="flex items-center">
-                    <input type="radio" id="{{ c.slug }}" name="category" value="{{ c.slug }}" class="mr-2" {% if c.slug == category.slug %}checked{% endif %}>
-                    <label for="{{ c.slug }}">{{ c.name }}</label>
+                <h2 class="text-lg font-semibold mb-4">Категорії</h2>
+                <div class="mb-4">
+                    {% for c in categories %}
+                        <div class="flex items-center">
+                            <input type="radio" id="{{ c.slug }}" name="category" value="{{ c.slug }}" class="mr-2"
+                                   {% if c.slug == category.slug %}checked{% endif %}>
+                            <label for="{{ c.slug }}">{{ c.name }}</label>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
 
-            <h2 class="text-lg font-semibold mb-4">Бренди</h2>
-            <div class="mb-4">
-                {% for brand in brands %}
-                <div class="flex items-center">
-                    <input type="checkbox" id="brand-{{ brand.brand }}" name="brand" value="{{ brand.brand }}" class="mr-2" {% if brand.brand in selected_brands %}checked{% endif %}>
-                    <label for="brand-{{ brand.brand }}">{{ brand.brand }} ({{ brand.count }})</label>
+                <h2 class="text-lg font-semibold mb-4">Бренди</h2>
+                <div class="mb-4">
+                    {% for brand in brands %}
+                        <div class="flex items-center">
+                            <input type="checkbox" id="brand-{{ brand.brand }}" name="brand" value="{{ brand.brand }}"
+                                   class="mr-2" {% if brand.brand in selected_brands %}checked{% endif %}>
+                            <label for="brand-{{ brand.brand }}">{{ brand.brand }} ({{ brand.count }})</label>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
 
-            <button class="w-full bg-red-500 text-white py-2 rounded">Застосувати</button>
-            <a href="{% url 'market:catalog' %}" class="block mt-4 text-red-500 text-center">Скинути</a>
-        </form>
-
-        <!-- Main Content -->
-        <div class="w-full md:w-3/4 p-4">
-            <!-- Search Form -->
-            <form method="get" action="{% url 'market:catalog' %}" class="mb-6">
-                <input type="text" name="q" placeholder="Пошук" value="{{ query }}" class="w-full p-2 border border-gray-300 rounded">
-                <button type="submit" class="hidden">Пошук</button>
+                <button class="w-full bg-red-500 text-white py-2 rounded">Застосувати</button>
+                <a href="{% url 'market:catalog' %}" class="block mt-4 text-red-500 text-center">Скинути</a>
             </form>
 
-            <!-- Product Grid -->
-            <h1 class="text-3xl text-center font-bold mb-6">Каталог</h1>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                <!-- Loop through products and create a card for each one -->
-                {% for product in products %}
-                <div class="bg-white p-4 items-center rounded shadow-md">
-                    <a href="{% url 'market:detail' product.id %}">
-                        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="bg-gray-200 h-40 mb-4 w-full object-cover">
-                        <h2 class="text-xl font-semibold mb-2">{{ product.title }}</h2>
-                        <p class="text-gray-600 mb-4">Виробник: {{ product.brand }}</p>
-                        <p class="text-green-600 text-lg font-bold">{{ product.price }} ₴</p>
-                    </a>
+            <!-- Main Content -->
+            <div class="w-full md:w-3/4 p-4">
+                <h1 class="text-3xl text-center font-bold mb-4">Каталог</h1>
+
+                <!-- Search Form -->
+                <form method="get" action="{% url 'market:catalog' %}" class="mb-6">
+                    <input type="text" name="q" placeholder="Пошук" value="{{ query }}"
+                           class="w-full p-2 border border-gray-300 rounded">
+                    <button type="submit" class="hidden">Пошук</button>
+                </form>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <!-- Loop through products and create a card for each one -->
+                    {% for product in products %}
+                        <div class="bg-white p-4 items-center rounded shadow-md">
+                            <a href="{% url 'market:detail' product.id %}">
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}"
+                                     class="bg-gray-200 h-40 mb-4 w-full object-cover">
+                                <h2 class="text-xl font-semibold mb-2">{{ product.title }}</h2>
+                                <p class="text-gray-600 mb-4">Виробник: {{ product.brand }}</p>
+                                <p class="text-green-600 text-lg font-bold">{{ product.price }} ₴</p>
+                            </a>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-            <div class="pagination text-center mt-6">
+                <div class="pagination text-center mt-6">
                 <span class="step-links">
                     {% if products.has_previous %}
-                    <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; перша</a>
-                    <a href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">попередня</a>
+                        <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; перша</a>
+                        <a href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">попередня</a>
                     {% endif %}
 
                     <span class="current">
@@ -86,14 +95,15 @@
                     </span>
 
                     {% if products.has_next %}
-                    <a href="?page={{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}">наступна</a>
-                    <a href="?page={{ products.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">остання &raquo;</a>
+                        <a href="?page=
+                                {{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}">наступна</a>
+                        <a href="?page={{ products.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">остання &raquo;</a>
                     {% endif %}
                 </span>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</body>
-</html>
+    </main>
+    </body>
+    </html>
 {% endblock content %}

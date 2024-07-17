@@ -8,15 +8,15 @@
         <title>Замовлення №{{ order.id }}</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     </head>
-    <body class="w-full bg-gray-100">
-    <div class="max-w-7xl mx-auto p-4">
+    <body class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="container h-auto w-full mx-auto px-4 py-8 flex-grow">
+        <div class="text-center text-4lx">
+            <h2 class="text-3xl mb-2 font-semibold">Замовлення №{{ order.id }}</h2>
+            <p class="mb-2"><strong>Статус:</strong> {{ order.status }}</p>
+
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
             <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex justify-between">
-                    <h2 class="text-xl font-semibold mb-4">Замовлення №{{ order.id }}</h2>
-
-                </div>
-                <p class="mb-2"><strong>Статус:</strong> {{ order.status }}</p>
                 {% for order_item in order.orderitem_set.all %}
                     <div class="border-b py-4">
                         <div class="flex items-center mb-4">
@@ -33,22 +33,27 @@
                     <p class="text-lg font-semibold">Сума замовлення: <span
                             class="text-green-500">{{ order.total_price }} ₴</span></p>
                 </div>
+            <div>
+                <h2 class=""><strong>Коментар</strong></h2>
+                <p>{{ order.comment }}</p>
+            </div>
             </div>
             <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-xl font-semibold mb-4">Контактні дані</h2>
-                <p class="mb-2"><span
-                        class="font-semibold">{{ user.profile.firstName }} {{ user.profile.lastName }}</span></p>
-                <p class="mb-2"><span class="font-semibold">{{ user.profile.contactNumber }}</span></p>
-                <h2 class="text-xl font-semibold mb-4 mt-6">Спосіб доставки</h2>
-                <p class="mb-2"><span class="font-semibold">{{ order.get_delivery_method_display }}</span></p>
-                <h2 class="text-xl font-semibold mb-4 mt-6">Спосіб оплати</h2>
-                <p class="mb-2"><span class="font-semibold">{{ order.get_payment_method_display }}</span></p>
-                <h2 class="text-xl font-semibold mb-4 mt-6">Дата покупки</h2>
-                <p class="mb-2"><span class="font-semibold">{{ order.created_at }}</span></p>
+                <h2 class="text-2xl text-center font-semibold mb-4">Контактні дані</h2>
+                <h2 class="text-xl font-semibold mb-2 mt-6">Імя та прізвище</h2>
+                <p class="mb-2">{{ user.profile.firstName }} {{ user.profile.lastName }}</p>
+                <h2 class="text-xl font-semibold mb-2 mt-6">Номер телефону</h2>
+                <p class="mb-2">{{ user.profile.contactNumber }}</p>
+                <h2 class="text-xl font-semibold mb-2 mt-6">Спосіб доставки</h2>
+                <p class="mb-2">{{ order.get_delivery_method_display }}</p>
+                <h2 class="text-xl font-semibold mb-2 mt-6">Спосіб оплати</h2>
+                <p class="mb-2">{{ order.get_payment_method_display }}</p>
+                <h2 class="text-xl font-semibold mb-2 mt-6">Дата покупки</h2>
+                <p class="mb-2">{{ order.created_at }}</p>
             </div>
         </div>
-        <div class="flex justify-between mt-12">
-            <a href="#" class="bg-red-500 text-white px-4 py-2 rounded">Продовжити покупки</a>
+        <div class="flex justify-between mt-8">
+            <a href="{% url 'market:catalog' %}" class="bg-red-500 text-white px-4 py-2 rounded">Продовжити покупки</a>
             {% if order.status == 'Опрацювання' %}
                 <form action="{% url 'order:cancel-order' order_id=order.id %}" method="post"
                       class="text-center">

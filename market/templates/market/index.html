@@ -2,59 +2,161 @@
 {% extends 'market/base.html' %}
 {% load static %}
 {% block content %}
-<head>
-    <title>БудМаркет</title>
-</head>
-<body class="bg-gray-100 ">
-<main class="container h-auto w-full mx-auto px-4 py-8">
-    <h1 class="text-3xl text-center font-bold mb-2">Покращіть своє житло <span class="text-red-600">за вигідними цінами</span></h1>
-    <p class="text-lg text-center mb-6">Купуйте найкраще для вашої оселі</p>
-    <h2 class="text-2xl font-semibold mb-4">Рекомендуємо до покупки:</h2>
-    <div class="flex justify-center items-center space-x-3">
-        <button id="scroll-left" class="focus:outline-none">
-            <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-        </button>
-        <div id="products-carousel" class="flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
-            {% for product in products %}
-                <a href="{% url 'market:detail' product.id %}" class="min-w-[90%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[20%] xl:min-w-[16.66%] flex-shrink-0">
-                    <div class="bg-white p-4 rounded-lg shadow-md w-[90%] sm:w-[308px] md:w-[308px] h-[323px] flex flex-col justify-between">
-                        <img src="{{ product.image.url }}" class="h-32 bg-gray-300 rounded-md mb-2">
-                        <h3 class="text-xl font-semibold truncate-text">{{ product.title }}</h3>
-                        <p class="truncate-text">Виробник: {{ product.brand }}</p>
-                        <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+    <head>
+        <title>БудМаркет</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100 min-h-screen flex flex-col">
+    <main class="container h-auto w-full mx-auto px-8 py-8 flex-grow">
+        <h1 class="text-2xl sm:text-3xl text-center font-bold mb-2">Покращіть своє житло <span class="text-red-600">за вигідними цінами</span>
+        </h1>
+        <p class="text-base sm:text-lg text-center mb-6">Купуйте найкраще для вашої оселі</p>
+
+        <!-- Slider for banners -->
+        <div class="relative w-full mx-auto mb-8 overflow-hidden">
+            <div id="main-image-slider"
+                 class="relative w-full h-64 sm:h-80 flex items-center overflow-hidden rounded-lg shadow-lg">
+                <div class="flex transition-transform duration-500 ease-in-out transform">
+                    {% for HomeImage in HomeImages %}
+                        <div class="w-full h-auto flex-shrink-0">
+                            <a href="{{ HomeImage.url }}">
+                                <img src="{{ HomeImage.image.url }}"
+                                     srcset="{{ HomeImage.image.url }} 1x, {{ HomeImage.image.url }} 2x"
+                                     sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-full object-cover">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Indicators -->
+            <div class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 mb-4">
+                {% for HomeImage in HomeImages %}
+                    <button class="image-indicator w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-400 focus:outline-none"
+                            data-index="{{ forloop.counter0 }}"></button>
+                {% endfor %}
+            </div>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-semibold mb-4">Рекомендуюємо до покупки</h1>
+        <!-- Product slider -->
+        <div class="flex justify-center items-center space-x-3">
+            <button id="scroll-left" class="focus:outline-none">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <div id="products-slider" class="flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
+                {% for product in products %}
+                    <a href="{% url 'market:detail' product.id %}" class="flex-shrink-0">
+                        <div class="bg-white p-4 rounded-lg shadow-md w-64 h-80 flex flex-col justify-between">
+                            <img src="{{ product.image.url }}"
+                                 srcset="{{ product.image.url }} 1x, {{ product.image.url }} 2x"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 class="h-40 bg-gray-300 rounded-md mb-2 object-cover">
+                            <h3 class="text-xl font-semibold truncate">{{ product.title }}</h3>
+                            <p class="truncate">Виробник: {{ product.brand }}</p>
+                            <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <div class="text-4xl font-extrabold text-gray-900">No products found</div>
+                {% endfor %}
+            </div>
+            <button id="scroll-right" class="focus:outline-none">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Category product sliders -->
+        <div class="mt-4 mb-6">
+            {% for category, products in category_products.items %}
+                <div class="flex justify-between">
+                    <h2 class="text-xl sm:text-2xl font-semibold mb-4">{{ category.name }}</h2>
+                    <div class="text-center mb-8">
+                        <a href="{% url 'market:catalog_by_category' category.slug %}"
+                           class="text-center text-red-700 hover:bg-red-800 hover:text-white font-bold py-2 px-4 rounded">Більше
+                            товарів</a>
                     </div>
-                </a>
-            {% empty %}
-                <div class="text-4xl font-extrabold text-gray-900">No products found</div>
+                </div>
+                <div class="flex justify-center items-center space-x-3 mb-4">
+                    <button class="scroll-left focus:outline-none">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <div class="products-slider flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
+                        {% for product in products %}
+                            <a href="{% url 'market:detail' product.id %}" class="flex-shrink-0">
+                                <div class="bg-white p-4 rounded-lg shadow-md w-64 h-80 flex flex-col justify-between">
+                                    <img src="{{ product.image.url }}"
+                                         srcset="{{ product.image.url }} 1x, {{ product.image.url }} 2x"
+                                         sizes="(max-width: 768px) 100vw, 50vw"
+                                         class="h-40 bg-gray-300 rounded-md mb-2 object-cover">
+                                    <h3 class="text-xl font-semibold truncate">{{ product.title }}</h3>
+                                    <p class="truncate">Виробник: {{ product.brand }}</p>
+                                    <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-right focus:outline-none">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                        </svg>
+                    </button>
+                </div>
             {% endfor %}
         </div>
-        <button id="scroll-right" class="focus:outline-none">
-            <svg class="w-6 h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-            </svg>
-        </button>
-    </div>
-</main>
+    </main>
 
-<script>
-    const scrollContainer = document.getElementById('products-carousel');
-    const scrollAmount = scrollContainer.clientWidth;
+    <script>
+        // Slider for banners
+        const HomeImageScrollContainer = document.querySelector('#main-image-slider .flex');
+        const indicators = document.querySelectorAll('.image-indicator');
+        let currentIndex = 0;
 
-    document.getElementById('scroll-left').onclick = function () {
-        scrollContainer.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
+        indicators.forEach(indicator => {
+            indicator.onclick = function () {
+                currentIndex = parseInt(this.getAttribute('data-index'));
+                updateSlider();
+            };
         });
-    };
 
-    document.getElementById('scroll-right').onclick = function () {
-        scrollContainer.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
+        function updateSlider() {
+            const offset = currentIndex * -100;
+            HomeImageScrollContainer.style.transform = `translateX(${offset}%)`;
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('bg-red-600');
+                    indicator.classList.remove('bg-gray-400');
+                } else {
+                    indicator.classList.add('bg-gray-400');
+                    indicator.classList.remove('bg-red-600');
+                }
+            });
+        }
+
+        // Product slider
+        const productSliders = document.querySelectorAll('.products-slider');
+        const scrollAmounts = Array.from(productSliders).map(slider => slider.clientWidth);
+
+        document.querySelectorAll('.scroll-left').forEach((button, index) => {
+            button.onclick = function () {
+                productSliders[index].scrollBy({left: -scrollAmounts[index], behavior: 'smooth'});
+            };
         });
-    };
-</script>
-</body>
-{% endblock content %}
+
+        document.querySelectorAll('.scroll-right').forEach((button, index) => {
+            button.onclick = function () {
+                productSliders[index].scrollBy({left: scrollAmounts[index], behavior: 'smooth'});
+            };
+        });
+    </script>
+    </body>
+{% endblock %}
