@@ -5,14 +5,12 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY ='django-insecure-h=2gh5_oxqekwh7-$ym0w=78aoqls9+cs^+&kzy=+x3&c4g_#&'
 
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'http://194.15.112.50',
-    'localhost',
-    'http://karpaty-aqua.store'
+    'www.karpaty-aqua.store', 'karpaty-aqua.store','localhost'
 ]
 
 INSTALLED_APPS = [
@@ -67,8 +65,8 @@ WSGI_APPLICATION = 'BudMarket.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'admin',
-        'USER': 'postgres',
+        'NAME': 'shopdb',
+        'USER': 'admin',
         'PASSWORD': '1231',
         'HOST': 'localhost',  # або IP-адреса вашого сервера PostgreSQL
         'PORT': '5432',  # порт по замовчуванню для PostgreSQL
@@ -118,12 +116,12 @@ LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
 CSRF_TRUSTED_ORIGINS = ['http://194.15.112.50',
-                        'localhost',
+                        'http://localhost',
                         'http://karpaty-aqua.store'
                         ]
 
 CORS_ALLOWED_ORIGINS = ['http://194.15.112.50',
-                        'localhost',
+                        'http://localhost',
                         'http://karpaty-aqua.store']
 
 CORS_ORIGIN_WHITELIST = ['http://194.15.112.50',

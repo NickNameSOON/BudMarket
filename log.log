@@ -6624,3 +6624,813 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.karpaty-aqua.store'. You may need to add 'www.karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'karpaty-aqua.store'. You may need to add 'karpaty-aqua.store' to ALLOWED_HOSTS.
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /favicon.ico
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /favicon.ico
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /favicon.ico
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /static/market/styles.css
+Not Found: /static/market/src/Images/logo2.png
+Not Found: /favicon.ico
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /
+Not Found: /favicon.ico
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/phpunit/LICENSE/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /phpunit/phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /lib/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /lib/phpunit/phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /lib/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /lib/phpunit/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /lib/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /laravel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /www/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /ws/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /yii/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /zend/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /ws/ec/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /V2/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /tests/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /test/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /testing/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /api/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /demo/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /cms/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /crm/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /admin/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /backup/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /index.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /public/index.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /index.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /index.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /Autodiscover/Autodiscover.xml
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/BudMarket/tutorial-env/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '194.15.112.50'. You may need to add '194.15.112.50' to ALLOWED_HOSTS.
+Bad Request: /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
