@@ -7,10 +7,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'http://194.15.112.50',
+    'localhost',
+    'http://karpaty-aqua.store'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -64,14 +67,13 @@ WSGI_APPLICATION = 'BudMarket.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'budmarket',
+        'NAME': 'admin',
         'USER': 'postgres',
         'PASSWORD': '1231',
-        'HOST': 'localhost',   # або IP-адреса вашого сервера PostgreSQL
-        'PORT': '5432',        # порт по замовчуванню для PostgreSQL
+        'HOST': 'localhost',  # або IP-адреса вашого сервера PostgreSQL
+        'PORT': '5432',  # порт по замовчуванню для PostgreSQL
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,14 +103,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
@@ -117,11 +117,18 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"
 
-CSRF_TRUSTED_ORIGINS = ['https://macaw-workable-happily.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://194.15.112.50',
+                        'localhost',
+                        'http://karpaty-aqua.store'
+                        ]
 
-CORS_ALLOWED_ORIGINS = ['https://macaw-workable-happily.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = ['http://194.15.112.50',
+                        'localhost',
+                        'http://karpaty-aqua.store']
 
-CORS_ORIGIN_WHITELIST = ['https://macaw-workable-happily.ngrok-free.app']
+CORS_ORIGIN_WHITELIST = ['http://194.15.112.50',
+                         'localhost',
+                         'http://karpaty-aqua.store']
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -136,7 +143,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 LIQPAY_PUBLIC_KEY = 'sandbox_i69207852812'
 LIQPAY_PRIVATE_KEY = 'sandbox_6EExRwNHnX6Xdu7xfEZ9SHEu5qokMpCHrajy6fa7'
 LIQPAY_API_URL = 'https://www.liqpay.ua/api/request'
-
 
 LOGIN_URL = '/users/login_required/'
 
