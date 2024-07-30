@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_tailwind",
     'admin_panel',
+    'django.contrib.sitemaps',
 
 ]
 
@@ -89,28 +90,25 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'uk'
-
 TIME_ZONE = 'Europe/Kiev'
-
 DATETIME_FORMAT = 'Y-m-d H:i:s'
-
 USE_I18N = True
-
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/var/www/karpaty-aqua/media/'
+
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
 CRISPY_TEMPLATE_PACK = "tailwind"
+
 
 LOGIN_REDIRECT_URL = "/market"
 LOGOUT_REDIRECT_URL = "/market"

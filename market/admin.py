@@ -1,13 +1,17 @@
-from BudMarket.utils import get_all_urls  # Import the utility function
 from django.contrib import admin
 from .models import Category, Product, ProductAttribute, ProductAttributeValue, HomeImage, ProductImage
 from .forms import HomeImageAdminForm
 
+def duplicate_product(modeladmin, request, queryset):
+    for product in queryset:
+        product.id = None
+        product.save()
+
+duplicate_product.short_description = "Create a duplicate of selected products"
 
 class ProductAttributeInline(admin.TabularInline):
     model = ProductAttribute
     extra = 1
-
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -17,7 +21,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('name',)}
-
 
 class ProductAttributeValueInline(admin.TabularInline):
     model = ProductAttributeValue
@@ -32,7 +35,6 @@ class ProductAttributeValueInline(admin.TabularInline):
 
         return formset
 
-
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
@@ -43,6 +45,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('available',)
     ordering = ('title',)
     inlines = [ProductAttributeValueInline, ProductImageInline]
+    actions = [duplicate_product]  # Register the action
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('title',)}
@@ -50,18 +53,15 @@ class ProductAdmin(admin.ModelAdmin):
     class Media:
         js = ('admin/js/product_attribute_filter.js',)
 
-
 @admin.register(ProductAttribute)
 class ProductAttributeAdmin(admin.ModelAdmin):
     list_display = ('name', 'category')
     ordering = ('name',)
 
-
 @admin.register(ProductAttributeValue)
 class ProductAttributeValueAdmin(admin.ModelAdmin):
     list_display = ('product', 'attribute', 'value')
     ordering = ('product',)
-
 
 @admin.register(HomeImage)
 class HomeImageAdmin(admin.ModelAdmin):

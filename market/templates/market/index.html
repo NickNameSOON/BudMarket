@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
     <head>
-        <title>БудМаркет</title>
+        <title>Карпати Аква</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -13,8 +13,7 @@
         </h1>
         <p class="text-base sm:text-lg text-center mb-6">Купуйте найкраще для вашої оселі</p>
 
-        <!-- Slider for banners -->
-        <div class="relative w-full mx-auto mb-8 overflow-hidden">
+        <div class="relative w-full mx-auto mb-8 items-center overflow-hidden">
             <div id="main-image-slider"
                  class="relative w-full h-64 sm:h-80 flex items-center overflow-hidden rounded-lg shadow-lg">
                 <div class="flex transition-transform duration-500 ease-in-out transform">
@@ -31,7 +30,6 @@
                 </div>
             </div>
 
-            <!-- Indicators -->
             <div class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 mb-4">
                 {% for HomeImage in HomeImages %}
                     <button class="image-indicator w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-400 focus:outline-none"
@@ -42,7 +40,6 @@
 
         <h1 class="text-xl sm:text-2xl font-semibold mb-4">Рекомендуюємо до покупки</h1>
 
-        <!-- Product slider -->
         <div class="flex justify-center items-center space-x-3 mb-6">
             <button id="scroll-left" class="focus:outline-none">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg"

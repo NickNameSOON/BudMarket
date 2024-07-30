@@ -1,80 +1,84 @@
 {% extends "market/base.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Реєстрація</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="">
-<div class="bg-white flex items-center justify-center min-h-screen">
-    <div class="bg-white p-10 rounded-lg shadow-lg w-96 border">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Реєстрація</h2>
+    <!DOCTYPE html>
+    <html lang="uk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Реєстрація</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="">
+    <div class="bg-white flex items-top min-h-screen justify-center mt-12">
+        <div class="p-10 bg-gray-100 rounded-lg shadow-lg h-full w-96 border">
+            <h2 class="text-3xl  font-semibold mb-6 text-center">Реєстрація</h2>
 
-        <!-- Display form errors -->
-        {% if form.errors %}
-        <div class="mb-4">
-            <ul class="text-red-600">
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
+            <!-- Display form errors -->
+            {% if form.errors %}
+                <div class="mb-4">
+                    <ul class="text-red-600">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="username">Логін</label>
+                    <input type="text" id="username" name="username"
+                           value="{{ form.username.value|default_if_none:'' }}"
+                           class="w-full px-4 mt-2 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="Логін Користувача">
+                    {% if form.username.errors %}
+                        <p class="text-red-600">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="email">Електронна пошта</label>
+                    <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}"
+                           class="w-full px-4 mt-2 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="Email">
+                    {% if form.email.errors %}
+                        <p class="text-red-600">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="password">Пароль</label>
+                    <input type="password" id="password1" name="password1"
+                           class="w-full px-4 mt-2 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="Введіть пароль">
+                    {% if form.password.errors %}
+                        <p class="text-red-600">{{ form.password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700" for="confirm_password">Підтвердіть Пароль</label>
+                    <input type="password" id="password2" name="password2"
+                           class="w-full px-4 mt-2 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="Підтвердіть пароль">
+                    {% if form.confirm_password.errors %}
+                        <p class="text-red-600">{{ form.confirm_password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <button type="submit"
+                        class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    Зареєструватися
+                </button>
+            </form>
+            <div class="flex justify-center mt-4 text-sm text-gray-600">
+                <a href="{% url 'users:login' %}" class="hover:underline">Авторизуватися</a>
+            </div>
         </div>
-        {% endif %}
-
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-4">
-                <label class="block text-gray-700" for="username">Логін</label>
-                <input type="text" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}"
-                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Username">
-                {% if form.username.errors %}
-                <p class="text-red-600">{{ form.username.errors.0 }}</p>
-                {% endif %}
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700" for="email">Електронна пошта</label>
-                <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}"
-                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Email">
-                {% if form.email.errors %}
-                <p class="text-red-600">{{ form.email.errors.0 }}</p>
-                {% endif %}
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700" for="password">Пароль</label>
-                <input type="password" id="password1" name="password1"
-                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Password">
-                {% if form.password.errors %}
-                <p class="text-red-600">{{ form.password.errors.0 }}</p>
-                {% endif %}
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700" for="confirm_password">Підтвердіть Пароль</label>
-                <input type="password" id="password2" name="password2"
-                       class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Confirm Password">
-                {% if form.confirm_password.errors %}
-                <p class="text-red-600">{{ form.confirm_password.errors.0 }}</p>
-                {% endif %}
-            </div>
-            <button type="submit"
-                    class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
-                Зареєструватися
-            </button>
-        </form>
     </div>
-</div>
-</body>
-</html>
+    </body>
+    </html>
 {% endblock content %}

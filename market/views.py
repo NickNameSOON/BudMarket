@@ -5,6 +5,10 @@ from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import logging
 from django.http import JsonResponse
+from django.template import loader
+from django.http import HttpResponse
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -98,3 +102,14 @@ def product_attribute_list(request):
         results = [{'id': attr.id, 'text': attr.name} for attr in attributes]
         return JsonResponse({'results': results})
     return JsonResponse({'results': []})
+
+
+
+
+def custom_sitemap(request):
+    products = Product.objects.all()
+    template = loader.get_template('market/sitemap.xml')
+    context = {
+        'products': products,
+    }
+    return HttpResponse(template.render(context, request), content_type='application/xml')

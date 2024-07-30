@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for product in products %}
+    <url>
+        <loc>{{ request.scheme }}://{{ request.get_host }}{% url 'market:detail' product.id %}</loc>
+        <lastmod>{{ product.updated_at|date:"Y-m-d" }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+</urlset>
