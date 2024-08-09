@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "crispy_tailwind",
     'admin_panel',
     'django.contrib.sitemaps',
+    'bot.apps.BotConfig',
 
 ]
 
@@ -69,8 +70,11 @@ DATABASES = {
         'NAME': 'shopdb',
         'USER': 'admin',
         'PASSWORD': '1231',
-        'HOST': 'localhost',  # або IP-адреса вашого сервера PostgreSQL
-        'PORT': '5432',  # порт по замовчуванню для PostgreSQL
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },
     }
 }
 
@@ -149,7 +153,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'log.log',  # Шлях до файлу логів
+            'filename': 'log.log',
         },
     },
     'loggers': {

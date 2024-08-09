@@ -20,6 +20,7 @@ urlpatterns = [
     path('order/', include("order.urls", namespace="order")),
     path('admin/market/productattribute/', product_attribute_list, name='product_attribute_list'),
     path('admin_panel/', include("admin_panel.urls", namespace="admin_panel")),
+    path('bot/', include("bot.urls", namespace="bot")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

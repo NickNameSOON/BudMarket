@@ -11,6 +11,8 @@ from .forms import CustomPasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView
 from .models import Profile
+from bot.utils import generate_bot_token
+
 
 
 def register(request):
@@ -47,6 +49,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                token = generate_bot_token(user)
                 return redirect('/')
     else:
         form = LoginForm()
