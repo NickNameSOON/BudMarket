@@ -3,10 +3,8 @@ from django.utils.text import slugify
 import random
 import string
 
-
 def rand_slug():
     return ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(3))
-
 
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
@@ -32,7 +30,6 @@ class Category(models.Model):
             self.slug = slugify(rand_slug() + '-pickBetter' + self.name)
         super(Category, self).save(*args, **kwargs)
 
-
 class ProductAttribute(models.Model):
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Category, related_name='attributes', on_delete=models.CASCADE)
@@ -44,7 +41,6 @@ class ProductAttribute(models.Model):
     def __str__(self):
         return self.name
 
-
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, null=True)
     title = models.CharField("назва", max_length=200, db_index=True)
@@ -54,6 +50,7 @@ class Product(models.Model):
     description = models.TextField("опис", null=True, blank=True)
     price = models.DecimalField('ціна', max_digits=10, decimal_places=2)
     available = models.BooleanField("Наявність", default=True)
+    meta_description = models.TextField("Мета опис", max_length=500, null=True, blank=True)
 
     def get_price(self):
         return self.price
@@ -65,6 +62,20 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.meta_description:
+            self.meta_description = self.generate_meta_description()
+        super(Product, self).save(*args, **kwargs)
+
+    def generate_meta_description(self):
+        components = [self.title]
+        if self.brand:
+            components.append(self.brand)
+        if self.category:
+            components.append(self.category.name)
+        if self.description:
+            components.append(self.description[:150])  # перші 150 символів опису
+        return ' - '.join(components)
 
 class ProductAttributeValue(models.Model):
     product = models.ForeignKey(Product, related_name='attribute_values', on_delete=models.CASCADE)
@@ -77,9 +88,6 @@ class ProductAttributeValue(models.Model):
 
     def __str__(self):
         return f'{self.attribute.name}: {self.value}'
-
-
-# models.py
 
 class HomeImage(models.Model):
     image = models.ImageField("Зображення", upload_to='banners/%Y/%m/%d')
@@ -94,7 +102,6 @@ class HomeImage(models.Model):
 
     def __str__(self):
         return self.alt
-
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)

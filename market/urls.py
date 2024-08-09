@@ -10,9 +10,7 @@ urlpatterns = [
     path('about-us', views.aboutUs, name='about_us'),
     path('product/<str:product_id>', views.product_detail, name="detail"),
     path('catalog/', views.catalog, name='catalog'),
-    path('catalog/<str:category_slug>/', views.catalog, name='catalog_by_category'),
-    path('sitemap.xml', views.custom_sitemap, name='custom_sitemap'),
-    
+    path('catalog/<str:category_slug>/', views.catalog, name='catalog_by_category'),    
 ]
 
 if settings.DEBUG:

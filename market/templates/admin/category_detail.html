@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>{{ category.name }}</h1>
+<h2>Attributes</h2>
+<ul>
+    {% for attribute in attributes %}
+    <li>{{ attribute.name }}</li>
+    {% endfor %}
+</ul>
+<h2>Products</h2>
+<ul>
+    {% for product in products %}
+    <li>{{ product.title }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'admin:create_product' category.id %}">Create Product</a>
+{% endblock %}

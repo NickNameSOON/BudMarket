@@ -10,8 +10,8 @@ SECRET_KEY ='django-insecure-h=2gh5_oxqekwh7-$ym0w=78aoqls9+cs^+&kzy=+x3&c4g_#&'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'www.karpaty-aqua.store', 'karpaty-aqua.store','localhost'
-]
+    'www.karpaty-aqua.store', 'karpaty-aqua.store','localhost', '194.15.112.50' 
+    ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'market.context_processors.canonical_url',
             ],
         },
     },

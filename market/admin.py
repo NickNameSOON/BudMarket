@@ -7,7 +7,14 @@ def duplicate_product(modeladmin, request, queryset):
         product.id = None
         product.save()
 
-duplicate_product.short_description = "Create a duplicate of selected products"
+duplicate_product.short_description = "Створити копію обраних товарів"
+
+def generate_new_meta_data(modeladmin, request, queryset):
+    for product in queryset:
+        product.meta_description = product.generate_meta_description()
+        product.save()
+
+generate_new_meta_data.short_description = "Згенерувати нові мета дані для вибраних товарів"
 
 class ProductAttributeInline(admin.TabularInline):
     model = ProductAttribute
@@ -45,10 +52,16 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('available',)
     ordering = ('title',)
     inlines = [ProductAttributeValueInline, ProductImageInline]
-    actions = [duplicate_product]  # Register the action
+    actions = [duplicate_product, generate_new_meta_data]  # Register the actions
+    readonly_fields = ('meta_description',)  # робимо поле тільки для читання в адмінці
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('title',)}
+
+    def save_model(self, request, obj, form, change):
+        if not obj.meta_description:
+            obj.meta_description = obj.generate_meta_description()
+        super().save_model(request, obj, form, change)
 
     class Media:
         js = ('admin/js/product_attribute_filter.js',)

@@ -1,0 +1,6 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Custom Admin Home</h1>
+<a href="{% url 'admin:category_list' %}">Categories</a> |
+<a href="{% url 'admin:market_homeimage_changelist' %}">Banners</a>
+{% endblock %}

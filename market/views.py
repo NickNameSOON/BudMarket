@@ -48,8 +48,16 @@ def product_detail(request, product_id):
     images = ProductImage.objects.filter(product=product)
     form = CartAddProductForm()
     product_attributes = ProductAttributeValue.objects.filter(product=product)
-    return render(request, 'market/detail.html',
-                  context={'product': product, 'form': form, 'product_attributes': product_attributes, 'images': images})
+    context = {
+        'product': product,
+        'form': form,
+        'product_attributes': product_attributes,
+        'images': images,
+        'meta_description': product.meta_description,
+        'canonical_url': request.build_absolute_uri()
+        }
+
+    return render(request, 'market/detail.html', context)
 
 
 def catalog(request, category_slug=None):

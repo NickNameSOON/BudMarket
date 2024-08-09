@@ -5,6 +5,7 @@
     <head>
         <title>Карпати Аква</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="canonical" href="{{ canonical_url }}">
     </head>
     <body class="bg-gray-100 min-h-screen flex flex-col">
     <main class="container mx-auto px-4 py-8 flex-grow">
@@ -51,10 +52,10 @@
                 {% for product in products %}
                     <a href="{% url 'market:detail' product.id %}" class="flex-shrink-0 w-64">
                         <div class="bg-white p-4 rounded-lg shadow-md h-80 flex flex-col justify-between">
-                            <img src="{{ product.image.url }}"
-                                 srcset="{{ product.image.url }} 1x, {{ product.image.url }} 2x"
-                                 sizes="(max-width: 768px) 100vw, 50vw"
-                                 class="h-40 bg-gray-300 rounded-md mb-2 object-cover">
+                            <div class="w-full h-48 bg-gray-300 rounded-md mb-2 flex justify-center items-center overflow-hidden">
+                                <img src="{{ product.image.url }}"
+                                     class="w-full h-full object-cover object-center">
+                            </div>
                             <h3 class="text-xl font-semibold truncate">{{ product.title }}</h3>
                             <p class="truncate">Виробник: {{ product.brand }}</p>
                             <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
@@ -71,6 +72,9 @@
                 </svg>
             </button>
         </div>
+        
+        
+        
 
         <!-- Category product sliders -->
         <div class="mt-4 mb-6">
@@ -91,17 +95,19 @@
                     </button>
                     <div class="products-slider flex space-x-4 overflow-x-scroll scrollbar-hide w-full max-w-6xl">
                         {% for product in products %}
-                            <a href="{% url 'market:detail' product.id %}" class="flex-shrink-0 w-64">
-                                <div class="bg-white p-4 rounded-lg shadow-md h-80 flex flex-col justify-between">
+                        <a href="{% url 'market:detail' product.id %}" class="flex-shrink-0 w-64">
+                            <div class="bg-white p-4 rounded-lg shadow-md h-80 flex flex-col justify-between">
+                                <div class="w-full h-40 bg-gray-300 rounded-md mb-2 flex justify-center items-center overflow-hidden">
                                     <img src="{{ product.image.url }}"
                                          srcset="{{ product.image.url }} 1x, {{ product.image.url }} 2x"
                                          sizes="(max-width: 768px) 100vw, 50vw"
-                                         class="h-40 bg-gray-300 rounded-md mb-2 object-cover">
-                                    <h3 class="text-xl font-semibold truncate">{{ product.title }}</h3>
-                                    <p class="truncate">Виробник: {{ product.brand }}</p>
-                                    <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+                                         class="object-cover w-full h-full">
                                 </div>
-                            </a>
+                                <h3 class="text-xl font-semibold truncate">{{ product.title }}</h3>
+                                <p class="truncate">Виробник: {{ product.brand }}</p>
+                                <p class="text-green-500 text-lg font-bold">{{ product.price }}</p>
+                            </div>
+                        </a>
                         {% endfor %}
                     </div>
                     <button class="scroll-right focus:outline-none">
