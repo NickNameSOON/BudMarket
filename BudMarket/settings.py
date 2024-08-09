@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 from django.contrib import staticfiles
 from dotenv import load_dotenv
+import smtplib as smtp
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -132,13 +134,15 @@ CORS_ORIGIN_WHITELIST = ['http://194.15.112.50',
 
 load_dotenv()  # Load environment variables from .env file
 
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'xeryrs@gmail.com'
+EMAIL_HOST_PASSWORD = 'LiqjuQYkvuwGq7D'
+EMAIL_USE_TLS = True
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+FROM_EMAIL = 'xeryrs@gmail.com'
+EMAIL_ADMIN = 'nicknamesoon@gmail.com'
 
 LIQPAY_PUBLIC_KEY = 'sandbox_i69207852812'
 LIQPAY_PRIVATE_KEY = 'sandbox_6EExRwNHnX6Xdu7xfEZ9SHEu5qokMpCHrajy6fa7'

@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f51f9d15-9462-416c-b84a-0410fcb2e98c" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d4750c3-d7ae-4d8d-a024-e81c944aec61.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/market/templates/email/order_confirmation_email.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BudMarket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BudMarket/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BudMarket/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -339,7 +323,7 @@
       <workItem from="1721373095839" duration="164000" />
       <workItem from="1721463674776" duration="8129000" />
       <workItem from="1723190901980" duration="1182000" />
-      <workItem from="1723194713216" duration="7366000" />
+      <workItem from="1723194713216" duration="10522000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
