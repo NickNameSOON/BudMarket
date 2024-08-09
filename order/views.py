@@ -1,6 +1,4 @@
 import json
-import hashlib
-import requests
 from django.http import HttpResponseForbidden, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -15,6 +13,9 @@ from django.views.decorators.csrf import csrf_exempt
 from users.models import Profile
 import logging
 from liqpay import LiqPay
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +47,7 @@ def process_order(request):
                 delivery_method=delivery_method,
                 payment_method=payment_method,
                 comment=comment,
-                first_name= first_name,
+                first_name=first_name,
                 last_name=last_name,
             )
 
@@ -65,6 +66,8 @@ def process_order(request):
 
             cart.cartitem_set.all().delete()
 
+            send_order_confirmation_email(order)  # Відправка електронного листа
+
             if payment_method == 'liqpay':
                 liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
                 params = {
@@ -81,7 +84,6 @@ def process_order(request):
                 payment_data = liqpay.cnb_form(params)
                 return JsonResponse({'payment_data': payment_data})
             else:
-                order.save()
                 messages.success(request, "Ваше замовлення було успішно створене.")
                 return redirect('order:order-success')
     else:
@@ -143,7 +145,6 @@ def confirm_buy_now(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     profile = Profile.objects.get(user=request.user)
 
-    # Отримання даних з полів введення
     if request.method == 'POST':
         contact_number = request.POST.get('contactNumber')
         first_name = request.POST.get('firstName')
@@ -157,7 +158,6 @@ def confirm_buy_now(request, product_id):
             messages.error(request, "Невідомий метод оплати.")
             return redirect('cart:cart-view')
 
-        #Створення замовлення
         with transaction.atomic():
             try:
                 order = Order.objects.create(
@@ -181,7 +181,8 @@ def confirm_buy_now(request, product_id):
                 order.total_price = order_item.price
                 order.save()
 
-                # Оплата за допомогою сервісу Liqpay
+                send_order_confirmation_email(order)  # Відправка електронного листа
+
                 if payment_method == 'liqpay':
                     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
                     params = {
@@ -236,3 +237,13 @@ def liqpay_callback(request):
             return JsonResponse({'status': 'failure', 'message': 'Payment not successful'}, status=400)
 
     return JsonResponse({'status': 'error'}, status=400)
+
+
+def send_order_confirmation_email(order):
+    subject = f'Підтвердження замовлення #{order.id}'
+    html_message = render_to_string('email/order_confirmation_email.html', {'order': order})
+    plain_message = strip_tags(html_message)
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to_email = order.user.email
+
+    send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)

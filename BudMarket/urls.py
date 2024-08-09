@@ -16,10 +16,15 @@ urlpatterns = [
     path('order/', include("order.urls", namespace="order")),
     path('admin/market/productattribute/', product_attribute_list, name='product_attribute_list'),
     path('admin_panel/', include("admin_panel.urls", namespace="admin_panel")),
+<<<<<<< HEAD
     path('', include('market.urls')),
     path('', include('cart.urls')),
     path('', include('order.urls')),
     path('', include('users.urls')),
 ] + sitemap_urls
+=======
+    path('bot/', include("bot.urls", namespace="bot")),
+]
+>>>>>>> refs/remotes/origin/master
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

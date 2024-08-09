@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Підтвердження замовлення</title>
+</head>
+<body>
+    <h1>Дякуємо за ваше замовлення, {{ order.first_name }} {{ order.last_name }}!</h1>
+    <p>Ваше замовлення було успішно створене. Деталі замовлення:</p>
+    <ul>
+        {% for item in order.orderitem_set.all %}
+            <li>{{ item.product.name }} - {{ item.quantity }} x {{ item.price }} UAH</li>
+        {% endfor %}
+    </ul>
+    <p>Загальна сума: {{ order.total_price }} UAH</p>
+    <p>Ми надішлемо вам подальшу інформацію про статус вашого замовлення на вашу електронну пошту.</p>
+</body>
+</html>
